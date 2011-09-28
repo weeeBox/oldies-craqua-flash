@@ -9,9 +9,6 @@ package bc.game
 	import bc.ui.BcGameUI;
 	import bc.world.core.BcWorld;
 
-	import com.gatcha.api.GameEvent;
-
-	import flash.display.MovieClip;
 	import flash.net.SharedObject;
 	import flash.ui.Keyboard;
 	import flash.ui.Mouse;
@@ -46,12 +43,12 @@ package bc.game
 				
 				new BcGameUI();
 				
-				BcDevice.display.addEventListener(GameEvent.SINGLEPLAYER_START_GAME_RESULT, startGameResultHandler);
+				/*BcDevice.display.addEventListener(GameEvent.SINGLEPLAYER_START_GAME_RESULT, startGameResultHandler);
 				BcDevice.display.addEventListener(GameEvent.SINGLEPLAYER_START_GAME_FAIL, startGameFailHandler);
 				BcDevice.display.addEventListener(GameEvent.SINGLEPLAYER_END_GAME_RESULT, endGameResultHandler);
 				BcDevice.display.addEventListener(GameEvent.SINGLEPLAYER_END_GAME_FAIL, endGameFailHandler);
 				BcDevice.display.addEventListener(GameEvent.SINGLEPLAYER_UPDATE_HIGHSCORE_RESULT, updateHighscoreResultHandler);
-				BcDevice.display.addEventListener(GameEvent.SINGLEPLAYER_UPDATE_HIGHSCORE_FAIL, updateHighscoreFailHandler);
+				BcDevice.display.addEventListener(GameEvent.SINGLEPLAYER_UPDATE_HIGHSCORE_FAIL, updateHighscoreFailHandler);*/
 				//BcDevice.display.addEventListener(GameEvent.WRAPPER_PAUSED, gamePausedHandler);
 				//BcDevice.display.addEventListener(GameEvent.WRAPPER_UNPAUSED, gameUnpausedHandler);
 			}
@@ -61,13 +58,13 @@ package bc.game
 		public function startGame(newGame:Boolean):void
 		{
 			_newGame = newGame;
-			if(!_gPlaying)
+			/*if(!_gPlaying)
 				sendStartGame();
-			else if(!newGame)
-				world.start(_newGame);
+			else if(!newGame)*/
+			world.start(_newGame);
 		}
 		
-		private var _gPlaying:Boolean;
+		/*private var _gPlaying:Boolean;
 		private function sendStartGame():void
 		{
 			if(!_gPlaying)
@@ -93,10 +90,6 @@ package bc.game
 				{ 
 					BcDevice.display.dispatchEvent(new GameEvent(GameEvent.SINGLEPLAYER_END_GAME));
 				}
-				/*else
-				{
-					endGameResultHandler(null);
-				}*/
 			}
 		}
 		
@@ -116,7 +109,7 @@ package bc.game
 					updateHighscoreResultHandler(updateScoreEvent);
 				}
 			}
-		}
+		}*/
 		
 		public function update(dt:Number):void
 		{			
@@ -205,7 +198,7 @@ package bc.game
 			}
 		}
 		
-		public function startGameResultHandler(e:GameEvent):void
+		/*public function startGameResultHandler(e:GameEvent):void
 		{
 			trace("start game result");
 			if(!_gPlaying)
@@ -247,7 +240,7 @@ package bc.game
 		private function updateHighscoreFailHandler(e:GameEvent):void
 		{
 			trace("Error, could not update highscore! " + e.data);
-		}
+		}*/
 		
 		/*private function gamePausedHandler(e:GameEvent):void
 		{

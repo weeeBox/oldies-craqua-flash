@@ -7,7 +7,7 @@ package bc.game.asset
 	 */
 	public class BcGameAsset
 	{
-		[Embed(source="../../../../asset/game/sponsor/gatcha.png")]
+		/*[Embed(source="../../../../asset/game/sponsor/gatcha.png")]
 		private static var img_sponsor_logo:Class;
 		BcAsset.embedImage("sponsor_logo", img_sponsor_logo, true);
 		
@@ -797,12 +797,12 @@ package bc.game.asset
 		
 		[Embed(source="../../../../asset/game/audio/tv_shot.mp3")]
 		private static var sfx_audio_tv_shot:Class;
-		BcAsset.embedSound("audio_tv_shot", sfx_audio_tv_shot);
+		BcAsset.embedSound("audio_tv_shot", sfx_audio_tv_shot);*/
 		
 		public function BcGameAsset(callback:Function)
 		{
-			//BcAsset.load("../asset/game.xml", callback);
-			callback();
+			BcAsset.load("../asset/game.xml", callback);
+			//callback();
 		}
 	}
 }

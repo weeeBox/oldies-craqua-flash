@@ -18,8 +18,6 @@ package bc.world.player
 	import bc.world.item.BcItemData;
 	import bc.world.particles.BcParticleData;
 
-	import com.gatcha.memory.SafeMemory;
-
 	/**
 	 * @author Elias Ku
 	 */
@@ -40,19 +38,19 @@ package bc.world.player
 		public var tailShapes:Vector.<BcCircleShape> = new Vector.<BcCircleShape>(10, true);
 		public var tailCount:uint;
 
-		//private var money:uint;
-		protected function get safe_money():uint {return uint(SafeMemory.instance.getValue("money"));}
-		protected function set safe_money(value:uint):void { SafeMemory.instance.setValue("money", value); }
-		public function getMoney():uint {return safe_money;}
+		private var money:uint;
+		//protected function get safe_money():uint {return uint(SafeMemory.instance.getValue("money"));}
+		//protected function set safe_money(value:uint):void { SafeMemory.instance.setValue("money", value); }
+		public function getMoney():uint {return money;}
 		
 		// уровень
 		public var levelIndex:int;
 		public var levelInfo:BcPlayerLevel;
 		// опыт
 		
-		protected function get safe_exp():uint {return uint(SafeMemory.instance.getValue("exp"));}
-		protected function set safe_exp(value:uint):void { SafeMemory.instance.setValue("exp", value); }
-		//public var exp:uint;
+		//protected function get safe_exp():uint {return uint(SafeMemory.instance.getValue("exp"));}
+		//protected function set safe_exp(value:uint):void { SafeMemory.instance.setValue("exp", value); }
+		public var exp:uint;
 		public var expPrev:uint;
 		public var expNext:uint;
 		public var expProgress:Number = 0;
@@ -70,9 +68,9 @@ package bc.world.player
 		public static var BOMB_COUNT:uint = 6;
 		
 		// Кол-во бомб в обойке
-		protected function get safe_bombs():uint { return uint(SafeMemory.instance.getValue("bombs")); }
-		protected function set safe_bombs(value:uint):void { SafeMemory.instance.setValue("bombs", value); }
-		//private var bombClip:uint = BOMB_COUNT;
+		//protected function get safe_bombs():uint { return uint(SafeMemory.instance.getValue("bombs")); }
+		//protected function set safe_bombs(value:uint):void { SafeMemory.instance.setValue("bombs", value); }
+		private var bombClip:uint = BOMB_COUNT;
 		
 		
 		
@@ -87,9 +85,9 @@ package bc.world.player
 		private var launchImpulse:Vector2 = new Vector2();
 		
 		// Жизни
-		//private var health:int = 100;
-		protected function get safe_health():uint { return uint(SafeMemory.instance.getValue("health")); }
-		protected function set safe_health(value:uint):void { SafeMemory.instance.setValue("health", value); }
+		private var health:int = 100;
+		//protected function get safe_health():uint { return uint(SafeMemory.instance.getValue("health")); }
+		//protected function set safe_health(value:uint):void { SafeMemory.instance.setValue("health", value); }
 		private var loser:Boolean;
 		
 		// регенерация жизней
@@ -258,12 +256,12 @@ package bc.world.player
 			
 			shooting = shotTrigger && (shootingPause >= 1);
 			
-			if( safe_health < 100)
+			if( health < 100)
 			{
 				healthRegeneration -= dt;
 				if(healthRegeneration <= 0)
 				{
-					setHealth(safe_health + 1);
+					setHealth(health + 1);
 					healthRegeneration = levelInfo.regenHealth;
 				}
 			}
@@ -392,14 +390,14 @@ package bc.world.player
 				++i;
 			}
 			
-			if( safe_bombs < BOMB_COUNT && bombRegeneration > 0 )
+			if( bombClip < BOMB_COUNT && bombRegeneration > 0 )
 			{
 				bombRegeneration -= dt;
 				if(bombRegeneration <= 0)
 				{
 					//++bombClip;
 					//world.hud.bombs.onRegen();
-					setBombClip(safe_bombs + 1);
+					setBombClip(bombClip + 1);
 					bombRegeneration = levelInfo.regenBomb;
 				}
 			}
@@ -407,7 +405,7 @@ package bc.world.player
 		
 		public function launchBomb():void
 		{
-			if(safe_bombs > 0)
+			if(bombClip > 0)
 			{
 				for each (var bomb:BcPlayerWeapon in levelInfo.bombs)
 				{
@@ -427,7 +425,7 @@ package bc.world.player
 						bomb.sfx.playObject(launchPosition.x, launchPosition.y);
 				}
 		
-				setBombClip(safe_bombs - 1);
+				setBombClip(bombClip - 1);
 				//world.hud.bombs.onUse();
 				bombRegeneration = levelInfo.regenBomb;
 				
@@ -467,7 +465,7 @@ package bc.world.player
 						heal(itemData.amount);
 						break;
 					case BcItemData.BOMB:
-						setBombClip(safe_bombs + itemData.amount);
+						setBombClip(bombClip + itemData.amount);
 						break;
 				}
 				
@@ -518,7 +516,7 @@ package bc.world.player
 		{
 			var damageValue:Number = objectDamage.amount;
 			
-			if(safe_health==0) return;
+			if(health==0) return;
 
 			var fanCount:uint = 3;
 			var fanPhase:Number = Math.random()*6.28;
@@ -548,7 +546,7 @@ package bc.world.player
 				world.tweenShake(1);
 			}
 			
-			setHealth(safe_health - uint(damageValue));			
+			setHealth(health - uint(damageValue));			
 			sprite.onDamage();
 			
 			medalDamage = true;
@@ -556,7 +554,7 @@ package bc.world.player
 		
 		public function onMonsterFall(monster:BcEnemy):void
 		{
-			setHealth(safe_health - monster.data.fail);
+			setHealth(health - monster.data.fail);
 			world.tweenShake(1);
 			
 			medalBottom = true;
@@ -591,7 +589,7 @@ package bc.world.player
 		{
 			if(amount > 0)
 			{
-				setHealth(safe_health + amount);
+				setHealth(health + amount);
 			}
 		}
 		
@@ -599,15 +597,15 @@ package bc.world.player
 		{
 			if(amount>0)
 			{
-				setMoney(safe_money + amount);
+				setMoney(money + amount);
 				world.hud.money.onGood();
 			}
 		}
 		
 		private function setMoney(value:int):void
 		{
-			safe_money = value;
-			world.hud.money.updateValue(safe_money);
+			money = value;
+			world.hud.money.updateValue(money);
 		}
 		
 		private function setHealth(value:int):void
@@ -615,14 +613,14 @@ package bc.world.player
 			if(value < 0) value = 0;
 			else if(value > 100) value = 100;
 			
-			if(safe_health > 0 && value == 0)
+			if(health > 0 && value == 0)
 			{
 				onDeath();
 			}
 			
-			safe_health = value;
+			health = value;
 			
-			world.hud.health.updateValue(safe_health);
+			world.hud.health.updateValue(health);
 		}
 		
 		private function setBombClip(value:int):void
@@ -630,9 +628,9 @@ package bc.world.player
 			if(value < 0) value = 0;
 			else if(value > BOMB_COUNT) value = BOMB_COUNT;
 			
-			safe_bombs = value;
+			bombClip = value;
 			
-			world.hud.bombs.setValue(safe_bombs);
+			world.hud.bombs.setValue(bombClip);
 		}
 		
 		private function initExp(exp:uint):void
@@ -655,7 +653,7 @@ package bc.world.player
 				levelInfo = levels[levelIndex];
 			}
 			
-			safe_exp = exp;
+			this.exp = exp;
 			calcExpBounds();
 			calcExpProgress();
 			
@@ -672,8 +670,8 @@ package bc.world.player
 			
 			if(amount > 0 && levelIndex + 1 < levels.length)
 			{
-				safe_exp = safe_exp + amount;
-				while(levelIndex+1 < levels.length && safe_exp >= expNext)
+				exp = exp + amount;
+				while(levelIndex+1 < levels.length && exp >= expNext)
 				{
 					++levelIndex;
 					levelInfo = levels[levelIndex];
@@ -709,7 +707,7 @@ package bc.world.player
 				expDown /= 2;
 			}
 			
-			expNew = safe_exp - expDown;
+			expNew = exp - expDown;
 			if(expNew < 0)
 			{
 				expNew = 0;
@@ -725,9 +723,9 @@ package bc.world.player
 				world.tweenShake(0.5);				
 			}
 			
-			safe_exp = expNew;
+			exp = expNew;
 			
-			while(levelIndex > 0 && safe_exp < expPrev)
+			while(levelIndex > 0 && exp < expPrev)
 			{
 				--levelIndex;
 				levelInfo = levels[levelIndex];
@@ -777,7 +775,7 @@ package bc.world.player
 	    {
 	    	if(levelIndex + 1 < levels.length)
 	    	{
-	    		expProgress = (safe_exp - expPrev)/(expNext - expPrev);
+	    		expProgress = (exp - expPrev)/(expNext - expPrev);
 	    	}
 	    	else
 	    	{
@@ -787,10 +785,10 @@ package bc.world.player
 		
 		public function fillCheckPoint(checkPoint:BcCheckPoint):void
 	    {
-	    	checkPoint.health = safe_health;
-	    	checkPoint.money = safe_money;
-	    	checkPoint.bombs = safe_bombs;
-	    	checkPoint.exp = safe_exp;
+	    	checkPoint.health = health;
+	    	checkPoint.money = money;
+	    	checkPoint.bombs = bombClip;
+	    	checkPoint.exp = exp;
 		}
 		
 		public function isDead():Boolean
@@ -800,12 +798,12 @@ package bc.world.player
 		
 		public function getHealthNeed():int
 	    {
-	    	return ( 100 - safe_health ); 
+	    	return ( 100 - health ); 
 		}
 		
 		public function getBombsNeed():int
 	    {
-	    	return ( BOMB_COUNT - safe_bombs ); 
+	    	return ( BOMB_COUNT - bombClip ); 
 		}
 		
 		private function onDeath():void
@@ -864,31 +862,31 @@ package bc.world.player
 			if(uiRockets)
 			{
 				rank++;
-				bonus += M_ROCKETS * safe_money;
+				bonus += M_ROCKETS * money;
 			}
 			
 			if(uiDamage)
 			{
 				rank++;
-				bonus += M_DAMAGE * safe_money;
+				bonus += M_DAMAGE * money;
 			}
 			
 			if(uiBottom)
 			{
 				rank++;
-				bonus += M_BOTTOM * safe_money;
+				bonus += M_BOTTOM * money;
 			}
 			
 			if(uiBonus)
 			{
 				rank++;
-				bonus += M_BONUS * safe_money;
+				bonus += M_BONUS * money;
 			}
 			
 			if(uiComplete)
 			{
 				rank++;
-				bonus += M_COMPLETE * safe_money;
+				bonus += M_COMPLETE * money;
 			}
 			
 			addMoney(bonus);
