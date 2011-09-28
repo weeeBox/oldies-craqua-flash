@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="debug" name="Craqua Build">
+
+	<property file="build.properties" />
+
+	<target name="debug">
+
+		<echo>Compiling SWF...</echo>
+
+		<fdt.launch.application debug="true" mainclass="${src.dir}/${PROJECT_CLASS}" startswf="false" target="${deploy.dir}/${OUTPUT_NAME}_debug.swf" projectname="${PROJECT_NAME}" compilerarguments="${FLEX_COMMON_ARGS} -strict=true -optimize=true -debug=true -use-network=false" />
+
+		<echo>SWF compiled. Start debugger...</echo>
+		<fdt.startDebugger projectname="${PROJECT_NAME}" />
+
+		<echo>Launch SWF with Flash Player...</echo>
+		<exec executable="${flashplayer}" spawn="false">
+			<arg line="'${deploy.dir}/${OUTPUT_NAME}_debug.swf'" />
+		</exec>
+
+	</target>
+	
+	<target name="release">
+		<echo>Compiling release SWF...</echo>
+		<fdt.launch.application debug="false" mainclass="${src.dir}/${PROJECT_CLASS}" startswf="false" target="${deploy.dir}/${OUTPUT_NAME}_offline.swf" projectname="${PROJECT_NAME}" compilerarguments="${FLEX_COMMON_ARGS} -strict=true -optimize=true -debug=false -use-network=false" />
+		<echo>SWF compiled.</echo>
+	</target>
+	
+	<target name="release_network">
+		<echo>Compiling release SWF with network...</echo>
+		<fdt.launch.application debug="false" mainclass="${src.dir}/${PROJECT_CLASS}" startswf="false" target="${deploy.dir}/${OUTPUT_NAME}.swf" projectname="${PROJECT_NAME}" compilerarguments="${FLEX_COMMON_ARGS} -strict=true -optimize=true -debug=false -use-network=true" />
+		<echo>SWF compiled.</echo>
+	</target>
+
+	<target name="reset">
+		<fdt.launch.resetFlexCompiler/>
+		<echo>FCSH reset completed.</echo>
+	</target>
+	
+</project>
