@@ -6,12 +6,12 @@
 		scale="1" />
 
 	<bitmap 
-		id="sponsor_andkon_back"
+		id="sponsor_logo_back"
 		scale="0.99"
 		pivot="128" />
 
 	<bitmap 
-		id="sponsor_andkon"
+		id="sponsor_logo"
 		scale="0.99" 
 		pivot="128"/>
 	
