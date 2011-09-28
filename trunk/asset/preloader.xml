@@ -1,0 +1,4 @@
+<asset path="../asset/preloader/">
+	<resource path="ui/bg_.jpg"/>
+	<resource path="data.xml"/>
+</asset>
