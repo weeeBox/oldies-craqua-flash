@@ -1,6 +1,5 @@
 package bc.ui 
 {
-	import bc.game.BcGame;
 	import bc.core.audio.BcAudio;
 	import bc.core.audio.BcMusic;
 	import bc.core.device.BcAsset;
@@ -351,13 +350,13 @@ package bc.ui
 		{
 			if(BcGameGlobal.world.player.getMoney() > 0 && !BcGameGlobal.world.uiDeath)
 			{
-				BcGameGlobal.game.sendScores();
+				//BcGameGlobal.game.sendScores();
 				//endPanel.play(transWindowOpen, 1, function (o:UIObject):void {showSubmit();});
 			}
 			
 			if(BcGameGlobal.world.uiVictory || BcGameGlobal.world.uiDeath)
 			{
-				BcGameGlobal.game.sendEndGame();
+				BcGameUI.instance.endGame();
 			}
 			
 			/*if(oShockHS)
@@ -593,7 +592,7 @@ package bc.ui
 				BcMusic.getMusic("victory").stop(1);
 				BcMusic.getMusic("stage").play(1);
 			}
-			else BcGameGlobal.game.startGameResultHandler(null);
+			//else BcGameGlobal.game.startGameResultHandler(null);
 		}
 
 		/*private function endClickSubmit():void

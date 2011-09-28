@@ -1,6 +1,5 @@
 package bc.game 
 {
-	import com.gatcha.api.Translations;
 
 	/**
 	 * @author Elias Ku
@@ -47,7 +46,7 @@ package bc.game
 		
 		public static function initialize():void
 		{
-			if(Translations.instance.exists("UI_QUALITY_HIGH"))
+			/*if(Translations.instance.exists("UI_QUALITY_HIGH"))
 				UI_QUALITY_HIGH = Translations.instance.getString("UI_QUALITY_HIGH");
 			if(Translations.instance.exists("UI_QUALITY_LOW"))
 				UI_QUALITY_LOW = Translations.instance.getString("UI_QUALITY_LOW");
@@ -118,7 +117,7 @@ package bc.game
 			if(Translations.instance.exists("GAME_STAGE_N"))
 				GAME_STAGE_N = Translations.instance.getString("GAME_STAGE_N");
 			if(Translations.instance.exists("GAME_BOSS_N"))
-				GAME_BOSS_N = Translations.instance.getString("GAME_BOSS_N");
+				GAME_BOSS_N = Translations.instance.getString("GAME_BOSS_N");*/
 		}
 	}
 }
