@@ -6,43 +6,58 @@ package bc.game
 	 */
 	public class BcStrings 
 	{
-		public static var UI_QUALITY_HIGH:String = "HIGH";
-		public static var UI_QUALITY_LOW:String = "LOW";
-		public static var UI_MUSIC_ON:String = "MUSIC ON";
-		public static var UI_MUSIC_OFF:String = "MUSIC OFF";
-		public static var UI_SFX_ON:String = "SFX ON";
-		public static var UI_SFX_OFF:String = "SFX OFF";
+		public static const UI_LOADING:String = "% loaded";
+		public static const UI_LOADING_COMPLETED:String = "COMPLETED";
+		public static const UI_LOADING_PLAY:String = "PLAY!";
+		
+		public static const UI_SPONSORED_BY:String = "SPONSORED BY:";
+		public static const UI_DEVELOPED_BY:String = "DEVELOPED BY:";
+		public static const UI_MUSIC_SFX_BY:String = "MUSIC/SFX BY:";
+		public static const UI_THANKS_TO:String = "THANKS TO:";
+		
+		public static const UI_QUALITY_HIGH:String = "HIGH";
+		public static const UI_QUALITY_LOW:String = "LOW";
+		public static const UI_MUSIC_ON:String = "MUSIC ON";
+		public static const UI_MUSIC_OFF:String = "MUSIC OFF";
+		public static const UI_SFX_ON:String = "SFX ON";
+		public static const UI_SFX_OFF:String = "SFX OFF";
 			
-		public static var UI_NEW_GAME:String = "NEW GAME";
-		public static var UI_CONTINUE:String = "CONTINUE";
-		public static var UI_HIGHSCORES:String = "HIGHSCORES";
-		public static var UI_CREDITS:String = "CREDITS";
-		public static var UI_BACK:String = "BACK";
-		public static var UI_PAUSED:String = "PAUSED";
-		public static var UI_RESUME:String = "RESUME";
-		public static var UI_END_GAME:String = "END GAME";
-		public static var UI_REPLAY:String = "REPLAY";
-		public static var UI_SUBMIT_SCORES:String = "SUBMIT<br>SCORES";
+		public static const UI_NEW_GAME:String = "NEW GAME";
+		public static const UI_CONTINUE:String = "CONTINUE";
+		public static const UI_HIGHSCORES:String = "HIGHSCORES";
+		public static const UI_CREDITS:String = "CREDITS";
+		public static const UI_BACK:String = "BACK";
+		public static const UI_PAUSED:String = "PAUSED";
+		public static const UI_RESUME:String = "RESUME";
+		public static const UI_END_GAME:String = "END GAME";
+		public static const UI_REPLAY:String = "REPLAY";
+		public static const UI_SUBMIT_SCORES:String = "SUBMIT<br>SCORES";
 		
-		public static var INFO_STAGE_N:String = "Stage ";
-		public static var INFO_YOUR_BEST_SCORE:String = "Your Best Score:";
-		public static var INFO_RANK:String = "RANK: ";
-		public static var INFO_RESULT:String = "RESULT: ";
+		public static const INFO_STAGE_N:String = "Stage ";
+		public static const INFO_YOUR_BEST_SCORE:String = "Your Best Score:";
+		public static const INFO_RANK:String = "RANK: ";
+		public static const INFO_RESULT:String = "RESULT: ";
 		
-		public static var DESC_ROCKETS:String = "Complete stage without rockets: +";
-		public static var DESC_DAMAGE:String = "No bullets/enemies damage: +";
-		public static var DESC_BOTTOM:String = "Enemies didn't reach the bottom: +";
-		public static var DESC_BONUS:String = "At least 95% gems harvested: +";
-		public static var DESC_COMPLETE:String = "You're alive: +";
-		public static var DESC_POINTS:String = "% points";
+		public static const DESC_ROCKETS:String = "Complete stage without rockets: +";
+		public static const DESC_DAMAGE:String = "No bullets/enemies damage: +";
+		public static const DESC_BOTTOM:String = "Enemies didn't reach the bottom: +";
+		public static const DESC_BONUS:String = "At least 95% gems harvested: +";
+		public static const DESC_COMPLETE:String = "You're alive: +";
+		public static const DESC_POINTS:String = "% points";
 		
-		public static var GAME_VICTORY:String = "VICTORY!!!";
-		public static var GAME_GAME_OVER:String = "GAME OVER";
-		public static var GAME_STAGE_N:String = "Stage ";
-		public static var GAME_BOSS_N:String = "Boss ";
+		public static const GAME_VICTORY:String = "VICTORY!!!";
+		public static const GAME_GAME_OVER:String = "GAME OVER";
+		public static const GAME_STAGE_CLEAR:String = "STAGE CLEAR";
+		public static const GAME_BOSS_DEFEATED:String = "BOSS DEFEATED";
+		public static const GAME_STAGE_N:String = "Stage ";
+		public static const GAME_BOSS_N:String = "Boss ";
 		
-		public static var POOL:Object = {boss1:"Gasoiler", boss2:"A(H1N1)", boss3:"MR. NOTHING"};
+		public static const BOSS_NAMES:Object = {boss1:"Gasoiler", boss2:"A(H1N1)", boss3:"MR. NOTHING"};
 		
+		public static const RANKS:Array = ["EASY", "NOT BAD", "GOOD", "EXCELLENT", "AWESOME", "HARDCORE"];
+		
+		public static var UI_INSTRUCTIONS:String = "INSTRUCTIONS";
+		public static var UI_INSTRUCTIONS_TEXT:String = "<font color=\"#33ff33\">ContrГґles.</font><br> - Souris pour bouger.<br> - Clic gauche pour tirer.<br> - Touche Espace pour<br>   envoyer des missiles.<br><br><font color=\"#33ff33\">Instructions.</font><br> - Tuer les ennemis.<br> - Collecter les Г©toiles pour<br>   amГ©liorer les armes du crabe.<br> - Ne pas laisser vos coeurs<br>   passer Г  zГ©ro.";
 		
 		public static function initialize():void
 		{

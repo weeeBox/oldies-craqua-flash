@@ -50,15 +50,20 @@ package bc.core.ui
 		
 		protected var _baseScale:Number = 1;
 		
-		public function UIButton(layer:UIObject, x:Number = 0, y:Number = 0, text:String = null, style:UIStyle = null, onClick:Function = null)
+		protected var _overSpeed:Number = 6;
+		protected var _overBackSpeed:Number = 2;
+		
+		public function UIButton(layer:UIObject, x:Number = 0, y:Number = 0, text:String = null, style:UIStyle = null, onClick:Function = null, fast:Boolean = true)
 		{
-			super(layer, x, y);
+			super(layer, x, y, fast);
 			
 			var image:String;
 			var w:Number = 0;
 			var h:Number = 0;
 			
-			BcSpriteUtil.setupFast(_spriteButton);
+			if(fast)
+				BcSpriteUtil.setupFast(_spriteButton);
+				
 			BcSpriteUtil.setupFast(_spriteBack);
 			BcSpriteUtil.setupFast(_spriteBody);
 			
@@ -170,7 +175,7 @@ package bc.core.ui
 			speed = 6;
 			if(_mouseOver && _tweenOver < 1)
 			{
-				_tweenOver += dt*speed;
+				_tweenOver += dt*_overSpeed;
 				if(_tweenOver > 1)
 				{
 					_tweenOver = 1;
@@ -179,7 +184,7 @@ package bc.core.ui
 			}
 			else if(!_mouseOver && _tweenOver > 0)
 			{
-				_tweenOver -= dt*speed*0.3;
+				_tweenOver -= dt*_overBackSpeed;
 				if(_tweenOver < 0)
 				{
 					_tweenOver = 0;
@@ -230,11 +235,11 @@ package bc.core.ui
 			}
 		}
 		
-		private static var COLOR_BEGIN:ColorTransform = new ColorTransform();
-		private static var COLOR_END:ColorTransform = new ColorTransform();
-		private static var COLOR:ColorTransform = new ColorTransform();
+		protected static var COLOR_BEGIN:ColorTransform = new ColorTransform();
+		protected static var COLOR_END:ColorTransform = new ColorTransform();
+		protected static var COLOR:ColorTransform = new ColorTransform();
 		
-		private function redraw():void
+		protected function redraw():void
 		{
 			BcColorTransformUtil.setMultipliersARGB(COLOR_BEGIN, _style.getProperty("normalBackColor"));
 			BcColorTransformUtil.setMultipliersARGB(COLOR_END, _style.getProperty("overBackColor"));

@@ -317,7 +317,7 @@ package bc.world.core
 				
 					if(waveXML.hasOwnProperty("@boss_name"))
 					{
-						bossName = BcStrings.POOL[waveXML.@boss_name.toString()];
+						bossName = BcStrings.BOSS_NAMES[waveXML.@boss_name.toString()];
 					}
 					else
 					{

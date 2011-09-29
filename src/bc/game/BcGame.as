@@ -9,6 +9,7 @@ package bc.game
 	import bc.ui.BcGameUI;
 	import bc.world.core.BcWorld;
 
+	import flash.display.MovieClip;
 	import flash.net.SharedObject;
 	import flash.ui.Keyboard;
 	import flash.ui.Mouse;
@@ -20,13 +21,12 @@ package bc.game
 	{
 		private var world:BcWorld;
 		private var so:SharedObject;
+		private var mc:MovieClip;
 		
 		public function BcGame()
 		{
 			if(!BcGameGlobal.game)
 			{
-				BcData.load(Vector.<String>(["data"]));
-
 				initializeLocalStore();
 				
 				BcGameGlobal.game = this;
@@ -35,81 +35,30 @@ package bc.game
 				//BcBitmapData.load("prop_bitmaps");
 				BcData.load(Vector.<String>(["music", "prop_bitmaps", "audio_data"]));
 				
-				BcStrings.initialize();
-				
-				
 				world = new BcWorld();
 				BcDevice.application = this;
 				
-				new BcGameUI();
 				
-				/*BcDevice.display.addEventListener(GameEvent.SINGLEPLAYER_START_GAME_RESULT, startGameResultHandler);
-				BcDevice.display.addEventListener(GameEvent.SINGLEPLAYER_START_GAME_FAIL, startGameFailHandler);
-				BcDevice.display.addEventListener(GameEvent.SINGLEPLAYER_END_GAME_RESULT, endGameResultHandler);
-				BcDevice.display.addEventListener(GameEvent.SINGLEPLAYER_END_GAME_FAIL, endGameFailHandler);
-				BcDevice.display.addEventListener(GameEvent.SINGLEPLAYER_UPDATE_HIGHSCORE_RESULT, updateHighscoreResultHandler);
-				BcDevice.display.addEventListener(GameEvent.SINGLEPLAYER_UPDATE_HIGHSCORE_FAIL, updateHighscoreFailHandler);*/
-				//BcDevice.display.addEventListener(GameEvent.WRAPPER_PAUSED, gamePausedHandler);
-				//BcDevice.display.addEventListener(GameEvent.WRAPPER_UNPAUSED, gameUnpausedHandler);
-			}
-		}
-		
-		private var _newGame:Boolean;
-		public function startGame(newGame:Boolean):void
-		{
-			_newGame = newGame;
-			/*if(!_gPlaying)
-				sendStartGame();
-			else if(!newGame)*/
-			world.start(_newGame);
-		}
-		
-		/*private var _gPlaying:Boolean;
-		private function sendStartGame():void
-		{
-			if(!_gPlaying)
-			{
-				trace("send start game");
-				if(BcDevice.isLoadedInSWF())
-				{ 
-					BcDevice.display.dispatchEvent(new GameEvent(GameEvent.SINGLEPLAYER_START_GAME));
-				}
-				else
+				BcGameUI.instance.loadingComplete();
+				
+				if(BcGameUI.instance.oMochiHS)
 				{
-					startGameResultHandler(null);
+					//mc = new MovieClip();
+					//BcDevice.display.addChild(mc);
+					//MochiServices.connect("c3eee4897b802b27", mc);
 				}
 			}
 		}
 		
-		public function sendEndGame():void
+		public function startNewGame():void
 		{
-			if(_gPlaying)
-			{
-				trace("send end game");
-				if(BcDevice.isLoadedInSWF())
-				{ 
-					BcDevice.display.dispatchEvent(new GameEvent(GameEvent.SINGLEPLAYER_END_GAME));
-				}
-			}
+			world.start(true);
 		}
 		
-		public function sendScores():void
+		public function startLastCheckPoint():void
 		{
-			if(_gPlaying)
-			{
-				trace("send scores");
-				var score:int = BcGameGlobal.world.player.getMoney();
-				var updateScoreEvent:GameEvent = new GameEvent(GameEvent.SINGLEPLAYER_UPDATE_HIGHSCORE, score);
-				if(BcDevice.isLoadedInSWF())
-				{
-					BcDevice.display.dispatchEvent(updateScoreEvent);
-				}
-				else
-				{
-					updateHighscoreResultHandler(updateScoreEvent);
-				}
-			}
-		}*/
+			world.start(false);
+		}
 		
 		public function update(dt:Number):void
 		{			
@@ -146,7 +95,6 @@ package bc.game
 		
 		public function quitWorld():void
 		{
-			//sendEndGame();
 			world.exit();
 			Mouse.show();
 		}
@@ -197,67 +145,6 @@ package bc.game
 				BcGameGlobal.localStore = new Object();
 			}
 		}
-		
-		/*public function startGameResultHandler(e:GameEvent):void
-		{
-			trace("start game result");
-			if(!_gPlaying)
-			{
-				world.start(_newGame);
-				_gPlaying = true;
-			}
-			else
-			{
-				_gPlaying = BcGameUI.instance.playAgain();
-			}
-		}
-		
-		private function startGameFailHandler(e:GameEvent):void
-		{
-			trace("Error, could not start game! " + e.data);
-		}
-		
-		public function endGameResultHandler(e:GameEvent):void
-		{
-			trace("end game result");
-			if(_gPlaying)
-			{	
-				BcGameUI.instance.endGame();
-				_gPlaying = false;
-			}
-		}
-		
-		private function endGameFailHandler(e:GameEvent):void
-		{
-			trace("Error, could not end game! " + e.data);
-		}
-		
-		private function updateHighscoreResultHandler(e:GameEvent):void
-		{
-			
-		}
-		
-		private function updateHighscoreFailHandler(e:GameEvent):void
-		{
-			trace("Error, could not update highscore! " + e.data);
-		}*/
-		
-		/*private function gamePausedHandler(e:GameEvent):void
-		{
-			if(world.pause == false)
-			{
-				world.pause = true;
-				BcGameUI.instance.goPause();
-			}
-		}
-		
-		private function gameUnpausedHandler(e:GameEvent):void
-		{
-			if(world.pause == true)
-			{
-				world.pause = false;
-			}
-		}*/
 		
 	}
 }

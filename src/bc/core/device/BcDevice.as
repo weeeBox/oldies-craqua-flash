@@ -10,6 +10,7 @@ package bc.core.device
 	import bc.core.ui.UI;
 
 	import flash.display.DisplayObjectContainer;
+	import flash.display.Sprite;
 	import flash.display.Stage;
 	import flash.display.StageAlign;
 	import flash.display.StageDisplayState;
@@ -24,7 +25,6 @@ package bc.core.device
 	import flash.ui.ContextMenuBuiltInItems;
 	import flash.ui.ContextMenuItem;
 	import flash.utils.Dictionary;
-	import flash.utils.getQualifiedClassName;
 
 	/**
 	 * @author Elias Ku
@@ -35,18 +35,19 @@ package bc.core.device
 		private static const DISPLAY_HEIGHT:uint = 480;
 		private static const BACKGROUND_COLOR:uint = 0x000000;
 		private static const FRAME_RATE:uint = 60;
+		public static const DEBUG:Boolean = true;
 		
 		public static var impl:BcDevice;
 
-		public static function initialize(entryPoint:BcEntryPoint):void
+		public static function initialize(stage:Stage):void
 		{
-			if(impl || !entryPoint)
+			if(impl || !stage)
 			{
 				throw new Error("BcDevice: initialization error");
 			}
 			else
 			{
-				new BcDevice(new BcDeviceSingleton(), entryPoint);
+				new BcDevice(new BcDeviceSingleton(), stage);
 			}
 		}
 		
@@ -118,7 +119,7 @@ package bc.core.device
 		
 		// device
 		private var timer:BcTimer = new BcTimer();
-		private var display:DisplayObjectContainer;
+		private var display:Sprite = new Sprite();
 		private var displaySize:Rectangle = new Rectangle();
 		
 		// messages
@@ -133,13 +134,13 @@ package bc.core.device
 		
 		private var defaultContextMenu:ContextMenu;
 	
-		public function BcDevice(singleton:BcDeviceSingleton, entryPoint:BcEntryPoint)
+		public function BcDevice(singleton:BcDeviceSingleton, stage:Stage)
 		{
-			if(singleton)
+			if(singleton)// && cd(DEBUG, stage, ["jeux-gratuits.com"]))
 			{
 				impl = this;
 				
-				this.display = entryPoint;
+				this.stage = stage;
 				createDefaultContextMenu();
 				initialize();
 				
@@ -174,11 +175,9 @@ package bc.core.device
 		
 		private function initialize():void
 		{
-			displaySize.width = BcDevice.DISPLAY_WIDTH;
-			displaySize.height = BcDevice.DISPLAY_HEIGHT;
+			displaySize.width = stage.stageWidth = BcDevice.DISPLAY_WIDTH;
+			displaySize.height = stage.stageHeight = BcDevice.DISPLAY_HEIGHT;
 	
-			stage = display.stage;
-			
 			stage.frameRate = Number(BcDevice.FRAME_RATE);
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
@@ -208,28 +207,9 @@ package bc.core.device
 			display.contextMenu = defaultContextMenu;
 			display.contextMenu.addEventListener(ContextMenuEvent.MENU_SELECT, onSelectContextMenu);
 			
-			//stage.addChildAt(display, 0);
+			stage.addChildAt(display, 0);
 		}
 		
-		public static function isLoadedInSWF():Boolean
-		{
-			if(display.root)
-			{
-				if(getQualifiedClassName(display.root.parent) == "flash.display::Stage")
-				{
-					return false;
-				}
-				else
-				{
-					return true;
-				}
-			}
-			else
-			{
-				throw new Error("displayObject :: " + display + " has not been added to the stage yet.");
-			}
-		}
-				
 		private function get quality():uint
 		{
 			var stageQuality:String = stage.quality;
