@@ -25,6 +25,7 @@ package bc.core.ui
 		protected var _mousePressed:Boolean;
 		protected var _instantClick:Boolean;
 		protected var _onMouseClick:Function;
+		protected var _onUpdate:Function;
 		
 		protected var _sfxOver:BcSound;
 		protected var _sfxPress:BcSound;
@@ -76,6 +77,16 @@ package bc.core.ui
 					updateTransition();
 				}
 			}
+			
+			if(_onUpdate!=null)
+			{
+				_onUpdate(UI.deltaTime);
+			}
+		}
+		
+		public function set onUpdate(value:Function):void
+		{
+			_onUpdate = value;
 		}
 		
 		

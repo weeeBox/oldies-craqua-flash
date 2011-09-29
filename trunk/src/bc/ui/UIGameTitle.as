@@ -27,7 +27,8 @@ package bc.ui
 			
 			_flow += dt*0.2;
 			while(_flow > 1) _flow -= 1;
-			_imgTitle.y = 2*Math.sin(Math.PI*2*_flow);
+			
+			_imgTitle.y = 4*Math.sin(Math.PI*2*_flow);
 		}
 	}
 }
