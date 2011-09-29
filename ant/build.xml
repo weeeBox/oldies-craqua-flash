@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project default="debug" name="Craqua Build">
 
-	<property file="build.properties" />
+	<property name="FLEX_HOME" value="D:/dev/flash/flex"/>
+	<property name="flashplayer" value="${FLEX_HOME}/runtimes/player/10.1/win/FlashPlayerDebugger.exe" />
+	<property name="browser" value="C:/Users/weee/AppData/Local/Google/Chrome/Application/chrome.exe"/>
+
+
+	<property name="APP_ROOT" value="${basedir}/.."/>
+	<property name="PROJECT_NAME" value="craqua"/>
+	<property name="PROJECT_CLASS" value="bc/game/init/BitCaptains.as "/>
+	<property name="OUTPUT_NAME" value="Craqua"/>
+	<property name="FLEX_COMMON_ARGS=-static-link-runtime-shared-libraries" value="true"/>
+	<property name="src.dir" value="${APP_ROOT}/src"/>
+	<property name="deploy.dir" value="${APP_ROOT}/bin"/>
+	<property name="lib.dir" value="${APP_ROOT}/lib"/>
 
 	<target name="debug">
 
+		<echo>"${flashplayer}"</echo>
 		<echo>Compiling SWF...</echo>
 
 		<fdt.launch.application debug="true" mainclass="${src.dir}/${PROJECT_CLASS}" startswf="false" target="${deploy.dir}/${OUTPUT_NAME}_debug.swf" projectname="${PROJECT_NAME}" compilerarguments="${FLEX_COMMON_ARGS} -strict=true -optimize=true -debug=true -use-network=false" />
@@ -18,13 +31,13 @@
 		</exec>
 
 	</target>
-	
+
 	<target name="release">
 		<echo>Compiling release SWF...</echo>
 		<fdt.launch.application debug="false" mainclass="${src.dir}/${PROJECT_CLASS}" startswf="false" target="${deploy.dir}/${OUTPUT_NAME}_offline.swf" projectname="${PROJECT_NAME}" compilerarguments="${FLEX_COMMON_ARGS} -strict=true -optimize=true -debug=false -use-network=false" />
 		<echo>SWF compiled.</echo>
 	</target>
-	
+
 	<target name="release_network">
 		<echo>Compiling release SWF with network...</echo>
 		<fdt.launch.application debug="false" mainclass="${src.dir}/${PROJECT_CLASS}" startswf="false" target="${deploy.dir}/${OUTPUT_NAME}.swf" projectname="${PROJECT_NAME}" compilerarguments="${FLEX_COMMON_ARGS} -strict=true -optimize=true -debug=false -use-network=true" />
@@ -35,5 +48,5 @@
 		<fdt.launch.resetFlexCompiler/>
 		<echo>FCSH reset completed.</echo>
 	</target>
-	
+
 </project>
