@@ -1,6 +1,5 @@
 package bc.game.init 
 {
-	import bc.core.device.BcAssetLoadingListener;
 	import bc.core.device.BcDevice;
 	import bc.core.device.BcEntryPoint;
 	import bc.game.BcGamePreloader;
@@ -10,7 +9,7 @@ package bc.game.init
 	 * @author Elias Ku
 	 */
 	
-	public class BcPreloader extends BcEntryPoint implements BcAssetLoadingListener 
+	public class BcPreloader extends BcEntryPoint 
 	{
 		public function BcPreloader()
 		{
@@ -19,12 +18,7 @@ package bc.game.init
 			BcDevice.initialize(stage);
 			
 			if(BcDevice.impl)
-				new BcPreloaderAsset(this);
-		}
-		
-		public function onAssetLoadingCompleted():void
-		{
-			initialize();
+				new BcPreloaderAsset(initialize);
 		}
 		
 		private function initialize():void
