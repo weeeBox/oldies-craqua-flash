@@ -16,7 +16,7 @@ package bc.core.audio
 	{
 		private var sound:Sound;
 		private var loop:Boolean;
-		public var onComplete:Function;
+		public var musicCallback:BcMusicCallback;
 		
 		private var channel:SoundChannel;
 		private var transform:SoundTransform = new SoundTransform();
