@@ -1,5 +1,6 @@
 package bc.ui
 {
+	import bc.core.motion.easing.BcEaseFunction;
 	import bc.core.audio.BcAudio;
 	import bc.core.audio.BcMusic;
 	import bc.core.device.BcAsset;
@@ -68,7 +69,9 @@ package bc.ui
 		private var mcAd:MovieClip;
 		private var mcSp:MovieClip;
 		private var mcSpFrame:Shape = new Shape();
-		
+
+		private static var easeOpen:BcEaseFunction = new BcEaseOpen();
+		private static var easeClose:BcEaseFunction = new BcEaseClose();		
 
 		public function BcGameUI()
 		{
@@ -397,7 +400,7 @@ package bc.ui
 			
 			if(update)
 			{
-				t = easeOpen(showInstructionsTime);
+				t = easeOpen.easing(showInstructionsTime);
 				instructionsPanel.x = 16-320 + 320*t;
 			}
 		}
@@ -895,17 +898,6 @@ package bc.ui
 				a:[1, 0], ease:easeOpen, flags:[0, UITransition.FLAG_HIDE] 
 				});
 
-		private static function easeOpen(t:Number):Number
-		{
-			const x:Number = 1-t;
-			return 1-x*x*x; 
-		}
-		
-		private static function easeClose(t:Number):Number
-		{
-			return t*t*t; 
-		}
-		
 		private function initBackFader():void
 		{
 			var nbd:BitmapData = new BitmapData(640, 480, false, 0x0);

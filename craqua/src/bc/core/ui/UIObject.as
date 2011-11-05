@@ -314,7 +314,7 @@ package bc.core.ui
 			}
 			else
 			{
-				t = _transition.ease(_transitionProgress);
+				t = _transition.ease.easing(_transitionProgress);
 			}
 			
 			if(_transition.x)

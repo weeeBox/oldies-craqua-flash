@@ -1,5 +1,6 @@
 package bc.core.ui 
 {
+	import bc.core.motion.easing.BcEaseFunction;
 	import bc.core.util.BcColorTransformUtil;
 	import flash.geom.ColorTransform;
 
@@ -32,7 +33,7 @@ package bc.core.ui
 		public var a:Vector.<Number>;
 		public var color:Vector.<ColorTransform>;
 		
-		public var ease:Function;
+		public var ease:BcEaseFunction;
 		
 		
 		public function UITransition(properties:Object)
