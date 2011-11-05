@@ -1,5 +1,6 @@
 package bc.game.asset 
 {
+	import bc.core.device.BcAssetCallback;
 	import bc.core.device.BcAsset;
 
 	/**
@@ -799,7 +800,7 @@ package bc.game.asset
 		private static var sfx_audio_tv_shot:Class;
 		BcAsset.embedSound("audio_tv_shot", sfx_audio_tv_shot);*/
 		
-		public function BcGameAsset(callback:Function)
+		public function BcGameAsset(callback:BcAssetCallback)
 		{
 			BcAsset.load("../asset/game.xml", callback);
 			//callback();

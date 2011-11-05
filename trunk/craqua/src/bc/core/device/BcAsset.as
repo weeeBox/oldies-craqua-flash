@@ -71,7 +71,7 @@ package bc.core.device
 			delete xmls[id];
 		}
 		
-		public static function load(path:String, onLoadingCompleted:Function):void
+		public static function load(path:String, onLoadingCompleted:BcAssetCallback):void
 		{
 			impl.load(path, onLoadingCompleted);
 		}
@@ -114,7 +114,7 @@ package bc.core.device
 		private var activeLoaders:uint;
 		public var busyCounter:uint;
 		
-		private var loadingCompleted:Function;
+		private var loadingCallback:BcAssetCallback;
 		
 		public function BcAsset(singleton:BcAssetSingleton)
 		{
@@ -124,9 +124,9 @@ package bc.core.device
 			}
 		}
 		
-		public function load(path:String, onLoadingCompleted:Function):void
+		public function load(path:String, loadingCallback:BcAssetCallback):void
 		{
-			loadingCompleted = onLoadingCompleted;
+			this.loadingCallback = loadingCallback;
 			createLoader(BcLoader.LOADER_XML, "__desc", path, this, true);
 			busyCounter++;
 		}
@@ -148,10 +148,10 @@ package bc.core.device
 			{
 				loaders.length = 0;
 				busyCounter--;
-				if(loadingCompleted!=null)
+				if(loadingCallback!=null)
 				{
-					loadingCompleted();
-					loadingCompleted = null;
+					loadingCallback.assetLoadingCompleted();
+					loadingCallback = null;
 				}
 			}
 		}
