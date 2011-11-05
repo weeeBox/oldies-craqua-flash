@@ -1,6 +1,5 @@
 package bc.game.init 
 {
-	import bc.core.device.BcAssetLoadingListener;
 	import bc.core.device.BcEntryPoint;
 	import bc.game.BcGame;
 	import bc.game.asset.BcGameAsset;
@@ -11,23 +10,18 @@ package bc.game.init
 	 
 	[Frame(factoryClass="bc.game.init.BcPreloader")]
 	[SWF(backgroundColor="#000000", width="640", height="480")] 
-	public class BitCaptains extends BcEntryPoint implements BcAssetLoadingListener
+	public class BitCaptains extends BcEntryPoint 
 	{
 		public function BitCaptains()
 		{
 			super();
 			
-			new BcGameAsset(this);
+			new BcGameAsset(initialize);
 		}
 		
 		private static function initialize():void
 		{
 			new BcGame();
-		}
-
-		public function onAssetLoadingCompleted() : void
-		{
-			initialize();
 		}
 	}
 }
