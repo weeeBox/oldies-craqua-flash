@@ -57,6 +57,8 @@
 	</target>
 
 	<target name="debug">
+		<mkdir dir="${dir.build}"/>
+		
 		<fdt.launch.application 
 			debug="true" 
 			mainclass="${dir.src}/${project.main.class}.as" 
