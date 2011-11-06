@@ -25,7 +25,7 @@ package bc.core.ui
 		protected var _mousePressed:Boolean;
 		protected var _instantClick:Boolean;
 		protected var _onMouseClick:UIMouseClickCallback;
-		protected var _onUpdate:Function;
+		protected var _onUpdateCallback:UIUpdateCallback;
 		
 		protected var _sfxOver:BcSound;
 		protected var _sfxPress:BcSound;
@@ -79,15 +79,15 @@ package bc.core.ui
 				}
 			}
 			
-			if(_onUpdate!=null)
+			if(_onUpdateCallback!=null)
 			{
-				_onUpdate(UI.deltaTime);
+				_onUpdateCallback.onUpdate(UI.deltaTime);
 			}
 		}
 		
-		public function set onUpdate(value:Function):void
+		public function set onUpdate(value:UIUpdateCallback):void
 		{
-			_onUpdate = value;
+			_onUpdateCallback = value;
 		}
 		
 		

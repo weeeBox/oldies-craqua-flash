@@ -1,5 +1,6 @@
 package bc.ui
 {
+	import bc.core.ui.UIUpdateCallback;
 	import bc.core.ui.UIMouseClickCallback;
 	import bc.core.ui.UITransitionCallback;
 	import bc.core.motion.easing.BcEaseFunction;
@@ -38,7 +39,7 @@ package bc.ui
 	/**
 	 * @author Elias Ku
 	 */
-	public class BcGameUI implements UIMouseClickCallback, UITransitionCallback
+	public class BcGameUI implements UIMouseClickCallback, UITransitionCallback, UIUpdateCallback
 	{
 		public var oMochiAd:Boolean = false;
 		public var oMochiHS:Boolean = true;
@@ -242,7 +243,7 @@ package bc.ui
 			mainInstruction = new UIButton(mainButtons, 250+8, 440, "", stButtonOther, this);
 			mainInstruction.html = "<font size=\"25\">" + BcStrings.UI_INSTRUCTIONS + "</font>";
 			instructionsPanel = new UIObject(mainPanel, 16-320, 165);
-			instructionsPanel.onUpdate = updateInstructions;
+			instructionsPanel.onUpdate = this;
 			
 			var instructionsLabel:UILabel = new UILabel(instructionsPanel, 0, 0, "", stInfoSmall);
 			instructionsLabel.multiline = true;
@@ -383,7 +384,8 @@ package bc.ui
 				instructionsPanel.sprite.visible = true;
 			}
 		}
-		private function updateInstructions(dt:Number):void
+				
+		public function onUpdate(dt:Number):void
 		{
 			var update:Boolean;
 			var t:Number;
