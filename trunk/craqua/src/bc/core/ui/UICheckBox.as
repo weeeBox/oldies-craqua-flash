@@ -55,7 +55,7 @@ package bc.core.ui
 		protected var _tweenOver:Number = 0;
 		protected var _tweenPush:Number = 0;
 		
-		public function UICheckBox(layer:UIObject, x:Number = 0, y:Number = 0, style:UIStyle = null, onCheck:Function = null)
+		public function UICheckBox(layer:UIObject, x:Number = 0, y:Number = 0, style:UIStyle = null, onMouseClick:UIMouseClickCallback = null)
 		{
 			super(layer, x, y);
 			
@@ -110,7 +110,7 @@ package bc.core.ui
 			
 			_shape = new UIRectangleShape(w, h, int(-0.5*w), int(-0.5*h));
 			
-			_onMouseClick = onCheck;
+			_onMouseClick = onMouseClick;
 			_instantClick = true;
 			
 			_label = new UILabel(this, 0, 0, "", _style);

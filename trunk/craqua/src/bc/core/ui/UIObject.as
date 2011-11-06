@@ -24,7 +24,7 @@ package bc.core.ui
 		protected var _mouseOver:Boolean;
 		protected var _mousePressed:Boolean;
 		protected var _instantClick:Boolean;
-		protected var _onMouseClick:Function;
+		protected var _onMouseClick:UIMouseClickCallback;
 		protected var _onUpdate:Function;
 		
 		protected var _sfxOver:BcSound;
@@ -268,7 +268,7 @@ package bc.core.ui
 		{
 			if(_onMouseClick!=null)
 			{
-				_onMouseClick(this);
+				_onMouseClick.onMouseClicked(this);
 			}
 			
 			if(_sfxClick)
