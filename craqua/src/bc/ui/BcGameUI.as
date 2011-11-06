@@ -1,5 +1,6 @@
 package bc.ui
 {
+	import bc.core.ui.UITransitionCallback;
 	import bc.core.motion.easing.BcEaseFunction;
 	import bc.core.audio.BcAudio;
 	import bc.core.audio.BcMusic;
@@ -36,7 +37,7 @@ package bc.ui
 	/**
 	 * @author Elias Ku
 	 */
-	public class BcGameUI 
+	public class BcGameUI implements UITransitionCallback
 	{
 		public var oMochiAd:Boolean = false;
 		public var oMochiHS:Boolean = true;
@@ -46,6 +47,13 @@ package bc.ui
 		public var oShowScoresButton:Boolean = false;
 		public var oBestScore:Boolean = false;
 		
+		// UITransition finish codes
+		private static const TRC_LOADING_HIDED:int = 1;
+		private static const TRC_EXIT_PAUSE:int = 2;
+		private static const TRC_GO_GAME:int = 3;
+		private static const TRC_QUIT_WORLD:int = 4;
+		private static const TRC_RESTART:int = 5;
+		private static const TRC_OPEN_MAIN:int = 6;
 		
 		public static var instance:BcGameUI;
 		
@@ -446,8 +454,8 @@ package bc.ui
 					//navigate("http://www.gimme5games.com/?ref=CRAQUA_SPLASH");
 					break;
 				case loadingPlay:
-					//loadingSponsor.play(transObjectHide, 1);
-					loadingPanel.play(transWindowClose, 0.25, loadingHided);
+					// loadingSponsor.play(transObjectHide, 1);
+					loadingPanel.play(transWindowClose, 0.25, this, TRC_LOADING_HIDED);
 					selectMainButtonsLight();
 					mainPanel.play(transWindowOpen, 1);
 					mainButtons.play(transMainButtonsOpen, 1);
@@ -493,7 +501,7 @@ package bc.ui
 			
 		}
 		
-		private function loadingHided(object:UIObject):void
+		private function loadingHided():void
 		{
 			if(oMochiAd)
 			{
@@ -592,14 +600,14 @@ package bc.ui
 			mainButtons.play(transMainButtonsClose, 1);
 			if(mainSponsor) mainSponsor.play(transMainSponsorClose, 1);
 			backTitle.play(transTitleHide, 1);
-			backPanel.play(transBackClose, 1, goGame);
+			backPanel.play(transBackClose, 1, this, TRC_GO_GAME);
 			settingsPanel.play(transWindowClose, 1);
 			BcMusic.getMusic("menu").stop(2);
 		}
 		
 		private var continueGame:Boolean;
 		
-		private function goGame(object:UIObject):void
+		private function goGame():void
 		{
 			if(continueGame)
 			{
@@ -639,13 +647,13 @@ package bc.ui
 			else
 			{
 				BcMusic.stopAll(1);
-				gameFader.play(transFaderExit, 1, exitPause);
+				gameFader.play(transFaderExit, 1, this, TRC_EXIT_PAUSE);
 			}
 			pausePanel.play(transWindowClose, 0.25);
 			settingsPanel.play(transWindowClose, 0.25);			
 		}
 		
-		private function exitPause(object:UIObject):void
+		private function exitPause():void
 		{
 			if(!resumeGame)
 			{
@@ -675,12 +683,7 @@ package bc.ui
 			}
 			else
 			{
-				gameFader.play(transFaderOpen, 1, 
-					function(o:UIObject):void
-					{
-						BcGameGlobal.game.quitWorld();
-					}
-				);
+				gameFader.play(transFaderOpen, 1, this, TRC_QUIT_WORLD);
 			}
 			
 			if(BcGameGlobal.world.uiBoss || BcGameGlobal.world.uiVictory)
@@ -752,25 +755,13 @@ package bc.ui
 			{
 				BcMusic.getMusic("victory").stop(1);
 				gameFader.play(transFaderExit, 0.5);
-				endPanel.play(transWindowClose, 0.5, 
-					function(o:UIObject):void
-					{
-						openMain(false);
-					}
-				);
+				endPanel.play(transWindowClose, 0.5, this, TRC_OPEN_MAIN);
 			}
 			else if(BcGameGlobal.world.uiDeath)
 			{
 				gameFader.play(transFaderExit, 0.5);
 				endPanel.play(transWindowClose, 0.5);
-				settingsPanel.play(transWindowClose, 0.5, 
-					function(o:UIObject):void
-					{
-						BcGameGlobal.game.startLastCheckPoint();
-						gameFader.initBack();
-						gameFader.play(transFaderStart, 1);
-					}
-				);
+				settingsPanel.play(transWindowClose, 0.5, this, TRC_RESTART);
 				
 				gamePanel.play(transWindowOpen, 0.5);
 			}
@@ -792,12 +783,7 @@ package bc.ui
 			}
 			
 			gameFader.play(transFaderExit, 0.5);
-			endPanel.play(transWindowClose, 0.5, 
-				function(o:UIObject):void
-				{
-					openMain(false);
-				}
-			);
+			endPanel.play(transWindowClose, 0.5, this, TRC_OPEN_MAIN);
 		}
 		
 		private function endClickReplay():void
@@ -811,14 +797,34 @@ package bc.ui
 			
 			gameFader.play(transFaderExit, 0.5);
 			endPanel.play(transWindowClose, 0.5);
-			settingsPanel.play(transWindowClose, 0.5, 
-				function(o:UIObject):void
-				{
+			settingsPanel.play(transWindowClose, 0.5, this, TRC_RESTART);
+		}
+		
+		public function onTransitionComplete(object:UIObject, finishCode:int) : void
+		{
+			switch (finishCode)
+			{
+				case TRC_LOADING_HIDED:
+					loadingHided();
+					break;
+				case TRC_EXIT_PAUSE:
+					exitPause();
+					break;
+				case TRC_GO_GAME:
+					goGame();
+					break;
+				case TRC_QUIT_WORLD:
+					BcGameGlobal.game.quitWorld();			
+					break;
+				case TRC_RESTART:
 					BcGameGlobal.game.startLastCheckPoint();
 					gameFader.initBack();
 					gameFader.play(transFaderStart, 1);
-				}
-			);
+					break;
+				case TRC_OPEN_MAIN:
+					openMain(false);
+					break;
+			}
 		}
 		
 		private var transBackStart:UITransition = new UITransition({
