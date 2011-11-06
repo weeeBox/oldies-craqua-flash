@@ -34,7 +34,8 @@ package bc.core.ui
 		protected var _transition:UITransition;
 		protected var _transitionProgress:Number = 0;
 		protected var _transitionSpeed:Number = 0;
-		protected var _transitionComplete:Function;
+		protected var _transitionCallback:UITransitionCallback;		
+		protected var _transitionFinishCode:int = 0;
 
 		public function UIObject(layer:UIObject, x:Number = 0, y:Number = 0, fast:Boolean = true)
 		{
@@ -276,7 +277,7 @@ package bc.core.ui
 			}
 		}
 		
-		public function play(transition:UITransition = null, time:Number = 0, onComplete:Function = null):void
+		public function play(transition:UITransition = null, time:Number = 0, transitionCallback:UITransitionCallback = null, transitionFinishCode:int = 0):void
 		{
 			if(_transition)
 			{
@@ -286,7 +287,8 @@ package bc.core.ui
 			if(transition)
 			{
 				_transition = transition;
-				_transitionComplete = onComplete;
+				_transitionCallback = transitionCallback;
+				_transitionFinishCode = transitionFinishCode;
 				startTransition();
 				if(time <= 0)
 				{
@@ -361,7 +363,8 @@ package bc.core.ui
 		
 		protected function finishTransition():void
 		{
-			var onComplete:Function = _transitionComplete;
+			var transitionCallback : UITransitionCallback = _transitionCallback;
+			var transitionFinishCode : int = _transitionFinishCode;
 			
 			if(_transition.flags && _transition.flags[1])
 			{
@@ -374,11 +377,12 @@ package bc.core.ui
 			_transition = null;
 			_transitionProgress = 0;
 			_transitionSpeed = 1;
-			_transitionComplete = null;
+			_transitionCallback = null;
+			_transitionFinishCode = 0;
 			
-			if(onComplete != null)
+			if(transitionCallback != null)
 			{
-				onComplete(this);
+				transitionCallback.onTransitionComplete(this, transitionFinishCode);
 			}
 		}
 		
