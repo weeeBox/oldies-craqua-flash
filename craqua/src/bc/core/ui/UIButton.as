@@ -53,7 +53,7 @@ package bc.core.ui
 		protected var _overSpeed:Number = 6;
 		protected var _overBackSpeed:Number = 2;
 		
-		public function UIButton(layer:UIObject, x:Number = 0, y:Number = 0, text:String = null, style:UIStyle = null, onClick:Function = null, fast:Boolean = true)
+		public function UIButton(layer:UIObject, x:Number = 0, y:Number = 0, text:String = null, style:UIStyle = null, onClick:UIMouseClickCallback = null, fast:Boolean = true)
 		{
 			super(layer, x, y, fast);
 			

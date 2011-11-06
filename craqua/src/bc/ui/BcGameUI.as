@@ -1,5 +1,6 @@
 package bc.ui
 {
+	import bc.core.ui.UIMouseClickCallback;
 	import bc.core.ui.UITransitionCallback;
 	import bc.core.motion.easing.BcEaseFunction;
 	import bc.core.audio.BcAudio;
@@ -37,7 +38,7 @@ package bc.ui
 	/**
 	 * @author Elias Ku
 	 */
-	public class BcGameUI implements UITransitionCallback
+	public class BcGameUI implements UIMouseClickCallback, UITransitionCallback
 	{
 		public var oMochiAd:Boolean = false;
 		public var oMochiHS:Boolean = true;
@@ -222,7 +223,7 @@ package bc.ui
 			loadingLabel.centerX = 320;
 			loadingLabel.play(transLabelHide, 0.5);
 			loadingProgress.play(transObjectHide, 0.5);
-			loadingPlay = new UIButton(loadingPanel, 320, 435, BcStrings.UI_LOADING_PLAY, null, onButtonClick);
+			loadingPlay = new UIButton(loadingPanel, 320, 435, BcStrings.UI_LOADING_PLAY, null, this);
 			loadingPlay.highlight = true;
 			loadingPlay.play(transButtonShow, 0.5);
 			
@@ -231,14 +232,14 @@ package bc.ui
 			backTitle = new UIGameTitle(backPanel, 320, -165);
 			
 			// MAIN
-			mainNewGame = new UIButton(mainButtons, 510, 182, BcStrings.UI_NEW_GAME, null, onButtonClick);
+			mainNewGame = new UIButton(mainButtons, 510, 182, BcStrings.UI_NEW_GAME, null, this);
 			mainNewGame.highlight = true;
 			mainNewGame.multiline = true;
 			mainNewGame.html = "<p align=\"center\"><font size=\"25\">" + BcStrings.UI_NEW_GAME + "</font></p>";
-			mainContinue = new UIButton(mainButtons, 510, 260, BcStrings.UI_CONTINUE, null, onButtonClick);
+			mainContinue = new UIButton(mainButtons, 510, 260, BcStrings.UI_CONTINUE, null, this);
 			mainContinue.multiline = true;
 			
-			mainInstruction = new UIButton(mainButtons, 250+8, 440, "", stButtonOther, clickInstructions);
+			mainInstruction = new UIButton(mainButtons, 250+8, 440, "", stButtonOther, this);
 			mainInstruction.html = "<font size=\"25\">" + BcStrings.UI_INSTRUCTIONS + "</font>";
 			instructionsPanel = new UIObject(mainPanel, 16-320, 165);
 			instructionsPanel.onUpdate = updateInstructions;
@@ -254,7 +255,7 @@ package bc.ui
 			
 			if(oShowScoresButton)
 			{
-				mainHighScores = new UIButton(mainButtons, 510, 360-16-8-2, BcStrings.UI_HIGHSCORES, stButtonOther, onButtonClick);
+				mainHighScores = new UIButton(mainButtons, 510, 360-16-8-2, BcStrings.UI_HIGHSCORES, stButtonOther, this);
 			}
 			else
 			{
@@ -267,15 +268,15 @@ package bc.ui
 			
 			if(!oBestScore && !oShowScoresButton)
 			{
-				mainHelp = new UIButton(mainButtons, 510, 360-24, BcStrings.UI_CREDITS, stButtonOther, onButtonClick);
+				mainHelp = new UIButton(mainButtons, 510, 360-24, BcStrings.UI_CREDITS, stButtonOther, this);
 			}
 			else
 			{
-				mainHelp = new UIButton(mainButtons, 510, 400+2, BcStrings.UI_CREDITS, stButtonOther, onButtonClick);
+				mainHelp = new UIButton(mainButtons, 510, 400+2, BcStrings.UI_CREDITS, stButtonOther, this);
 			}
 			initMainFader();
 			
-			creditsClose = new UIButton(creditsPanel, 320, 420, BcStrings.UI_BACK, null, onButtonClick);
+			creditsClose = new UIButton(creditsPanel, 320, 420, BcStrings.UI_BACK, null, this);
 			var label:UILabel;
 			var image:UIImage;
 			
@@ -336,9 +337,9 @@ package bc.ui
 			
 			/** PAUSE **/
 			(new UILabel(pausePanel, 320, 200, BcStrings.UI_PAUSED, stTitle)).centerX = 320;
-			pauseResume = new UIButton(pausePanel, 320, 300, BcStrings.UI_RESUME, null, onButtonClick);
+			pauseResume = new UIButton(pausePanel, 320, 300, BcStrings.UI_RESUME, null, this);
 			pauseResume.highlight = true;
-			pauseEnd = new UIButton(pausePanel, 320, 400, BcStrings.UI_END_GAME, stButtonSmall, onButtonClick);
+			pauseEnd = new UIButton(pausePanel, 320, 400, BcStrings.UI_END_GAME, stButtonSmall, this);
 			
 			// END
 			endLabel = new UILabel(endPanel, 320, 50-32, "", stTitle);
@@ -348,19 +349,19 @@ package bc.ui
 			
 			initStats();
 
-			endContinue = new UIButton(endPanel, 320, 100+16, BcStrings.UI_CONTINUE, null, onButtonClick);
+			endContinue = new UIButton(endPanel, 320, 100+16, BcStrings.UI_CONTINUE, null, this);
 			endContinue.highlight = true;
-			endSubmit = new UIButton(endPanel, 320, 400+32, "SUBMIT", null, onButtonClick);
+			endSubmit = new UIButton(endPanel, 320, 400+32, "SUBMIT", null, this);
 			endSubmit.multiline = true;
 			endSubmit.html = "<p align=\"center\"><font size=\"25\">" + BcStrings.UI_SUBMIT_SCORES + "</font></p>";
 			
-			endGame = new UIButton(endPanel, 320-232, 100-32, BcStrings.UI_END_GAME, stButtonSmall, onButtonClick);
-			endReplay = new UIButton(endPanel, 320+232, 100-32, BcStrings.UI_REPLAY, stButtonSmall, onButtonClick);
+			endGame = new UIButton(endPanel, 320-232, 100-32, BcStrings.UI_END_GAME, stButtonSmall, this);
+			endReplay = new UIButton(endPanel, 320+232, 100-32, BcStrings.UI_REPLAY, stButtonSmall, this);
 			
 			// SETTINGS
-			settingsQ = new UICheckBox(settingsPanel, 620-527+16, 466-8, stQuality, onSettingClick);
-			settingsS = new UICheckBox(settingsPanel, 584-527+16, 466-8, stSound, onSettingClick);
-			settingsM = new UICheckBox(settingsPanel, 547-527+16, 466-8, stMusic, onSettingClick);
+			settingsQ = new UICheckBox(settingsPanel, 620-527+16, 466-8, stQuality, this);
+			settingsS = new UICheckBox(settingsPanel, 584-527+16, 466-8, stSound, this);
+			settingsM = new UICheckBox(settingsPanel, 547-527+16, 466-8, stMusic, this);
 			
 			if(BcDevice.DEBUG)
 			{
@@ -370,7 +371,7 @@ package bc.ui
 			}
 		}
 		
-		private function clickInstructions(o:UIObject):void
+		private function clickInstructions():void
 		{
 			if(showInstructions)
 			{
@@ -432,9 +433,9 @@ package bc.ui
 			}
 		}
 		
-		private function onButtonClick(button:UIButton):void
+		public function onMouseClicked(object:UIObject):void
 		{
-			switch(button)
+			switch(object)
 			{
 				case mainNewGame:
 					continueGame = false;
@@ -496,6 +497,15 @@ package bc.ui
 					//BcDevice.stage.removeChild(g5Hiscores);
 					endPanel.play(transWindowOpen, 0.5);
 					hsPanel.play(transWindowClose, 0);
+					break;
+				case mainInstruction:
+					clickInstructions();
+					break;
+					
+				case settingsQ:
+				case settingsM:
+				case settingsS:
+					onSettingClick(UICheckBox(object));
 					break;
 			}
 			
