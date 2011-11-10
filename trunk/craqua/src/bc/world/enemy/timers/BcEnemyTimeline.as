@@ -1,5 +1,6 @@
 package bc.world.enemy.timers 
 {
+	import bc.core.util.BcStringUtil;
 	import bc.world.enemy.BcEnemyData;
 	import bc.world.enemy.timers.BcEnemyBaseTimer;
 
@@ -40,14 +41,14 @@ package bc.world.enemy.timers
 				event.actions = BcEnemyData.createActionArray(node);
 				if(node.hasOwnProperty("@pause"))
 				{
-					event.pause = node.@pause;
+					event.pause = BcStringUtil.parseNumber(node.@pause);
 				}
 				events.push(event);
 			}
 			
 			if(xml.hasOwnProperty("@start"))
 			{
-				startPause = xml.@start;
+				startPause = BcStringUtil.parseNumber(xml.@start);
 			}
 		}
 

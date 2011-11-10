@@ -1,5 +1,6 @@
 package bc.world.player 
 {
+	import bc.core.util.BcStringUtil;
 	import bc.core.audio.BcSound;
 	import bc.core.device.BcAsset;
 	import bc.core.math.Vector2;
@@ -567,7 +568,7 @@ package bc.world.player
 			var claw:BcPlayerClaw;
 			var lvl:BcPlayerLevel;
 			
-			moveDivide = Number(xml.moving[0].@div);
+			moveDivide = BcStringUtil.parseNumber(xml.moving[0].@div);
 			
 			for each (node in xml.claw)
 			{

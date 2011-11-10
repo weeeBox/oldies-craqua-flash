@@ -1,5 +1,6 @@
 package bc.core.display 
 {
+	import mx.utils.StringUtil;
 	import bc.core.data.BcData;
 	import bc.core.data.BcIObjectData;
 	import bc.core.device.BcAsset;
@@ -40,7 +41,7 @@ package bc.core.display
 
 			if(xml.hasOwnProperty("@smoothing"))
 			{
-				smoothing = (xml.@smoothing.toString()=="true");
+				smoothing = (BcStringUtil.parseBoolean(xml.@smoothing));
 			}
 			
 			if(xml.hasOwnProperty("@pivot"))

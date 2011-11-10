@@ -1,5 +1,6 @@
 package bc.core.audio 
 {
+	import bc.core.util.BcStringUtil;
 	import bc.core.data.BcData;
 	import bc.core.data.BcIObjectData;
 	import bc.core.device.BcAsset;
@@ -40,7 +41,7 @@ package bc.core.audio
 			
 			if(xml.hasOwnProperty("@volume"))
 			{
-				volume = xml.@volume;
+				volume = BcStringUtil.parseNumber(xml.@volume);
 			}
 			
 			for each (var node:XML in xml.sample)

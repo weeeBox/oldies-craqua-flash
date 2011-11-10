@@ -51,7 +51,7 @@ package bc.world.player
 			
 			if(xml.hasOwnProperty("@rate"))
 			{
-				rate = xml.@rate;
+				rate = BcStringUtil.parseNumber(xml.@rate);
 			}
 			
 			if(xml.hasOwnProperty("@sync"))
@@ -81,17 +81,17 @@ package bc.world.player
 			
 			if(xml.hasOwnProperty("@angle"))
 			{
-				angle = (-90 - Number(xml.@angle))*toRad;
+				angle = (-90 - BcStringUtil.parseNumber(xml.@angle))*toRad;
 			}
 			
 			if(xml.hasOwnProperty("@count"))
 			{
-				count = xml.@count;
+				count = BcStringUtil.parseUInteger(xml.@count);
 			}
 			
 			if(xml.hasOwnProperty("@fan"))
 			{
-				fan = Number(xml.@fan)*toRad;
+				fan = BcStringUtil.parseNumber(xml.@fan)*toRad;
 			}
 			
 			if(xml.hasOwnProperty("@impulse"))

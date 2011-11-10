@@ -46,12 +46,12 @@ package bc.world.particles
 			{
 				if(node.hasOwnProperty("@gravity"))
 				{
-					gravity = node.@gravity;
+					gravity = BcStringUtil.parseNumber(node.@gravity);
 				}
 				
 				if(node.hasOwnProperty("@friction"))
 				{
-					friction = node.@friction;
+					friction = BcStringUtil.parseNumber(node.@friction);
 				}
 				
 				if(node.hasOwnProperty("@velocity"))

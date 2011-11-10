@@ -47,7 +47,7 @@ package bc.core.motion
 			
 			if(xml.hasOwnProperty("@duration"))
 			{
-				duration = xml.@duration;
+				duration = BcStringUtil.parseNumber(xml.@duration);
 			}
 			
 			if(xml.hasOwnProperty("@node"))

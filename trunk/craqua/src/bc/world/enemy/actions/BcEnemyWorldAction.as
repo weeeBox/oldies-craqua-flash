@@ -1,5 +1,6 @@
 package bc.world.enemy.actions 
 {
+	import bc.core.util.BcStringUtil;
 	import bc.world.core.BcWorld;
 	import bc.world.enemy.BcEnemy;
 	import bc.world.enemy.actions.BcIEnemyAction;
@@ -16,12 +17,12 @@ package bc.world.enemy.actions
 		{
 			if(xml.hasOwnProperty("@flash"))
 			{
-				flash = xml.@flash;
+				flash = BcStringUtil.parseNumber(xml.@flash);
 			}
 			
 			if(xml.hasOwnProperty("@shake"))
 			{
-				shake = xml.@shake;
+				shake = BcStringUtil.parseNumber(xml.@shake);
 			}
 		}
 		

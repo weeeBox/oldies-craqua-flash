@@ -1,5 +1,6 @@
 package bc.world.bullet 
 {
+	import bc.core.util.BcStringUtil;
 	import bc.core.data.BcData;
 	import bc.core.data.BcIObjectData;
 	import bc.core.display.BcBitmapData;
@@ -79,23 +80,23 @@ package bc.world.bullet
 			node = xml.impulse[0];
 			if(node)
 			{
-				if(node.hasOwnProperty("@friction")) impulseFriction = Number(node.@friction);
-				if(node.hasOwnProperty("@launch")) impulseLaunch = Number(node.@launch);
+				if(node.hasOwnProperty("@friction")) impulseFriction = BcStringUtil.parseNumber(node.@friction);
+				if(node.hasOwnProperty("@launch")) impulseLaunch = BcStringUtil.parseNumber(node.@launch);
 			}
 
 			node = xml.velocity[0];
 			if(node)
 			{
-				if(node.hasOwnProperty("@launch")) velocityLaunch = Number(node.@launch);
-				if(node.hasOwnProperty("@max")) velocityMax = Number(node.@max);
-				if(node.hasOwnProperty("@force")) velocityForce = Number(node.@force);
+				if(node.hasOwnProperty("@launch")) velocityLaunch = BcStringUtil.parseNumber(node.@launch);
+				if(node.hasOwnProperty("@max")) velocityMax = BcStringUtil.parseNumber(node.@max);
+				if(node.hasOwnProperty("@force")) velocityForce = BcStringUtil.parseNumber(node.@force);
 			}
 			
 			node = xml.properties[0];
 			if(node)
 			{
-				if(node.hasOwnProperty("@time")) lifeTime = Number(node.@time);
-				if(node.hasOwnProperty("@size")) size = Number(node.@size);
+				if(node.hasOwnProperty("@time")) lifeTime = BcStringUtil.parseNumber(node.@time);
+				if(node.hasOwnProperty("@size")) size = BcStringUtil.parseNumber(node.@size);
 			}
 			
 			node = xml.reflect[0];
@@ -107,18 +108,18 @@ package bc.world.bullet
 			node = xml.hit[0];
 			if(node)
 			{
-				if(node.hasOwnProperty("@damage")) hitDamage = Number(node.@damage);
+				if(node.hasOwnProperty("@damage")) hitDamage = BcStringUtil.parseNumber(node.@damage);
 				if(node.hasOwnProperty("@explosion")) hitExplosion = BcExplosion.getData(node.@explosion);
-				if(node.hasOwnProperty("@wall")) hitWall = (node.@wall.toString()=="true");
-				if(node.hasOwnProperty("@enemy")) hitEnemy = (node.@enemy.toString()=="true");
-				if(node.hasOwnProperty("@timeout")) hitTimeout = (node.@timeout.toString()=="true");
-				if(node.hasOwnProperty("@particle")) hitParticle = BcParticleData.getData(node.@particle.toString());
+				if(node.hasOwnProperty("@wall")) hitWall = BcStringUtil.parseBoolean(node.@wall);
+				if(node.hasOwnProperty("@enemy")) hitEnemy = BcStringUtil.parseBoolean(node.@enemy);
+				if(node.hasOwnProperty("@timeout")) hitTimeout = BcStringUtil.parseBoolean(node.@timeout);
+				if(node.hasOwnProperty("@particle")) hitParticle = BcParticleData.getData(node.@particle);
 			}
 			
 			node = xml.timer[0];
 			if(node)
 			{
-				if(node.hasOwnProperty("@speed")) timerSpeed = node.@speed;
+				if(node.hasOwnProperty("@speed")) timerSpeed = BcStringUtil.parseNumber(node.@speed);
 				if(node.hasOwnProperty("@explosion")) timerExplosion = BcExplosion.getData(node.@explosion);
 			}
 			
@@ -133,17 +134,17 @@ package bc.world.bullet
 			if(node)
 			{
 				if(node.hasOwnProperty("@particle")) trailParticle = BcParticleData.getData(node.@particle.toString());
-				if(node.hasOwnProperty("@speed")) trailSpeed = node.@speed;
+				if(node.hasOwnProperty("@speed")) trailSpeed = BcStringUtil.parseNumber(node.@speed);
 			}
 			
 			node = xml.body[0];
 			if(node)
 			{
 				bodyBitmap = BcBitmapData.getData(node.@bitmap.toString());
-				if(node.hasOwnProperty("@oriented")) bodyOriented = (node.@oriented.toString()=="true");
-				if(node.hasOwnProperty("@rotation")) bodyRotation = node.@rotation;
-				if(node.hasOwnProperty("@pulse_a")) pulseA = node.@pulse_a;
-				if(node.hasOwnProperty("@pulse_w")) pulseW = node.@pulse_w;
+				if(node.hasOwnProperty("@oriented")) bodyOriented = BcStringUtil.parseBoolean(node.@oriented);
+				if(node.hasOwnProperty("@rotation")) bodyRotation = BcStringUtil.parseNumber(node.@rotation);
+				if(node.hasOwnProperty("@pulse_a")) pulseA = BcStringUtil.parseNumber(node.@pulse_a);
+				if(node.hasOwnProperty("@pulse_w")) pulseW = BcStringUtil.parseNumber(node.@pulse_w);
 			}
 			
 			

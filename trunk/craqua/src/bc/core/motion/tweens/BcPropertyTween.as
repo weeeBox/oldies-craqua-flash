@@ -1,5 +1,6 @@
 package bc.core.motion.tweens 
 {
+	import bc.core.util.BcStringUtil;
 	import bc.core.motion.tweens.BcITween;
 
 	import flash.display.DisplayObject;
@@ -23,8 +24,8 @@ package bc.core.motion.tweens
 		public function parse(xml:XML):void
 		{
 			property = xml.@property.toString();
-			start = xml.@start;
-			change = xml.@change;
+			start = BcStringUtil.parseNumber(xml.@start);
+			change = BcStringUtil.parseNumber(xml.@change);
 		}
 
 		public function apply(progress:Number, displayObject:DisplayObject = null, weight:Number = 1):void

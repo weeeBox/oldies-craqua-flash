@@ -22,7 +22,7 @@ package bc.world.enemy.actions
 			
 			if(xml.hasOwnProperty("@time"))
 			{
-				time = xml.@time;
+				time = BcStringUtil.parseNumber(xml.@time);
 			}
 			
 			if(xml.hasOwnProperty("@ease"))

@@ -1,5 +1,6 @@
 package bc.world.item 
 {
+	import bc.core.util.BcStringUtil;
 	import bc.world.particles.BcParticleData;
 	import bc.core.audio.BcSound;
 	import bc.core.data.BcData;
@@ -86,31 +87,31 @@ package bc.world.item
 			
 			if(xml.hasOwnProperty("@amount"))
 			{
-				amount = xml.@amount;
+				amount = BcStringUtil.parseUInteger(xml.@amount);
 			}
 			
 			if(xml.hasOwnProperty("@spining"))
 			{
-				spining = xml.@spining;
+				spining = BcStringUtil.parseNumber(xml.@spining);
 			}
 			
 			if(xml.hasOwnProperty("@scale"))
 			{
-				scale = xml.@scale;
+				scale = BcStringUtil.parseNumber(xml.@scale);
 			}
 			
 			node = xml.particles[0];
 			if(node)
 			{
 				particle = BcParticleData.getData(node.@data);
-				particleCount = node.@count;
+				particleCount = BcStringUtil.parseUInteger(node.@count);
 			}
 			
 			node = xml.magnit[0];
 			if(node)
 			{
-				magnitForce = node.@force;
-				magnitDistance = node.@distance;
+				magnitForce = BcStringUtil.parseNumber(node.@force);
+				magnitDistance = BcStringUtil.parseNumber(node.@distance);
 			}
 			
 			node = xml.phy[0];
@@ -118,7 +119,7 @@ package bc.world.item
 			{
 				//phyFriction = node.@friction;
 				//phySpeed = node.@speed;
-				phyGravity = node.@gravity;
+				phyGravity = BcStringUtil.parseNumber(node.@gravity);
 			}
 			
 			if(xml.hasOwnProperty("@sfx"))

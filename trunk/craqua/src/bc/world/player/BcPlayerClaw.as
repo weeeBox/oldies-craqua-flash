@@ -1,5 +1,6 @@
 package bc.world.player 
 {
+	import bc.core.util.BcStringUtil;
 	import bc.core.math.Vector2;
 
 	/**
@@ -19,13 +20,13 @@ package bc.world.player
 		public function parse(xml:XML):void
 		{
 			const toRad:Number = Math.PI/180;
-			var angle:Number = (-90 - Number(xml.@angle))*toRad;
-			var distance:Number = xml.@distance;
+			var angle:Number = (-90 - BcStringUtil.parseNumber(xml.@angle))*toRad;
+			var distance:Number = BcStringUtil.parseNumber(xml.@distance);
 			
 			position.assign( Math.cos(angle)*distance, Math.sin(angle)*distance );
 			//BcStringUtil.parseVector2(xml.@position, position);
 			
-			shootingAngle = (-90 - Number(xml.@shooting_angle)) * toRad;
+			shootingAngle = (-90 - BcStringUtil.parseNumber(xml.@shooting_angle)) * toRad;
 			
 			direction.assign( Math.cos(shootingAngle), Math.sin(shootingAngle) );
 		}
