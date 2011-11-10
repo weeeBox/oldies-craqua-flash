@@ -1,5 +1,6 @@
 package bc.core.motion.tweens 
 {
+	import bc.core.util.BcStringUtil;
 	import bc.core.motion.tweens.BcITween;
 
 	import flash.display.DisplayObject;
@@ -20,12 +21,12 @@ package bc.core.motion.tweens
 		{
 			if(xml.hasOwnProperty("@start"))
 			{
-				start = xml.@start;
+				start = BcStringUtil.parseNumber(xml.@start);
 			}
 			
 			if(xml.hasOwnProperty("@change"))
 			{
-				change = xml.@change;
+				change = BcStringUtil.parseNumber(xml.@change);
 			}
 		}
 

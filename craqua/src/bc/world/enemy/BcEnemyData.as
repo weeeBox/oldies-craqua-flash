@@ -1,5 +1,6 @@
 package bc.world.enemy 
 {
+	import bc.core.util.BcStringUtil;
 	import bc.core.audio.BcSound;
 	import bc.core.data.BcData;
 	import bc.core.data.BcIObjectData;
@@ -112,10 +113,10 @@ package bc.world.enemy
 			node = xml.moving[0];
 			if(node)
 			{
-				if(node.hasOwnProperty("@min")) movingMin = node.@min;
-				if(node.hasOwnProperty("@max")) movingMax = node.@max;
-				if(node.hasOwnProperty("@time")) movingTime = node.@time;
-				if(node.hasOwnProperty("@offset")) movingOffset = node.@offset;
+				if(node.hasOwnProperty("@min")) movingMin = BcStringUtil.parseNumber(node.@min);
+				if(node.hasOwnProperty("@max")) movingMax = BcStringUtil.parseNumber(node.@max);
+				if(node.hasOwnProperty("@time")) movingTime = BcStringUtil.parseNumber(node.@time);
+				if(node.hasOwnProperty("@offset")) movingOffset = BcStringUtil.parseNumber(node.@offset);
 				if(node.hasOwnProperty("@type"))
 				{
 					switch(node.@type.toString())
@@ -133,13 +134,13 @@ package bc.world.enemy
 			node = xml.properties[0];
 			if(node)
 			{
-				if(node.hasOwnProperty("@health")) health = Number(node.@health);
-				if(node.hasOwnProperty("@fail")) fail = Number(node.@fail);
-				if(node.hasOwnProperty("@mod")) mod = Number(node.@mod);
-				if(node.hasOwnProperty("@size")) size = Number(node.@size);
-				if(node.hasOwnProperty("@mass")) mass = Number(node.@mass);
-				if(node.hasOwnProperty("@gems")) gems = node.@gems;
-				if(node.hasOwnProperty("@money")) money = node.@money;
+				if(node.hasOwnProperty("@health")) health = BcStringUtil.parseNumber(node.@health);
+				if(node.hasOwnProperty("@fail")) fail = BcStringUtil.parseNumber(node.@fail);
+				if(node.hasOwnProperty("@mod")) mod = BcStringUtil.parseNumber(node.@mod);
+				if(node.hasOwnProperty("@size")) size = BcStringUtil.parseNumber(node.@size);
+				if(node.hasOwnProperty("@mass")) mass = BcStringUtil.parseNumber(node.@mass);
+				if(node.hasOwnProperty("@gems")) gems = BcStringUtil.parseUInteger(node.@gems);
+				if(node.hasOwnProperty("@money")) money = BcStringUtil.parseUInteger(node.@money);
 			}
 			
 			node = xml.trail[0];
@@ -151,11 +152,11 @@ package bc.world.enemy
 				}
 				if(node.hasOwnProperty("@speed"))
 				{
-					trailSpeed = node.@speed;
+					trailSpeed = BcStringUtil.parseNumber(node.@speed);
 				}
 				if(node.hasOwnProperty("@spread"))
 				{
-					trailSpread = node.@spread;
+					trailSpread = BcStringUtil.parseNumber(node.@spread);
 				}
 			}
 			
@@ -179,7 +180,7 @@ package bc.world.enemy
 				
 				if(node.hasOwnProperty("@light"))
 				{
-					hitLight = node.@light;
+					hitLight = BcStringUtil.parseNumber(node.@light);
 				}
 				
 				
@@ -192,7 +193,7 @@ package bc.world.enemy
 				subNode = node.bonus[0];
 				if(subNode)
 				{
-					hitBonus = subNode.@damage;
+					hitBonus = BcStringUtil.parseUInteger(subNode.@damage);
 					hitBonusActions = createActionArray(subNode);
 				}
 			}
@@ -239,8 +240,8 @@ package bc.world.enemy
 			node = xml.launch[0];
 			if(node)
 			{
-				launchPause = node.@pause;
-				launchSpeed = node.@speed;
+				launchPause = BcStringUtil.parseNumber(node.@pause);
+				launchSpeed = BcStringUtil.parseNumber(node.@speed);
 				launchMarker = BcParticleData.getData(node.@marker);
 			}
 		}

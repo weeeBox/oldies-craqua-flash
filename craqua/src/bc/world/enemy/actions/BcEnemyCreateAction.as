@@ -1,5 +1,6 @@
 package bc.world.enemy.actions 
 {
+	import bc.core.util.BcStringUtil;
 	import bc.core.math.Vector2;
 	import bc.world.bullet.BcBulletData;
 	import bc.world.bullet.BcBulletLauncher;
@@ -23,7 +24,7 @@ package bc.world.enemy.actions
 		{
 			if(xml.hasOwnProperty("@data")) data = BcEnemyData.getData(xml.@data);
 			if(xml.hasOwnProperty("@path")) path = BcEnemyPathData.getData(xml.@path);
-			if(xml.hasOwnProperty("@x")) x = xml.@x;
+			if(xml.hasOwnProperty("@x")) x = BcStringUtil.parseNumber(xml.@x);
 		}
 		
 		public function action(enemy:BcEnemy):void

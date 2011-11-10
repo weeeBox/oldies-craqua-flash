@@ -1,5 +1,6 @@
 package bc.world.collision 
 {
+	import bc.core.util.BcStringUtil;
 	import bc.core.math.Vector2;
 
 	/**
@@ -111,15 +112,15 @@ package bc.world.collision
 			
 			if(node)
 			{
-				if(node.hasOwnProperty("@x")) x = Number(node.@x);
-				if(node.hasOwnProperty("@y")) y = Number(node.@y);
+				if(node.hasOwnProperty("@x")) x = BcStringUtil.parseNumber(node.@x);
+				if(node.hasOwnProperty("@y")) y = BcStringUtil.parseNumber(node.@y);
 				
 				switch(node.@type.toString())
 				{
 					case "aabb":
 						
-						if(node.hasOwnProperty("@w")) w = Number(node.@w);
-						if(node.hasOwnProperty("@h")) h = Number(node.@h);
+						if(node.hasOwnProperty("@w")) w = BcStringUtil.parseNumber(node.@w);
+						if(node.hasOwnProperty("@h")) h = BcStringUtil.parseNumber(node.@h);
 					
 						shape = new BcAABBShape(x, y, w, h);
 						
@@ -127,7 +128,7 @@ package bc.world.collision
 						
 					case "circle":
 					
-						if(node.hasOwnProperty("@r")) w = Number(node.@r);
+						if(node.hasOwnProperty("@r")) w = BcStringUtil.parseNumber(node.@r);
 						
 						shape = new BcCircleShape(x, y, w);
 						

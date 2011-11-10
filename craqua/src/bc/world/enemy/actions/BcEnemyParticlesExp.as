@@ -1,5 +1,6 @@
 package bc.world.enemy.actions 
 {
+	import bc.core.util.BcStringUtil;
 	import bc.world.core.BcWorld;
 	import bc.world.enemy.BcEnemy;
 	import bc.world.particles.BcParticleData;
@@ -23,12 +24,12 @@ package bc.world.enemy.actions
 			
 			if(xml.hasOwnProperty("@count"))
 			{
-				count = xml.@count;
+				count = BcStringUtil.parseUInteger(xml.@count);
 			}
 			
 			if(xml.hasOwnProperty("@radius"))
 			{
-				radius = xml.@radius;
+				radius = BcStringUtil.parseNumber(xml.@radius);
 			}
 		}
 		

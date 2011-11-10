@@ -1,5 +1,6 @@
 package bc.world.enemy 
 {
+	import bc.core.util.BcStringUtil;
 	import bc.world.enemy.actions.BcIEnemyAction;
 
 	/**
@@ -12,7 +13,7 @@ package bc.world.enemy
 		
 		public function BcEnemyHitCap(xml:XML)
 		{
-			level = xml.@level;
+			level = BcStringUtil.parseNumber(xml.@level);
 			actions = BcEnemyData.createActionArray(xml);
 		}
 		

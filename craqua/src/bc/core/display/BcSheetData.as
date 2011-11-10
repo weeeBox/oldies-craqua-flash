@@ -43,7 +43,7 @@ package bc.core.display
 				
 				if(node.hasOwnProperty("speed"))
 				{
-					speed = node.@speed;
+					speed = BcStringUtil.parseNumber(node.@speed);
 				}
 			}
 			
@@ -58,7 +58,7 @@ package bc.core.display
 					}
 					bitmapProperties.parse(node);
 				
-					frameTime = speed * Number(node.@time);
+					frameTime = speed * BcStringUtil.parseNumber(node.@time);
 					
 					frames.push(bitmapProperties);
 					timeline.push(frameTime);

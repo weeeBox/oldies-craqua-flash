@@ -1,5 +1,6 @@
 package bc.core.audio 
 {
+	import bc.core.util.BcStringUtil;
 	import bc.core.device.BcAsset;
 	import bc.core.device.BcDevice;
 
@@ -37,8 +38,8 @@ package bc.core.audio
 			
 			if(xml)
 			{
-				if(xml.hasOwnProperty("@fading")) fading = - Number(xml.@fading);
-				if(xml.hasOwnProperty("@panorama")) panorama = 1 / Number(xml.@panorama);
+				if(xml.hasOwnProperty("@fading")) fading = - BcStringUtil.parseNumber(xml.@fading);
+				if(xml.hasOwnProperty("@panorama")) panorama = 1 / BcStringUtil.parseNumber(xml.@panorama);
 			}
 		}
 		

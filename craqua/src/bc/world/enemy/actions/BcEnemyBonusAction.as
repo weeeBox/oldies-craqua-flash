@@ -1,5 +1,6 @@
 package bc.world.enemy.actions 
 {
+	import bc.core.util.BcStringUtil;
 	import bc.world.enemy.BcEnemy;
 	import bc.world.enemy.actions.BcIEnemyAction;
 
@@ -17,15 +18,15 @@ package bc.world.enemy.actions
 		{
 			if(xml.hasOwnProperty("@money"))
 			{
-				money = xml.@money;
+				money = BcStringUtil.parseInteger(xml.@money);
 			}
 			if(xml.hasOwnProperty("@gems"))
 			{
-				gems = xml.@gems;
+				gems = BcStringUtil.parseInteger(xml.@gems);
 			}
 			if(xml.hasOwnProperty("@prob"))
 			{
-				prob = xml.@prob;
+				prob = BcStringUtil.parseNumber(xml.@prob);
 			}
 		}
 		

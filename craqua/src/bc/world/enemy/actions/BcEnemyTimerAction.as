@@ -18,7 +18,7 @@ package bc.world.enemy.actions
 		{
 			if(xml.hasOwnProperty("@index"))
 			{
-				index = xml.@index;
+				index = BcStringUtil.parseUInteger(xml.@index);
 			}
 			
 			if(xml.hasOwnProperty("@enable"))

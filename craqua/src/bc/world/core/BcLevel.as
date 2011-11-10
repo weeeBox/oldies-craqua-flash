@@ -228,8 +228,8 @@ package bc.world.core
 				waves.push(node);
 			}
 			
-			defaultCheckPoint.exp = xml.@exp;
-			defaultCheckPoint.wave = xml.@wave;
+			defaultCheckPoint.exp = BcStringUtil.parseUInteger(xml.@exp);
+			defaultCheckPoint.wave = BcStringUtil.parseUInteger(xml.@wave);
 		}
 
 		public function checkPlayerDeath():void
@@ -331,14 +331,14 @@ package bc.world.core
 					nodeName = enemiesNode.name();
 					if(nodeName=="offset")
 					{
-						timeOffset = enemiesNode.@time;
+						timeOffset = BcStringUtil.parseNumber(enemiesNode.@time);
 					}
 					else
 					{
-						count = uint(enemiesNode.@count);
+						count = BcStringUtil.parseUInteger(enemiesNode.@count);
 						
-						timeBegin = timeOffset + Number(enemiesNode.@begin);
-						timeEnd = timeBegin + Number(enemiesNode.@time);
+						timeBegin = timeOffset + BcStringUtil.parseNumber(enemiesNode.@begin);
+						timeEnd = timeBegin + BcStringUtil.parseNumber(enemiesNode.@time);
 						if(timeEnd > maxTime)
 						{
 							maxTime = timeEnd;
@@ -365,7 +365,7 @@ package bc.world.core
 								horiSideFlipping = 
 								horiSideFlip = false;
 								
-								if(enemiesNode.hasOwnProperty("@fall"))	fallingType = enemiesNode.@fall;
+								if(enemiesNode.hasOwnProperty("@fall"))	fallingType = BcStringUtil.parseInteger(enemiesNode.@fall);
 								
 								switch(fallingType)
 								{
@@ -377,8 +377,8 @@ package bc.world.core
 								if(nodeX)
 								{
 									beginX = 0;
-									if(nodeX.hasOwnProperty("@begin")) beginX = nodeX.@begin;								
-									if(nodeX.hasOwnProperty("@spread")) spreadX = nodeX.@spread;
+									if(nodeX.hasOwnProperty("@begin")) beginX = BcStringUtil.parseNumber(nodeX.@begin);								
+									if(nodeX.hasOwnProperty("@spread")) spreadX = BcStringUtil.parseNumber(nodeX.@spread);
 									
 									deltaX = spreadX/count;
 									
@@ -393,8 +393,8 @@ package bc.world.core
 									
 									if(fallingType==1)
 									{
-										if(nodeX.hasOwnProperty("@side")) horiSideFlip = nodeX.@side;
-										if(nodeX.hasOwnProperty("@flipping")) horiSideFlipping = nodeX.@flipping;
+										if(nodeX.hasOwnProperty("@side")) horiSideFlip = BcStringUtil.parseBoolean(nodeX.@side);
+										if(nodeX.hasOwnProperty("@flipping")) horiSideFlipping = BcStringUtil.parseBoolean(nodeX.@flipping);
 									}
 								}							
 								

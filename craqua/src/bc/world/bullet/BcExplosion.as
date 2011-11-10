@@ -51,15 +51,15 @@ package bc.world.bullet
 		{
 			var node:XML;
 			
-			if(xml.hasOwnProperty("@damage")) damage = xml.@damage;
-			if(xml.hasOwnProperty("@radius")) shape.radius = xml.@radius;
+			if(xml.hasOwnProperty("@damage")) damage = BcStringUtil.parseNumber(xml.@damage);
+			if(xml.hasOwnProperty("@radius")) shape.radius = BcStringUtil.parseNumber(xml.@radius);
 
-			if(xml.hasOwnProperty("@shake")) shakeAmount = xml.@shake;
-			if(xml.hasOwnProperty("@flash")) flashAmount = xml.@flash;
+			if(xml.hasOwnProperty("@shake")) shakeAmount = BcStringUtil.parseNumber(xml.@shake);
+			if(xml.hasOwnProperty("@flash")) flashAmount = BcStringUtil.parseNumber(xml.@flash);
 			
 			if(xml.hasOwnProperty("@sfx")) sfx = BcSound.getData(xml.@sfx);
 			
-			if(xml.hasOwnProperty("@impulse")) impulse = xml.@impulse;
+			if(xml.hasOwnProperty("@impulse")) impulse = BcStringUtil.parseNumber(xml.@impulse);
 			
 			node = xml.particles[0];
 			if(node)
@@ -74,8 +74,8 @@ package bc.world.bullet
 				if(node)
 				{
 					if(node.hasOwnProperty("@particle")) bubbleParticle = BcParticleData.getData(node.@particle);
-					if(node.hasOwnProperty("@count")) bubbleCount = node.@count;
-					if(node.hasOwnProperty("@radius")) bubbleRadius = node.@radius;
+					if(node.hasOwnProperty("@count")) bubbleCount = BcStringUtil.parseUInteger(node.@count);
+					if(node.hasOwnProperty("@radius")) bubbleRadius = BcStringUtil.parseNumber(node.@radius);
 				}
 			}
 		}

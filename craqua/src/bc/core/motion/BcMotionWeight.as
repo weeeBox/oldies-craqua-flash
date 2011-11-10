@@ -1,5 +1,6 @@
 package bc.core.motion 
 {
+	import bc.core.util.BcStringUtil;
 
 	/**
 	 * @author Elias Ku
@@ -19,12 +20,12 @@ package bc.core.motion
 		{
 			if(xml.hasOwnProperty("@time"))
 			{
-				time = xml.@time;
+				time = BcStringUtil.parseNumber(xml.@time);
 			}
 			
 			if(xml.hasOwnProperty("@value"))
 			{
-				value = xml.@value;
+				value = BcStringUtil.parseNumber(xml.@value);
 			}
 		}
 	}

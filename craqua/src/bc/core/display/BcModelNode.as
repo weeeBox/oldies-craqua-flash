@@ -1,5 +1,6 @@
 package bc.core.display 
 {
+	import bc.game.BcStrings;
 	import bc.core.math.Vector2;
 	import bc.core.util.BcStringUtil;
 
@@ -93,7 +94,7 @@ package bc.core.display
 			
 			if(xml.hasOwnProperty("@rotation"))
 			{
-				rotation = xml.@rotation;
+				rotation = BcStringUtil.parseNumber(xml.@rotation);
 			}
 			
 			if(xml.hasOwnProperty("@scale"))

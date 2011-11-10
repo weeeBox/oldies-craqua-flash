@@ -1,5 +1,6 @@
 package bc.world.player 
 {
+	import bc.core.util.BcStringUtil;
 
 	/**
 	 * @author Elias Ku
@@ -35,20 +36,20 @@ package bc.world.player
 			var weapon:BcPlayerWeapon;
 			var node:XML;
 			
-			exp = xml.@exp;
+			exp = BcStringUtil.parseUInteger(xml.@exp);
 			
 			node = xml.mod[0];
 			if(node)
 			{
-				modRate = node.@rate;
-				modDamage = node.@damage;
+				modRate = BcStringUtil.parseNumber(node.@rate);
+				modDamage = BcStringUtil.parseNumber(node.@damage);
 			}
 			
 			node = xml.regen[0];
 			if(node)
 			{
-				regenHealth = node.@health;
-				regenBomb = node.@bomb;
+				regenHealth = BcStringUtil.parseNumber(node.@health);
+				regenBomb = BcStringUtil.parseNumber(node.@bomb);
 			}
 			
 			for each (node in xml.weapon)

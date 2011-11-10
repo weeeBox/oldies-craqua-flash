@@ -147,7 +147,6 @@ package bc.core.device
 				BcAsset.initialize();
 				BcAudio.initialize();
 				BcData.initialize();
-				BcTweenFactory.initialize();
 				BcEasing.initialize();
 			}
 		}

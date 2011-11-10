@@ -1,5 +1,6 @@
 package bc.world.enemy.actions 
 {
+	import bc.core.util.BcStringUtil;
 	import bc.core.math.Vector2;
 	import bc.world.bullet.BcBulletData;
 	import bc.world.bullet.BcBulletLauncher;
@@ -33,12 +34,12 @@ package bc.world.enemy.actions
 		{
 			const toRad:Number = Math.PI/180;
 			if(xml.hasOwnProperty("@bullet")) bullet = BcBulletData.getData(xml.@bullet);
-			if(xml.hasOwnProperty("@n")) n = xml.@n;
-			if(xml.hasOwnProperty("@min")) min = Number(xml.@min)*toRad;
-			if(xml.hasOwnProperty("@max")) max = Number(xml.@max)*toRad;
-			if(xml.hasOwnProperty("@a")) a = Number(xml.@a)*toRad;
-			if(xml.hasOwnProperty("@w")) w = Number(xml.@w)*toRad;
-			if(xml.hasOwnProperty("@f")) f = Number(xml.@f)*toRad;
+			if(xml.hasOwnProperty("@n")) n = BcStringUtil.parseUInteger(xml.@n);
+			if(xml.hasOwnProperty("@min")) min = BcStringUtil.parseNumber(xml.@min)*toRad;
+			if(xml.hasOwnProperty("@max")) max = BcStringUtil.parseNumber(xml.@max)*toRad;
+			if(xml.hasOwnProperty("@a")) a = BcStringUtil.parseNumber(xml.@a)*toRad;
+			if(xml.hasOwnProperty("@w")) w = BcStringUtil.parseNumber(xml.@w)*toRad;
+			if(xml.hasOwnProperty("@f")) f = BcStringUtil.parseNumber(xml.@f)*toRad;
 			
 			if(xml.hasOwnProperty("@direction"))
 			{

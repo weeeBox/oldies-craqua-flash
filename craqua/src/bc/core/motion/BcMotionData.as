@@ -61,12 +61,12 @@ package bc.core.motion
 			
 			if(xml.hasOwnProperty("@count"))
 			{
-				count = xml.@count;
+				count = BcStringUtil.parseUInteger(xml.@count);
 			}
 			
 			if(xml.hasOwnProperty("@duration"))
 			{
-				duration = xml.@duration;
+				duration = BcStringUtil.parseNumber(xml.@duration);
 			}
 			else
 			{
