@@ -6,7 +6,7 @@ package bc.game.asset
 	/**
 	 * @author Elias Ku
 	 */
-	public class BcGameAsset
+	public class BcGameLoader
 	{
 		/*[Embed(source="../../../../asset/game/sponsor/gatcha.png")]
 		private static var img_sponsor_logo:Class;
@@ -800,7 +800,7 @@ package bc.game.asset
 		private static var sfx_audio_tv_shot:Class;
 		BcAsset.embedSound("audio_tv_shot", sfx_audio_tv_shot);*/
 		
-		public function BcGameAsset(callback:BcAssetCallback)
+		public function BcGameLoader(callback:BcAssetCallback)
 		{
 			BcAsset.load("../asset/game.xml", callback);
 			//callback();
