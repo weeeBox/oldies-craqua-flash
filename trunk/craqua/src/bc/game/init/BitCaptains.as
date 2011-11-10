@@ -3,7 +3,7 @@ package bc.game.init
 	import bc.core.device.BcAssetCallback;
 	import bc.core.device.BcEntryPoint;
 	import bc.game.BcGame;
-	import bc.game.asset.BcGameAsset;
+	import bc.game.asset.BcGameLoader;
 
 	/**
 	 * @author Elias Ku
@@ -15,19 +15,12 @@ package bc.game.init
 	{
 		public function BitCaptains()
 		{
-			super();
-			
-			new BcGameAsset(this);
-		}
-		
-		private static function initialize():void
-		{
-			new BcGame();
+			new BcGameLoader(this);
 		}
 
 		public function assetLoadingCompleted() : void
 		{
-			initialize();
+			new BcGame();
 		}
 	}
 }
