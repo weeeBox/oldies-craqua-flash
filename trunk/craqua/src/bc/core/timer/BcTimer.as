@@ -1,6 +1,6 @@
 package bc.core.timer
 {
-	import bc.core.debug.Debug;
+	import bc.core.debug.BcDebug;
 	/**
 	 * @author weee
 	 */
@@ -56,7 +56,7 @@ package bc.core.timer
 
         public static function setTimerManager(manager : BcTimerManager) : void
         {            
-            Debug.assert(timerManager == null);
+            BcDebug.assert(timerManager == null);
             timerManager = manager;
         }
 	}
