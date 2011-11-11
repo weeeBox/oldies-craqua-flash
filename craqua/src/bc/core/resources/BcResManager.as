@@ -1,7 +1,7 @@
 package bc.core.resources
 {
 	import bc.core.timer.BcTimer;
-	import bc.core.debug.Debug;
+	import bc.core.debug.BcDebug;
 	/**
 	 * @author weee
 	 */
@@ -37,7 +37,7 @@ package bc.core.resources
 		
 		public function queueResource(info : BcResLoadingInfo) : void
 		{			
-			Debug.assert(resources[info.id] != null, "Resource already loaded: " + info.filename);
+			BcDebug.assert(resources[info.id] != null, "Resource already loaded: " + info.filename);
 			loadQueue[loadQueueSize] = info;
 			loadQueueSize++;	
 		}
@@ -48,7 +48,7 @@ package bc.core.resources
 			{
 				var info : BcResLoadingInfo = loadQueue[i];
 				var resource : BcRes = loadResource(info);
-				Debug.assert(resource != null, "Unable to load resource: " + info.filename);
+				BcDebug.assert(resource != null, "Unable to load resource: " + info.filename);
 				resources[info.id] = resource;
 				loadedCount++;	
 			}
@@ -58,7 +58,7 @@ package bc.core.resources
 		{
 			var info : BcResLoadingInfo = loadQueue[loadedCount];
 			var resource : BcRes = loadResource(info);
-			Debug.assert(resource != null, "Unable to load resource: " + info.filename);
+			BcDebug.assert(resource != null, "Unable to load resource: " + info.filename);
 			resources[info.id] = resource;
 			loadedCount++;
 
@@ -85,7 +85,7 @@ package bc.core.resources
 		public function unloadResource(id : int) : void
 		{
 			var resource : BcRes = resources[id];			
-			Debug.assert(resource != null, "Resource already unloaded: " + id);
+			BcDebug.assert(resource != null, "Resource already unloaded: " + id);
 			resource.unload();
 			resources[id] = null;
 		}
@@ -93,7 +93,7 @@ package bc.core.resources
 		public function getResouce(id : int) : BcRes
 		{
 			var res : BcRes = resources[id];
-			Debug.assert(res != null, "Try to get not loaded resource: " + id);
+			BcDebug.assert(res != null, "Try to get not loaded resource: " + id);
 			return res;
 		}
 		
