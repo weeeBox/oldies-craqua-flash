@@ -188,7 +188,7 @@ package bc.core.audio
 		
 		public static function register():void
 		{		
-			BcData.register("music", BcMusic, data);
+			BcData.register("music", new BcMusicDataCreator(), data);
 		}
 		
 		public static function getMusic(id:String):BcMusic
