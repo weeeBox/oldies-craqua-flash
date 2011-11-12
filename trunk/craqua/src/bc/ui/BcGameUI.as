@@ -839,82 +839,236 @@ package bc.ui
 			}
 		}
 		
-		private var transBackStart:UITransition = new UITransition({
-				color:[0xff000000, 0, 0xffffffff, 0], flags:UITransition.OPEN, ease:easeOpen
-				});
-		private var transObjectShow:UITransition = new UITransition({
-				a:[0, 1], ease:easeOpen, flags:[UITransition.FLAG_SHOW, 0]
-				});
-		private var transObjectHide:UITransition = new UITransition({
-				a:[1, 0], ease:easeOpen, flags:[0, UITransition.FLAG_HIDE]
-				});
-		private var transBackOpen:UITransition = new UITransition({
-				color:[0xff000000, 0, 0xffffffff, 0], flags:UITransition.OPEN, ease:easeOpen
-				});
-		private var transBackClose:UITransition = new UITransition({
-				color:[0xffffffff, 0, 0xff000000, 0], flags:UITransition.CLOSE, ease:easeOpen
-				});
-		private var transWindowOpen:UITransition = new UITransition({
-				a:[0, 1], flags:UITransition.OPEN, ease:easeOpen
-				});
-		private var transWindowClose:UITransition = new UITransition({ 
-				a:[1, 0], flags:UITransition.CLOSE, ease:easeOpen 
-				});
-				
-		private var transMainButtonsOpen:UITransition = new UITransition({
-				x:[320, 0], ease:easeOpen
-				});
-		private var transMainButtonsClose:UITransition = new UITransition({ 
-				x:[0, 320], ease:easeOpen 
-				});
-				
-		private var transMainSponsorOpen:UITransition = new UITransition({
-				x:[-150, 150], ease:easeOpen
-				});
-		private var transMainSponsorClose:UITransition = new UITransition({ 
-				x:[150, -150], ease:easeOpen 
-				});
-				
-		private var transDisable:UITransition = new UITransition({ 
-				flags:[UITransition.FLAG_DISABLE, 0] 
-				});
-				
-		private var transEnable:UITransition = new UITransition({ 
-				flags:[0, UITransition.FLAG_ENABLE] 
-				});
-			
-		private var transButtonShow:UITransition = new UITransition({ 
-				sx:[0, 1], sy:[0, 1], a:[0, 1], ease:easeOpen 
-				});
-				
-		private var transTitleShow:UITransition = new UITransition({ 
-				y:[-165, 0], ease:easeOpen 
-				});
-				
-		private var transTitleHide:UITransition = new UITransition({ 
-				y:[0, -165], ease:easeOpen 
-				});
-				
-				
-		private var transFaderStart:UITransition = new UITransition({ 
-				a:[1, 0], color:[0xff000000, 0, 0xffffffff, 0], flags:[UITransition.FLAG_ACTIVATE | UITransition.FLAG_SHOW, UITransition.FLAG_DEACTIVATE | UITransition.FLAG_HIDE], ease:easeOpen
-				});
-				
-		private var transFaderOpen:UITransition = new UITransition({ 
-				a:[0, 1], flags:UITransition.OPEN, ease:easeOpen
-				});
-				
-		private var transFaderClose:UITransition = new UITransition({ 
-				a:[1, 0], flags:UITransition.CLOSE, ease:easeOpen
-				});
-				
-		private var transFaderExit:UITransition = new UITransition({ 
-				color:[0xffffffff, 0, 0xff000000, 0], flags:UITransition.CLOSE, ease:easeOpen
-				});
-				
-		private var transLabelHide:UITransition = new UITransition({ 
-				a:[1, 0], ease:easeOpen, flags:[0, UITransition.FLAG_HIDE] 
-				});
+		private var transBackStart : UITransition = new UITransition(
+			null, // x
+			null, // y
+			null, // sx
+			null, // sy
+			null, // a
+			Vector.<uint>([0xff000000, 0, 0xffffffff, 0]), // color
+			Vector.<uint>(UITransition.OPEN), // flags
+			easeOpen // ease
+		);
+		private var transObjectShow : UITransition = new UITransition(
+			null, // x
+			null, // y
+			null, // sx
+			null, // sy
+			Vector.<Number>([0, 1]), // a
+			null, // color
+			Vector.<uint>([UITransition.FLAG_SHOW, 0]), // flags
+			easeOpen // ease
+		);
+		private var transObjectHide : UITransition = new UITransition(
+			null, // x
+			null, // y
+			null, // sx
+			null, // sy
+			Vector.<Number>([1, 0]), // a
+			null, // color
+			Vector.<uint>([0, UITransition.FLAG_HIDE]), // flags
+			easeOpen // ease
+		);
+		private var transBackOpen : UITransition = new UITransition(
+			null, // x
+			null, // y
+			null, // sx
+			null, // sy
+			null, // a
+			Vector.<uint>([0xff000000, 0, 0xffffffff, 0]), // color
+			Vector.<uint>(UITransition.OPEN), // flags
+			easeOpen // ease
+		);
+		private var transBackClose : UITransition = new UITransition(
+			null, // x
+			null, // y
+			null, // sx
+			null, // sy
+			null, // a
+			Vector.<uint>([0xffffffff, 0, 0xff000000, 0]), // color
+			Vector.<uint>(UITransition.CLOSE), // flags
+			easeOpen // ease
+		);
+		private var transWindowOpen : UITransition = new UITransition(
+			null, // x
+			null, // y
+			null, // sx
+			null, // sy
+			Vector.<Number>([0, 1]), // a
+			null, // color
+			Vector.<uint>(UITransition.OPEN), // flags
+			easeOpen // ease
+		);
+		private var transWindowClose : UITransition = new UITransition(
+			null, // x
+			null, // y
+			null, // sx
+			null, // sy
+			Vector.<Number>([1, 0]), // a
+			null, // color
+			Vector.<uint>(UITransition.CLOSE), // flags
+			easeOpen // ease
+		);
+		private var transMainButtonsOpen : UITransition = new UITransition(
+			Vector.<Number>([320, 0]), // x
+			null, // y
+			null, // sx
+			null, // sy
+			null, // a
+			null, // color
+			null, // flags
+			easeOpen // ease
+		);
+		private var transMainButtonsClose : UITransition = new UITransition(
+			Vector.<Number>([0, 320]), // x
+			null, // y
+			null, // sx
+			null, // sy
+			null, // a
+			null, // color
+			null, // flags
+			easeOpen // ease
+		);
+		private var transMainSponsorOpen : UITransition = new UITransition(
+			Vector.<Number>([-150, 150]), // x
+			null, // y
+			null, // sx
+			null, // sy
+			null, // a
+			null, // color
+			null, // flags
+			easeOpen // ease
+		);
+		private var transMainSponsorClose : UITransition = new UITransition(
+			Vector.<Number>([150, -150]), // x
+			null, // y
+			null, // sx
+			null, // sy
+			null, // a
+			null, // color
+			null, // flags
+			easeOpen // ease
+		);
+		private var transDisable : UITransition = new UITransition(
+			null, // x
+			null, // y
+			null, // sx
+			null, // sy
+			null, // a
+			null, // color
+			Vector.<uint>([UITransition.FLAG_DISABLE, 0]), // flags
+			null // ease
+		);
+		private var transEnable : UITransition = new UITransition(
+			null, // x
+			null, // y
+			null, // sx
+			null, // sy
+			null, // a
+			null, // color
+			Vector.<uint>([0, UITransition.FLAG_ENABLE]), // flags
+			null // ease
+		);
+		private var transButtonShow : UITransition = new UITransition(
+			null, // x
+			null, // y
+			Vector.<Number>([0, 1]), // sx
+			Vector.<Number>([0, 1]), // sy
+			Vector.<Number>([0, 1]), // a
+			null, // color
+			null, // flags
+			easeOpen // ease
+		);
+		private var transTitleShow : UITransition = new UITransition(
+			null, // x
+			Vector.<Number>([-165, 0]), // y
+			null, // sx
+			null, // sy
+			null, // a
+			null, // color
+			null, // flags
+			easeOpen // ease
+		);
+		private var transTitleHide : UITransition = new UITransition(
+			null, // x
+			Vector.<Number>([0, -165]), // y
+			null, // sx
+			null, // sy
+			null, // a
+			null, // color
+			null, // flags
+			easeOpen // ease
+		);
+		private var transFaderStart : UITransition = new UITransition(
+			null, // x
+			null, // y
+			null, // sx
+			null, // sy
+			Vector.<Number>([1, 0]), // a
+			Vector.<uint>([0xff000000, 0, 0xffffffff, 0]), // color
+			Vector.<uint>([UITransition.FLAG_ACTIVATE | UITransition.FLAG_SHOW, UITransition.FLAG_DEACTIVATE | UITransition.FLAG_HIDE]), // flags
+			easeOpen // ease
+		);
+		private var transFaderOpen : UITransition = new UITransition(
+			null, // x
+			null, // y
+			null, // sx
+			null, // sy
+			Vector.<Number>([0, 1]), // a
+			null, // color
+			Vector.<uint>(UITransition.OPEN), // flags
+			easeOpen // ease
+		);
+		private var transFaderClose : UITransition = new UITransition(
+			null, // x
+			null, // y
+			null, // sx
+			null, // sy
+			Vector.<Number>([1, 0]), // a
+			null, // color
+			Vector.<uint>(UITransition.CLOSE), // flags
+			easeOpen // ease
+		);
+		private var transFaderExit : UITransition = new UITransition(
+			null, // x
+			null, // y
+			null, // sx
+			null, // sy
+			null, // a
+			Vector.<uint>([0xffffffff, 0, 0xff000000, 0]), // color
+			Vector.<uint>(UITransition.CLOSE), // flags
+			easeOpen // ease
+		);
+		private var transLabelHide : UITransition = new UITransition(
+			null, // x
+			null, // y
+			null, // sx
+			null, // sy
+			Vector.<Number>([1, 0]), // a
+			null, // color
+			Vector.<uint>([0, UITransition.FLAG_HIDE]), // flags
+			easeOpen // ease
+		);
+		private var transStatEnable : UITransition = new UITransition(
+			null, // x
+			null, // y
+			null, // sx
+			null, // sy
+			Vector.<Number>([0.2, 1]), // a
+			Vector.<uint>([0xffffffff, 0xff00ff00, 0, 0]), // color
+			null, // flags
+			easeOpen // ease
+		);
+		private var transStatDisable : UITransition = new UITransition(
+			null, // x
+			null, // y
+			null, // sx
+			null, // sy
+			Vector.<Number>([1, 0.2]), // a
+			Vector.<uint>([0xff00ff00, 0xffffffff, 0, 0]), // color
+			null, // flags
+			easeOpen // ease
+		);
 
 		private function initBackFader():void
 		{
@@ -1001,14 +1155,6 @@ package bc.ui
 			else
 				descComplete.play(transStatDisable, 3);
 		}
-		
-		private var transStatEnable:UITransition = new UITransition({ 
-				a:[0.2, 1], color:[0xffffffff, 0xff00ff00], ease:easeOpen 
-				});
-			
-		private var transStatDisable:UITransition = new UITransition({ 
-				a:[1, 0.2], color:[0xff00ff00, 0xffffffff], ease:easeOpen 
-				});
 		
 		private function sponsorLink(object:UIObject):void
 		{
