@@ -3,9 +3,9 @@ package bc.core.motion.easing
 	/**
 	 * @author weee
 	 */
-	public class BcEaseSineIn implements BcEaseFunction
+	public class BcEaseSineIn extends BcEaseFunction
 	{
-		public function easing(t : Number) : Number
+		override public function easing(t : Number) : Number
 		{
 			return -Math.cos(t * (Math.PI * 0.5)) + 1;
 		}

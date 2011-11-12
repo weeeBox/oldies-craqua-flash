@@ -5,9 +5,9 @@ package bc.core.motion.easing
 	/**
 	 * @author weee
 	 */
-	public class BcEaseSineOut implements BcEaseFunction
+	public class BcEaseSineOut extends BcEaseFunction
 	{
-		public function easing(t : Number) : Number
+		override public function easing(t : Number) : Number
 		{
 			return Math.sin(t * (Math.PI * 0.5));
 		}
