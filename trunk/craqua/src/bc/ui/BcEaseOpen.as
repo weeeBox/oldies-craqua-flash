@@ -4,9 +4,9 @@ package bc.ui
 	/**
 	 * @author weee
 	 */
-	public class BcEaseOpen implements BcEaseFunction
+	public class BcEaseOpen extends BcEaseFunction
 	{
-		public function easing(t : Number) : Number
+		override public function easing(t : Number) : Number
 		{
 			var x : Number = 1 - t;
 			return 1 - x * x * x;
