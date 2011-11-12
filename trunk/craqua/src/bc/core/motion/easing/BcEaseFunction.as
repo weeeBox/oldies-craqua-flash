@@ -3,8 +3,11 @@ package bc.core.motion.easing
 	/**
 	 * @author weee
 	 */
-	public interface BcEaseFunction
+	public class BcEaseFunction
 	{
-		function easing(t:Number):Number;
+		public function easing(t:Number) : Number
+		{
+			return t;	
+		}
 	}
 }
