@@ -10,14 +10,7 @@ package bc.core.ui
 	 */
 	public class UILabel extends UIObject 
 	{
-		public static var DEFAULT_STYLE:UIStyle = new UIStyle();
-		DEFAULT_STYLE.setProperty("font", "main");
-		DEFAULT_STYLE.setProperty("textSize", 15);
-		DEFAULT_STYLE.setProperty("textColor", 0xffffff);
-		DEFAULT_STYLE.setProperty("strokeBlur", 0);
-		DEFAULT_STYLE.setProperty("strokeColor", 0x0);
-		DEFAULT_STYLE.setProperty("strokeAlpha", 1);
-		DEFAULT_STYLE.setProperty("strokeStrength", 8);
+		public static var defaultStyle:UIStyle;
 		
 		protected var _textField:TextField = new TextField();
 		protected var _textFormat:TextFormat;
@@ -31,7 +24,7 @@ package bc.core.ui
 			
 			if(!style)
 			{
-				style = DEFAULT_STYLE;
+				style = getDefaultStyle();
 			}
 			
 			_textFormat = new TextFormat(style.getProperty("font"), style.getProperty("textSize"), 0xffffff);
@@ -96,6 +89,22 @@ package bc.core.ui
 		public function set centerX(x:Number):void
 		{
 			this.x = x + int(-0.5*_sprite.width); 
+		}
+		
+		public static function getDefaultStyle() : UIStyle
+		{
+			if (defaultStyle == null)
+			{
+				defaultStyle = new UIStyle();
+				defaultStyle.setProperty("font", "main");
+				defaultStyle.setProperty("textSize", 15);
+				defaultStyle.setProperty("textColor", 0xffffff);
+				defaultStyle.setProperty("strokeBlur", 0);
+				defaultStyle.setProperty("strokeColor", 0x0);
+				defaultStyle.setProperty("strokeAlpha", 1);
+				defaultStyle.setProperty("strokeStrength", 8);	
+			}
+			return defaultStyle;
 		}
 	}
 }
