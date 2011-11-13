@@ -193,9 +193,9 @@ package bc.ui
 		
 		
 		
-		private var stQuality:UIStyle = new UIStyle(UICheckBox.DEFAULT_STYLE, {text1:BcStrings.UI_QUALITY_HIGH, text2:BcStrings.UI_QUALITY_LOW, back1:"ui_qb", back2:"ui_qb", body1:"ui_q", body2:"ui_q"});
-		private var stMusic:UIStyle = new UIStyle(UICheckBox.DEFAULT_STYLE, {text1:BcStrings.UI_MUSIC_ON, text2:BcStrings.UI_MUSIC_OFF, back1:"ui_m1b", back2:"ui_m2b", body1:"ui_m1", body2:"ui_m2"});
-		private var stSound:UIStyle = new UIStyle(UICheckBox.DEFAULT_STYLE, {text1:BcStrings.UI_SFX_ON, text2:BcStrings.UI_SFX_OFF, back1:"ui_s1b", back2:"ui_s2b", body1:"ui_s1", body2:"ui_s2"});
+		private var stQuality:UIStyle = new UIStyle(UICheckBox.getDefaultStyle(), {text1:BcStrings.UI_QUALITY_HIGH, text2:BcStrings.UI_QUALITY_LOW, back1:"ui_qb", back2:"ui_qb", body1:"ui_q", body2:"ui_q"});
+		private var stMusic:UIStyle = new UIStyle(UICheckBox.getDefaultStyle(), {text1:BcStrings.UI_MUSIC_ON, text2:BcStrings.UI_MUSIC_OFF, back1:"ui_m1b", back2:"ui_m2b", body1:"ui_m1", body2:"ui_m2"});
+		private var stSound:UIStyle = new UIStyle(UICheckBox.getDefaultStyle(), {text1:BcStrings.UI_SFX_ON, text2:BcStrings.UI_SFX_OFF, back1:"ui_s1b", back2:"ui_s2b", body1:"ui_s1", body2:"ui_s2"});
 		private var stButtonMedium:UIStyle = new UIStyle(UIButton.DEFAULT_STYLE, {scale:0.75});
 		private var stButtonOther:UIStyle = new UIStyle(UIButton.DEFAULT_STYLE, {scale:0.85});
 		private var stButtonSmall:UIStyle = new UIStyle(UIButton.DEFAULT_STYLE, {scale:0.5});
