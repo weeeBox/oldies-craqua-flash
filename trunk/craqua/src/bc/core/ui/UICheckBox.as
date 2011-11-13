@@ -15,27 +15,7 @@ package bc.core.ui
 	 */
 	public class UICheckBox extends UIObject 
 	{
-		public static var DEFAULT_STYLE:UIStyle = new UIStyle();
-		
-		DEFAULT_STYLE.setProperty("font", "main");
-		DEFAULT_STYLE.setProperty("textSize", 12);
-		DEFAULT_STYLE.setProperty("textColor", 0xffffff);
-		DEFAULT_STYLE.setProperty("strokeBlur", 3);
-		DEFAULT_STYLE.setProperty("strokeColor", 0x033754);
-		DEFAULT_STYLE.setProperty("strokeAlpha", 1);
-		DEFAULT_STYLE.setProperty("strokeStrength", 6);
-		
-		DEFAULT_STYLE.setProperty("text1", "unchecked");
-		DEFAULT_STYLE.setProperty("text2", "checked");
-		DEFAULT_STYLE.setProperty("back1", "ui_btn_back");
-		DEFAULT_STYLE.setProperty("body1", "ui_btn");
-		DEFAULT_STYLE.setProperty("back2", "ui_btn_back");
-		DEFAULT_STYLE.setProperty("body2", "ui_btn");
-		DEFAULT_STYLE.setProperty("normalBackColor", 0xff000000);
-		DEFAULT_STYLE.setProperty("overBackColor", 0xffffffff);
-		
-		DEFAULT_STYLE.setProperty("sfxOver", "ui_over");
-		DEFAULT_STYLE.setProperty("sfxClick", "ui_click");
+		private static var defaultStyle:UIStyle;
 		
 		protected var _style:UIStyle;
 		
@@ -69,7 +49,7 @@ package bc.core.ui
 			
 			if(!style)
 			{
-				style = DEFAULT_STYLE;
+				style = getDefaultStyle();
 			}
 			
 			_style = style;
@@ -255,6 +235,35 @@ package bc.core.ui
 			checked = !_checked;
 					
 			super.mouseClick();
+		}
+		
+		public static function getDefaultStyle() : UIStyle
+		{
+			if (defaultStyle == null)
+			{
+				defaultStyle = new UIStyle();
+		
+				defaultStyle.setProperty("font", "main");
+				defaultStyle.setProperty("textSize", 12);
+				defaultStyle.setProperty("textColor", 0xffffff);
+				defaultStyle.setProperty("strokeBlur", 3);
+				defaultStyle.setProperty("strokeColor", 0x033754);
+				defaultStyle.setProperty("strokeAlpha", 1);
+				defaultStyle.setProperty("strokeStrength", 6);
+				
+				defaultStyle.setProperty("text1", "unchecked");
+				defaultStyle.setProperty("text2", "checked");
+				defaultStyle.setProperty("back1", "ui_btn_back");
+				defaultStyle.setProperty("body1", "ui_btn");
+				defaultStyle.setProperty("back2", "ui_btn_back");
+				defaultStyle.setProperty("body2", "ui_btn");
+				defaultStyle.setProperty("normalBackColor", 0xff000000);
+				defaultStyle.setProperty("overBackColor", 0xffffffff);
+				
+				defaultStyle.setProperty("sfxOver", "ui_over");
+				defaultStyle.setProperty("sfxClick", "ui_click");
+			}
+			return defaultStyle;
 		}
 	}
 }
