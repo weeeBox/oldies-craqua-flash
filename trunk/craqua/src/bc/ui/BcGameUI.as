@@ -199,7 +199,7 @@ package bc.ui
 		private var stButtonMedium:UIStyle = new UIStyle(UIButton.getDefaultStyle(), {scale:0.75});
 		private var stButtonOther:UIStyle = new UIStyle(UIButton.getDefaultStyle(), {scale:0.85});
 		private var stButtonSmall:UIStyle = new UIStyle(UIButton.getDefaultStyle(), {scale:0.5});
-		private var stTitle:UIStyle = new UIStyle(UILabel.DEFAULT_STYLE, 
+		private var stTitle:UIStyle = new UIStyle(UILabel.getDefaultStyle(), 
 			{
 				font: "main",
 				textSize: 30,
