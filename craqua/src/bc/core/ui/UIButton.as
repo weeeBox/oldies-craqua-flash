@@ -14,25 +14,7 @@ package bc.core.ui
 	 */
 	public class UIButton extends UIObject 
 	{
-		public static var DEFAULT_STYLE:UIStyle = new UIStyle();
-		
-		DEFAULT_STYLE.setProperty("font", "main");
-		DEFAULT_STYLE.setProperty("textSize", 30);
-		DEFAULT_STYLE.setProperty("textColor", 0xffffff);
-		DEFAULT_STYLE.setProperty("strokeBlur", 3);
-		DEFAULT_STYLE.setProperty("strokeColor", 0x033754);
-		DEFAULT_STYLE.setProperty("strokeAlpha", 1);
-		DEFAULT_STYLE.setProperty("strokeStrength", 6);
-		
-		DEFAULT_STYLE.setProperty("back", "ui_btn_back");
-		DEFAULT_STYLE.setProperty("body", "ui_btn");
-		DEFAULT_STYLE.setProperty("normalBackColor", 0xff000000);
-		DEFAULT_STYLE.setProperty("overBackColor", 0xffffffff);
-		DEFAULT_STYLE.setProperty("scale", 1);
-		
-		DEFAULT_STYLE.setProperty("sfxOver", "ui_over");
-		DEFAULT_STYLE.setProperty("sfxClick", "ui_click");
-		DEFAULT_STYLE.setProperty("sfxPress", "ui_click");
+		private static var defaultStyle:UIStyle;
 		
 		protected var _style:UIStyle;
 		
@@ -69,7 +51,7 @@ package bc.core.ui
 			
 			if(!style)
 			{
-				style = DEFAULT_STYLE;
+				style = getDefaultStyle();
 			}
 			
 			_style = style;
@@ -254,6 +236,32 @@ package bc.core.ui
 			_highlight = value;
 		}
 		
+		public static function getDefaultStyle() : UIStyle
+		{
+			if (defaultStyle == null)
+			{
+				defaultStyle = new UIStyle();
+		
+				defaultStyle.setProperty("font", "main");
+				defaultStyle.setProperty("textSize", 30);
+				defaultStyle.setProperty("textColor", 0xffffff);
+				defaultStyle.setProperty("strokeBlur", 3);
+				defaultStyle.setProperty("strokeColor", 0x033754);
+				defaultStyle.setProperty("strokeAlpha", 1);
+				defaultStyle.setProperty("strokeStrength", 6);
+				
+				defaultStyle.setProperty("back", "ui_btn_back");
+				defaultStyle.setProperty("body", "ui_btn");
+				defaultStyle.setProperty("normalBackColor", 0xff000000);
+				defaultStyle.setProperty("overBackColor", 0xffffffff);
+				defaultStyle.setProperty("scale", 1);
+				
+				defaultStyle.setProperty("sfxOver", "ui_over");
+				defaultStyle.setProperty("sfxClick", "ui_click");
+				defaultStyle.setProperty("sfxPress", "ui_click");				
+			}
+			return defaultStyle;
+		}
 	}
 }
 
