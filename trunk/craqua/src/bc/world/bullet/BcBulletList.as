@@ -102,7 +102,7 @@ package bc.world.bullet
 		{
 			var node:BcBullet = pool;
 			
-			if(node)
+			if(node != null)
 			{
 				pool = pool.next;
 				node.launch(properties, position, direction, mask, mod);

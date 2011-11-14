@@ -111,7 +111,7 @@ package bc.world.item
 		{
 			var node:BcItem = pool;
 			
-			if(node)
+			if(node != null)
 			{
 				pool = pool.next;
 				node.launch(properties, position, caster);

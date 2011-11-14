@@ -39,14 +39,14 @@ package bc.world.player
 			exp = BcStringUtil.parseUInteger(xml.@exp);
 			
 			node = xml.mod[0];
-			if(node)
+			if(node != null)
 			{
 				modRate = BcStringUtil.parseNumber(node.@rate);
 				modDamage = BcStringUtil.parseNumber(node.@damage);
 			}
 			
 			node = xml.regen[0];
-			if(node)
+			if(node != null)
 			{
 				regenHealth = BcStringUtil.parseNumber(node.@health);
 				regenBomb = BcStringUtil.parseNumber(node.@bomb);

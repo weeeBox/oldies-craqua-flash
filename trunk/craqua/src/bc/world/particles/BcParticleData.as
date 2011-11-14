@@ -42,7 +42,7 @@ package bc.world.particles
 			var node:XML;
 						
 			node = xml.properties[0];
-			if(node)
+			if(node != null)
 			{
 				if(node.hasOwnProperty("@gravity"))
 				{
@@ -66,7 +66,7 @@ package bc.world.particles
 			}
 			
 			node = xml.scale[0];
-			if(node)
+			if(node != null)
 			{
 				if(node.hasOwnProperty("@begin"))
 				{
@@ -79,7 +79,7 @@ package bc.world.particles
 			}
 			
 			node = xml.alpha[0];
-			if(node)
+			if(node != null)
 			{
 				if(node.hasOwnProperty("@begin"))
 				{
@@ -92,7 +92,7 @@ package bc.world.particles
 			}
 			
 			node = xml.rotation[0];
-			if(node)
+			if(node != null)
 			{
 				if(node.hasOwnProperty("@angle"))
 				{

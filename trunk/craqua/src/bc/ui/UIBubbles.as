@@ -64,7 +64,7 @@ package bc.ui
 			{
 				var node:Bubble = pool;
 			
-				if(node)
+				if(node != null)
 				{
 					pool = pool.next;
 					node.launch(_sprite);

@@ -111,7 +111,7 @@ package bc.world.enemy
 			var subNode:XML;
 				
 			node = xml.moving[0];
-			if(node)
+			if(node != null)
 			{
 				if(node.hasOwnProperty("@min")) movingMin = BcStringUtil.parseNumber(node.@min);
 				if(node.hasOwnProperty("@max")) movingMax = BcStringUtil.parseNumber(node.@max);
@@ -132,7 +132,7 @@ package bc.world.enemy
 			}
 			
 			node = xml.properties[0];
-			if(node)
+			if(node != null)
 			{
 				if(node.hasOwnProperty("@health")) health = BcStringUtil.parseNumber(node.@health);
 				if(node.hasOwnProperty("@fail")) fail = BcStringUtil.parseNumber(node.@fail);
@@ -144,7 +144,7 @@ package bc.world.enemy
 			}
 			
 			node = xml.trail[0];
-			if(node)
+			if(node != null)
 			{
 				if(node.hasOwnProperty("@particle"))
 				{
@@ -171,7 +171,7 @@ package bc.world.enemy
 			}
 			
 			node = xml.hit[0];
-			if(node)
+			if(node != null)
 			{
 				if(node.hasOwnProperty("@particle"))
 				{
@@ -199,7 +199,7 @@ package bc.world.enemy
 			}
 			
 			node = xml.death[0];
-			if(node)
+			if(node != null)
 			{
 				deathActions = createActionArray(node);
 				
@@ -210,7 +210,7 @@ package bc.world.enemy
 			}
 			
 			node = xml.init[0];
-			if(node)
+			if(node != null)
 			{
 				initActions = createActionArray(node);
 			}
@@ -218,7 +218,7 @@ package bc.world.enemy
 			shape = BcShape.createFromXML(xml.shape[0]);
 				
 			node = xml.sprite[0];
-			if(node)
+			if(node != null)
 			{
 				if(node.hasOwnProperty("@animation"))
 				{
@@ -238,7 +238,7 @@ package bc.world.enemy
 			}
 			
 			node = xml.launch[0];
-			if(node)
+			if(node != null)
 			{
 				launchPause = BcStringUtil.parseNumber(node.@pause);
 				launchSpeed = BcStringUtil.parseNumber(node.@speed);

@@ -78,14 +78,14 @@ package bc.world.bullet
 			var node:XML;
 			
 			node = xml.impulse[0];
-			if(node)
+			if(node != null)
 			{
 				if(node.hasOwnProperty("@friction")) impulseFriction = BcStringUtil.parseNumber(node.@friction);
 				if(node.hasOwnProperty("@launch")) impulseLaunch = BcStringUtil.parseNumber(node.@launch);
 			}
 
 			node = xml.velocity[0];
-			if(node)
+			if(node != null)
 			{
 				if(node.hasOwnProperty("@launch")) velocityLaunch = BcStringUtil.parseNumber(node.@launch);
 				if(node.hasOwnProperty("@max")) velocityMax = BcStringUtil.parseNumber(node.@max);
@@ -93,20 +93,20 @@ package bc.world.bullet
 			}
 			
 			node = xml.properties[0];
-			if(node)
+			if(node != null)
 			{
 				if(node.hasOwnProperty("@time")) lifeTime = BcStringUtil.parseNumber(node.@time);
 				if(node.hasOwnProperty("@size")) size = BcStringUtil.parseNumber(node.@size);
 			}
 			
 			node = xml.reflect[0];
-			if(node)
+			if(node != null)
 			{
 				wallReflect = true;
 			}
 			
 			node = xml.hit[0];
-			if(node)
+			if(node != null)
 			{
 				if(node.hasOwnProperty("@damage")) hitDamage = BcStringUtil.parseNumber(node.@damage);
 				if(node.hasOwnProperty("@explosion")) hitExplosion = BcExplosion.getData(node.@explosion);
@@ -117,28 +117,28 @@ package bc.world.bullet
 			}
 			
 			node = xml.timer[0];
-			if(node)
+			if(node != null)
 			{
 				if(node.hasOwnProperty("@speed")) timerSpeed = BcStringUtil.parseNumber(node.@speed);
 				if(node.hasOwnProperty("@explosion")) timerExplosion = BcExplosion.getData(node.@explosion);
 			}
 			
 			node = xml.shape[0];
-			if(node)
+			if(node != null)
 			{
 				shape = BcShape.createFromXML(node);
 			}
 				
 			
 			node = xml.trail[0];
-			if(node)
+			if(node != null)
 			{
 				if(node.hasOwnProperty("@particle")) trailParticle = BcParticleData.getData(node.@particle.toString());
 				if(node.hasOwnProperty("@speed")) trailSpeed = BcStringUtil.parseNumber(node.@speed);
 			}
 			
 			node = xml.body[0];
-			if(node)
+			if(node != null)
 			{
 				bodyBitmap = BcBitmapData.getData(node.@bitmap.toString());
 				if(node.hasOwnProperty("@oriented")) bodyOriented = BcStringUtil.parseBoolean(node.@oriented);

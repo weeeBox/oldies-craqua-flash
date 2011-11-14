@@ -101,21 +101,21 @@ package bc.world.item
 			}
 			
 			node = xml.particles[0];
-			if(node)
+			if(node != null)
 			{
 				particle = BcParticleData.getData(node.@data);
 				particleCount = BcStringUtil.parseUInteger(node.@count);
 			}
 			
 			node = xml.magnit[0];
-			if(node)
+			if(node != null)
 			{
 				magnitForce = BcStringUtil.parseNumber(node.@force);
 				magnitDistance = BcStringUtil.parseNumber(node.@distance);
 			}
 			
 			node = xml.phy[0];
-			if(node)
+			if(node != null)
 			{
 				//phyFriction = node.@friction;
 				//phySpeed = node.@speed;

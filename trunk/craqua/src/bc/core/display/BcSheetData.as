@@ -32,7 +32,7 @@ package bc.core.display
 			var frameTime:Number;
 			
 			node = xml.properties[0];
-			if(node)
+			if(node != null)
 			{
 				propertiesNode = node;
 				

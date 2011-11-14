@@ -48,7 +48,7 @@ package bc.world.enemy.path
 			}
 			
 			node = xml.circle[0];
-			if(node)
+			if(node != null)
 			{
 				circleA = BcStringUtil.parseFloatInterval(node.@a);
 				circleB = BcStringUtil.parseFloatInterval(node.@b);
