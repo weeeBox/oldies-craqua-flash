@@ -110,7 +110,7 @@ package bc.world.collision
 			var w:Number = 0;
 			var h:Number = 0;
 			
-			if(node)
+			if(node != null)
 			{
 				if(node.hasOwnProperty("@x")) x = BcStringUtil.parseNumber(node.@x);
 				if(node.hasOwnProperty("@y")) y = BcStringUtil.parseNumber(node.@y);

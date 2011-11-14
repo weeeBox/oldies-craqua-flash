@@ -100,7 +100,7 @@ package bc.world.particles
 		{
 			var node:BcParticle = pool;
 			
-			if(node)
+			if(node != null)
 			{
 				pool = pool.next;
 				node.launch(properties, position, direction, layer, index);

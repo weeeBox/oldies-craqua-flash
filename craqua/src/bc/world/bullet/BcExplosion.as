@@ -62,16 +62,16 @@ package bc.world.bullet
 			if(xml.hasOwnProperty("@impulse")) impulse = BcStringUtil.parseNumber(xml.@impulse);
 			
 			node = xml.particles[0];
-			if(node)
+			if(node != null)
 			{
 				node = xml.particles[0].wave[0];
-				if(node)
+				if(node != null)
 				{
 					if(node.hasOwnProperty("@particle")) waveParticle = BcParticleData.getData(node.@particle);
 				}
 				
 				node = xml.particles[0].bubbles[0];
-				if(node)
+				if(node != null)
 				{
 					if(node.hasOwnProperty("@particle")) bubbleParticle = BcParticleData.getData(node.@particle);
 					if(node.hasOwnProperty("@count")) bubbleCount = BcStringUtil.parseUInteger(node.@count);
