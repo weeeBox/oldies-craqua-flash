@@ -54,21 +54,21 @@ package bc.core.ui
 			
 			_style = style;
 			
-			image = style.getProperty("back1");
+			image = style.getString("back1");
 			if(image)
 			{
 				_bmBack1 = BcBitmapData.create(image);
 				_spriteBack.addChild(_bmBack1);
 			}
 			
-			image = style.getProperty("back2");
+			image = style.getString("back2");
 			if(image)
 			{
 				_bmBack2 = BcBitmapData.create(image);
 				_spriteBack.addChild(_bmBack2);
 			}
 			
-			image = style.getProperty("body1");
+			image = style.getString("body1");
 			if(image)
 			{
 				_bmBody1 = BcBitmapData.create(image);
@@ -77,7 +77,7 @@ package bc.core.ui
 				h = _bmBody1.height;
 			}
 			
-			image = style.getProperty("body2");
+			image = style.getString("body2");
 			if(image)
 			{
 				_bmBody2 = BcBitmapData.create(image);
@@ -100,11 +100,11 @@ package bc.core.ui
 			redraw();
 			
 			var sfx:String;
-			sfx = _style.getProperty("sfxOver");
+			sfx = _style.getString("sfxOver");
 			if(sfx) _sfxOver = BcSound.getData(sfx);
-			sfx = _style.getProperty("sfxPress");
+			sfx = _style.getString("sfxPress");
 			if(sfx) _sfxPress = BcSound.getData(sfx);
-			sfx = _style.getProperty("sfxClick");
+			sfx = _style.getString("sfxClick");
 			if(sfx) _sfxClick = BcSound.getData(sfx);
 		}
 		
@@ -193,8 +193,8 @@ package bc.core.ui
 		
 		private function redraw():void
 		{
-			BcColorTransformUtil.setMultipliersARGB(COLOR_BEGIN, _style.getProperty("normalBackColor"));
-			BcColorTransformUtil.setMultipliersARGB(COLOR_END, _style.getProperty("overBackColor"));
+			BcColorTransformUtil.setMultipliersARGB(COLOR_BEGIN, _style.getUint("normalBackColor"));
+			BcColorTransformUtil.setMultipliersARGB(COLOR_END, _style.getUint("overBackColor"));
 			_spriteBack.transform.colorTransform = BcColorTransformUtil.lerpMult(COLOR, COLOR_BEGIN, COLOR_END, _tweenOver);
 						
 			_spriteButton.scaleX = 
@@ -215,11 +215,11 @@ package bc.core.ui
 			
 			if(value)
 			{
-				_label.text = _style.getProperty("text2");
+				_label.text = _style.getString("text2");
 			}
 			else
 			{
-				_label.text = _style.getProperty("text1");
+				_label.text = _style.getString("text1");
 			}
 			
 			_label.x = int(-0.5*_label.sprite.width); 
@@ -243,25 +243,25 @@ package bc.core.ui
 			{
 				defaultStyle = new UIStyle();
 		
-				defaultStyle.setProperty("font", "main");
-				defaultStyle.setProperty("textSize", 12);
-				defaultStyle.setProperty("textColor", 0xffffff);
-				defaultStyle.setProperty("strokeBlur", 3);
-				defaultStyle.setProperty("strokeColor", 0x033754);
-				defaultStyle.setProperty("strokeAlpha", 1);
-				defaultStyle.setProperty("strokeStrength", 6);
+				defaultStyle.setString("font", "main");
+				defaultStyle.setNumber("textSize", 12);
+				defaultStyle.setNumber("textColor", 0xffffff);
+				defaultStyle.setNumber("strokeBlur", 3);
+				defaultStyle.setNumber("strokeColor", 0x033754);
+				defaultStyle.setNumber("strokeAlpha", 1);
+				defaultStyle.setNumber("strokeStrength", 6);
 				
-				defaultStyle.setProperty("text1", "unchecked");
-				defaultStyle.setProperty("text2", "checked");
-				defaultStyle.setProperty("back1", "ui_btn_back");
-				defaultStyle.setProperty("body1", "ui_btn");
-				defaultStyle.setProperty("back2", "ui_btn_back");
-				defaultStyle.setProperty("body2", "ui_btn");
-				defaultStyle.setProperty("normalBackColor", 0xff000000);
-				defaultStyle.setProperty("overBackColor", 0xffffffff);
+				defaultStyle.setString("text1", "unchecked");
+				defaultStyle.setString("text2", "checked");
+				defaultStyle.setString("back1", "ui_btn_back");
+				defaultStyle.setString("body1", "ui_btn");
+				defaultStyle.setString("back2", "ui_btn_back");
+				defaultStyle.setString("body2", "ui_btn");
+				defaultStyle.setNumber("normalBackColor", 0xff000000);
+				defaultStyle.setNumber("overBackColor", 0xffffffff);
 				
-				defaultStyle.setProperty("sfxOver", "ui_over");
-				defaultStyle.setProperty("sfxClick", "ui_click");
+				defaultStyle.setString("sfxOver", "ui_over");
+				defaultStyle.setString("sfxClick", "ui_click");
 			}
 			return defaultStyle;
 		}

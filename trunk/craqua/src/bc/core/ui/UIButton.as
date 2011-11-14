@@ -56,13 +56,13 @@ package bc.core.ui
 			
 			_style = style;
 			
-			image = style.getProperty("back");
+			image = style.getString("back");
 			if(image)
 			{
 				_spriteBack.addChild(BcBitmapData.create(image));
 			}
 			
-			image = style.getProperty("body");
+			image = style.getString("body");
 			if(image)
 			{
 				_spriteBody.addChild(BcBitmapData.create(image));
@@ -72,9 +72,9 @@ package bc.core.ui
 			_spriteButton.addChild(_spriteBody);
 			_sprite.addChild(_spriteButton);
 			
-			if(_style.getProperty("scale"))
+			if(_style.hasProperty("scale"))
 			{
-				_baseScale = _style.getProperty("scale");
+				_baseScale = _style.getNumber("scale");
 			}
 			
 			w = _baseScale*(_spriteButton.width-12);
@@ -92,11 +92,11 @@ package bc.core.ui
 			redraw();
 			
 			var sfx:String;
-			sfx = _style.getProperty("sfxOver");
+			sfx = _style.getString("sfxOver");
 			if(sfx) _sfxOver = BcSound.getData(sfx);
-			sfx = _style.getProperty("sfxPress");
+			sfx = _style.getString("sfxPress");
 			if(sfx) _sfxPress = BcSound.getData(sfx);
-			sfx = _style.getProperty("sfxClick");
+			sfx = _style.getString("sfxClick");
 			if(sfx) _sfxClick = BcSound.getData(sfx);
 		}
 		
@@ -223,8 +223,8 @@ package bc.core.ui
 		
 		protected function redraw():void
 		{
-			BcColorTransformUtil.setMultipliersARGB(COLOR_BEGIN, _style.getProperty("normalBackColor"));
-			BcColorTransformUtil.setMultipliersARGB(COLOR_END, _style.getProperty("overBackColor"));
+			BcColorTransformUtil.setMultipliersARGB(COLOR_BEGIN, _style.getUint("normalBackColor"));
+			BcColorTransformUtil.setMultipliersARGB(COLOR_END, _style.getUint("overBackColor"));
 			_spriteBack.transform.colorTransform = BcColorTransformUtil.lerpMult(COLOR, COLOR_BEGIN, COLOR_END, _tweenOver + (1-_tweenOver)*_tweenLight);
 						
 			_spriteButton.scaleX = 
@@ -242,23 +242,23 @@ package bc.core.ui
 			{
 				defaultStyle = new UIStyle();
 		
-				defaultStyle.setProperty("font", "main");
-				defaultStyle.setProperty("textSize", 30);
-				defaultStyle.setProperty("textColor", 0xffffff);
-				defaultStyle.setProperty("strokeBlur", 3);
-				defaultStyle.setProperty("strokeColor", 0x033754);
-				defaultStyle.setProperty("strokeAlpha", 1);
-				defaultStyle.setProperty("strokeStrength", 6);
+				defaultStyle.setString("font", "main");
+				defaultStyle.setNumber("textSize", 30);
+				defaultStyle.setNumber("textColor", 0xffffff);
+				defaultStyle.setNumber("strokeBlur", 3);
+				defaultStyle.setNumber("strokeColor", 0x033754);
+				defaultStyle.setNumber("strokeAlpha", 1);
+				defaultStyle.setNumber("strokeStrength", 6);
 				
-				defaultStyle.setProperty("back", "ui_btn_back");
-				defaultStyle.setProperty("body", "ui_btn");
-				defaultStyle.setProperty("normalBackColor", 0xff000000);
-				defaultStyle.setProperty("overBackColor", 0xffffffff);
-				defaultStyle.setProperty("scale", 1);
+				defaultStyle.setString("back", "ui_btn_back");
+				defaultStyle.setString("body", "ui_btn");
+				defaultStyle.setNumber("normalBackColor", 0xff000000);
+				defaultStyle.setNumber("overBackColor", 0xffffffff);
+				defaultStyle.setNumber("scale", 1);
 				
-				defaultStyle.setProperty("sfxOver", "ui_over");
-				defaultStyle.setProperty("sfxClick", "ui_click");
-				defaultStyle.setProperty("sfxPress", "ui_click");				
+				defaultStyle.setString("sfxOver", "ui_over");
+				defaultStyle.setString("sfxClick", "ui_click");
+				defaultStyle.setString("sfxPress", "ui_click");				
 			}
 			return defaultStyle;
 		}

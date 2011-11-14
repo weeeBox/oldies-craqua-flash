@@ -27,12 +27,12 @@ package bc.core.ui
 				style = getDefaultStyle();
 			}
 			
-			_textFormat = new TextFormat(style.getProperty("font"), style.getProperty("textSize"), 0xffffff);
+			_textFormat = new TextFormat(style.getString("font"), style.getNumber("textSize"), 0xffffff);
 			_textField.defaultTextFormat = _textFormat;
 			_textField.embedFonts = true;
 			_textField.selectable = false;
 			_textField.autoSize = TextFieldAutoSize.LEFT;
-			_textField.textColor = style.getProperty("textColor");
+			_textField.textColor = style.getUint("textColor");
 			_textField.text = text;
 			_textField.cacheAsBitmap = true;
 			
@@ -43,10 +43,10 @@ package bc.core.ui
 				_textField.text = text;
 			}
 			
-			strokeBlur = style.getProperty("strokeBlur");
+			strokeBlur = style.getNumber("strokeBlur");
 			if(strokeBlur && strokeBlur > 0)
 			{
-				_stroke = new DropShadowFilter(0, 0, style.getProperty("strokeColor"), style.getProperty("strokeAlpha"), strokeBlur, strokeBlur, style.getProperty("strokeStrength"), 2);
+				_stroke = new DropShadowFilter(0, 0, style.getUint("strokeColor"), style.getNumber("strokeAlpha"), strokeBlur, strokeBlur, style.getNumber("strokeStrength"), 2);
 				_textField.filters = [_stroke];
 			}
 			
@@ -96,13 +96,13 @@ package bc.core.ui
 			if (defaultStyle == null)
 			{
 				defaultStyle = new UIStyle();
-				defaultStyle.setProperty("font", "main");
-				defaultStyle.setProperty("textSize", 15);
-				defaultStyle.setProperty("textColor", 0xffffff);
-				defaultStyle.setProperty("strokeBlur", 0);
-				defaultStyle.setProperty("strokeColor", 0x0);
-				defaultStyle.setProperty("strokeAlpha", 1);
-				defaultStyle.setProperty("strokeStrength", 8);	
+				defaultStyle.setString("font", "main");
+				defaultStyle.setNumber("textSize", 15);
+				defaultStyle.setNumber("textColor", 0xffffff);
+				defaultStyle.setNumber("strokeBlur", 0);
+				defaultStyle.setNumber("strokeColor", 0x0);
+				defaultStyle.setNumber("strokeAlpha", 1);
+				defaultStyle.setNumber("strokeStrength", 8);	
 			}
 			return defaultStyle;
 		}

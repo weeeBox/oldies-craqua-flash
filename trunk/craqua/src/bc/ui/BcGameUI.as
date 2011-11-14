@@ -1,5 +1,7 @@
 package bc.ui
 {
+	import bc.core.boxing.BcNumber;
+	import bc.core.util.BcUtil;
 	import bc.core.ui.UIUpdateCallback;
 	import bc.core.ui.UIMouseClickCallback;
 	import bc.core.ui.UITransitionCallback;
@@ -193,25 +195,40 @@ package bc.ui
 		
 		
 		
-		private var stQuality:UIStyle = new UIStyle(UICheckBox.getDefaultStyle(), {text1:BcStrings.UI_QUALITY_HIGH, text2:BcStrings.UI_QUALITY_LOW, back1:"ui_qb", back2:"ui_qb", body1:"ui_q", body2:"ui_q"});
-		private var stMusic:UIStyle = new UIStyle(UICheckBox.getDefaultStyle(), {text1:BcStrings.UI_MUSIC_ON, text2:BcStrings.UI_MUSIC_OFF, back1:"ui_m1b", back2:"ui_m2b", body1:"ui_m1", body2:"ui_m2"});
-		private var stSound:UIStyle = new UIStyle(UICheckBox.getDefaultStyle(), {text1:BcStrings.UI_SFX_ON, text2:BcStrings.UI_SFX_OFF, back1:"ui_s1b", back2:"ui_s2b", body1:"ui_s1", body2:"ui_s2"});
-		private var stButtonMedium:UIStyle = new UIStyle(UIButton.getDefaultStyle(), {scale:0.75});
-		private var stButtonOther:UIStyle = new UIStyle(UIButton.getDefaultStyle(), {scale:0.85});
-		private var stButtonSmall:UIStyle = new UIStyle(UIButton.getDefaultStyle(), {scale:0.5});
-		private var stTitle:UIStyle = new UIStyle(UILabel.getDefaultStyle(), 
-			{
-				font: "main",
-				textSize: 30,
-				textColor: 0xffffff,
-				strokeBlur: 3,
-				strokeColor: 0x033754,
-				strokeAlpha: 1,
-				strokeStrength: 6
-			});
-			
-		private var stInfo:UIStyle = new UIStyle(stTitle, {	textSize: 25 });
-		private var stInfoSmall:UIStyle = new UIStyle(stTitle, { textSize: 15 });
+		private var stQuality : UIStyle = new UIStyle(UICheckBox.getDefaultStyle(), BcUtil.createDictionary([
+														"text1", BcStrings.UI_QUALITY_HIGH, 
+														"text2", BcStrings.UI_QUALITY_LOW, 
+														"back1", "ui_qb", 
+														"back2", "ui_qb", 
+														"body1", "ui_q", 
+														"body2", "ui_q"]));
+		private var stMusic : UIStyle = new UIStyle(UICheckBox.getDefaultStyle(), BcUtil.createDictionary(
+														["text1", BcStrings.UI_MUSIC_ON, 
+														"text2", BcStrings.UI_MUSIC_OFF, 
+														"back1", "ui_m1b", 
+														"back2", "ui_m2b", 
+														"body1", "ui_m1", 
+														"body2", "ui_m2"]));
+		private var stSound : UIStyle = new UIStyle(UICheckBox.getDefaultStyle(), BcUtil.createDictionary(
+														["text1", BcStrings.UI_SFX_ON, 
+														"text2", BcStrings.UI_SFX_OFF, 
+														"back1", "ui_s1b", 
+														"back2", "ui_s2b", 
+														"body1", "ui_s1", 
+														"body2", "ui_s2"]));
+		private var stButtonMedium : UIStyle = new UIStyle(UIButton.getDefaultStyle(), BcUtil.createDictionary(["scale", new BcNumber(0.75)]));
+		private var stButtonOther : UIStyle = new UIStyle(UIButton.getDefaultStyle(), BcUtil.createDictionary(["scale", new BcNumber(0.85)]));
+		private var stButtonSmall : UIStyle = new UIStyle(UIButton.getDefaultStyle(), BcUtil.createDictionary(["scale", new BcNumber(0.5)]));
+		private var stTitle : UIStyle = new UIStyle(UILabel.getDefaultStyle(), BcUtil.createDictionary(
+														["font", "main", 
+														"textSize", new BcNumber(30), 
+														"textColor", new BcNumber(0xffffff), 
+														"strokeBlur", new BcNumber(3), 
+														"strokeColor", new BcNumber(0x033754), 
+														"strokeAlpha", new BcNumber(1), 
+														"strokeStrength", new BcNumber(6)]));
+		private var stInfo : UIStyle = new UIStyle(stTitle, BcUtil.createDictionary(["textSize", new BcNumber(25)]));
+		private var stInfoSmall : UIStyle = new UIStyle(stTitle, BcUtil.createDictionary(["textSize", new BcNumber(15)]));
 		
 		private var settingsPanel:UIPanel = new UIPanel(layerOverlay);
 		private var settingsQ:UICheckBox;
