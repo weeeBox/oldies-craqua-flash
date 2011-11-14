@@ -162,10 +162,24 @@ package bc.core.device
 			
 			ext = id.substr(id.length-4);
 			id = id.slice(0, id.length-4);
-			
-			id = id.replace(RESOURCE_REG_EXP, "_");
+						
+			id = removePathSeparators(id);
 		
 			createLoader(id, path, this);
+		}
+
+		private function removePathSeparators(id : String) : String
+		{
+			var index : int;
+			while ((index = id.indexOf("/")) != -1)
+			{
+				id = id.replace("/", "_");
+			}
+			while ((index = id.indexOf("\\")) != -1)
+			{
+				id = id.replace("\\", "_");
+			}
+			return id;
 		}
 
 		public function resLoadingComplete(loader : BcResLoader, data : Object) : void
