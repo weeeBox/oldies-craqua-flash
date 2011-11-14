@@ -149,8 +149,6 @@ package bc.core.device
 			}
 		}
 
-		private var RESOURCE_REG_EXP:RegExp = /[\\\/]/g;
-		
 		private function parseResource(xml:XML, assetPath:String):void
 		{
 			var id:String;
