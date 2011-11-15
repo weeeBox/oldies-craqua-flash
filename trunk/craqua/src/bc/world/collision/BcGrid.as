@@ -73,7 +73,7 @@ package bc.world.collision
 		{
 			var it:BcGridObject = objectList;
 			
-			while(it)
+			while(it != null)
 			{
 				it.gridLooking = false;
 				it = it.gridLookingNext;
@@ -93,7 +93,7 @@ package bc.world.collision
 		{
 			for each (var object:BcGridObject in cell.objects)
 			{
-				if( ( object.mask & mask ) && !object.gridLooking )
+				if( ( object.mask & mask ) != 0 && !object.gridLooking )
 				{
 					object.gridLooking = true;
 					object.gridLookingNext = objectList;
@@ -119,7 +119,7 @@ package bc.world.collision
 		{
 			var shape:BcShape = gridObject.shape;
 
-			if(shape)
+			if(shape != null)
 			{
 				var col_beg:int = int(shape.xmin) >> 6;
 				var row_beg:int = int(shape.ymin) >> 6;
@@ -275,7 +275,7 @@ package bc.world.collision
 			pushCellObjects(cell, mask);
 			
 			object = objectList;
-			while(object)
+			while(object != null)
 			{
 				arbiter.object = object;
 				BcCollision.testPointShape(point, object.shape, arbiter);
@@ -298,7 +298,7 @@ package bc.world.collision
 			arbiter.tester = gridObject;
 			
 			object = objectList;
-			while(object)
+			while(object != null)
 			{
 				arbiter.object = object;
 				BcCollision.testShapes(object.shape, gridObject.shape, arbiter);
@@ -315,7 +315,7 @@ package bc.world.collision
 			lookShape(shape, mask);
 			
 			object = objectList;
-			while(object)
+			while(object != null)
 			{
 				arbiter.object = object;
 				BcCollision.testShapes(shape, object.shape, arbiter);

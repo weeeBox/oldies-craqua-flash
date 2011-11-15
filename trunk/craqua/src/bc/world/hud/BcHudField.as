@@ -35,7 +35,7 @@ package bc.world.hud
 			
 			icon.addChild(BcBitmapData.create(iconBitmap));
 			addChild(icon);
-			if(decorationBitmap)
+			if(decorationBitmap != null)
 			{
 				decoration = new Sprite();
 				decoration.addChild(BcBitmapData.create(decorationBitmap));
@@ -93,7 +93,7 @@ package bc.world.hud
 			
 			if(goodAnimation)
 			{
-				if(decoration)
+				if(decoration != null)
 				{
 					decoration.scaleX = 
 					decoration.scaleY = 1 + good*0.2;
@@ -102,7 +102,7 @@ package bc.world.hud
 			
 			var a:Number = Math.sin(flow*Math.PI*4);
 			icon.y = 2*Math.sin(flow*Math.PI*2);
-			if(decoration)
+			if(decoration != null)
 			{
 				decoration.y = icon.y;
 			}

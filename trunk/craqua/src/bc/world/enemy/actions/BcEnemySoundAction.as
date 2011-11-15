@@ -19,7 +19,7 @@ package bc.world.enemy.actions
 		
 		public function action(enemy:BcEnemy):void
 		{
-			if(soundData)
+			if(soundData != null)
 			{
 				soundData.playObject(enemy.position.x, enemy.position.y);
 			}

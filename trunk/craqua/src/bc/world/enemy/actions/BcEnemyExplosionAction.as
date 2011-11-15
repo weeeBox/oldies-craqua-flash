@@ -25,7 +25,7 @@ package bc.world.enemy.actions
 		
 		public function action(enemy:BcEnemy):void
 		{
-			if(explosion)
+			if(explosion != null)
 			{
 				explosion.explode(enemy.position, BcObject.MASK_PLAYER, enemy.data.mod);
 			}

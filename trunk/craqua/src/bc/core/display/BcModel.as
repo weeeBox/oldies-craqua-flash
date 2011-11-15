@@ -18,7 +18,7 @@ package bc.core.display
 		
 		public function BcModel(data:BcModelData = null)
 		{
-			if(data)
+			if(data != null)
 			{
 				setup(data);
 			}
@@ -45,7 +45,7 @@ package bc.core.display
 			nodes.push(this);
 			lookup["root"] = this;
 			
-			if(node.children)
+			if(node.children != null)
 			{
 				for each(var iter:BcModelNode in node.children)
 				{
@@ -64,7 +64,7 @@ package bc.core.display
 			{
 				displayObject = bitmap = new Bitmap();
 				
-				if(node.bitmapData)
+				if(node.bitmapData != null)
 				{
 					node.bitmapData.setupBitmap(bitmap);
 				}
@@ -78,12 +78,12 @@ package bc.core.display
 			DisplayObjectContainer(nodes[node.parent]).addChild(displayObject);			
 			nodes.push(displayObject);
 			
-			if(node.id)
+			if(node.id != null)
 			{
 				lookup[node.id] = displayObject;
 			}
 			
-			if(node.children)
+			if(node.children != null)
 			{
 				for each(var iter:BcModelNode in node.children)
 				{

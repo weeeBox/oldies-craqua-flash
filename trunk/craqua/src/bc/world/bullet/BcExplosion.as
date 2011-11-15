@@ -90,13 +90,13 @@ package bc.world.bullet
 			if(flashAmount > 0)
 				world.tweenFlash(flashAmount);
 				
-			if(waveParticle)
+			if(waveParticle != null)
 				world.particles.launch(waveParticle, position, null, world.mainLayer);
 				
-			if(bubbleParticle && bubbleCount > 0)
+			if(bubbleParticle != null && bubbleCount > 0)
 				world.particles.launchCircleArea(bubbleParticle, position, bubbleRadius, bubbleCount, world.mainLayer);
 				
-			if(sfx)
+			if(sfx != null)
 				sfx.playObject(position.x, position.y);
 		}
 		
@@ -138,7 +138,7 @@ package bc.world.bullet
 				OBJECT_DAMAGE.amount = mod * damage;
 				OBJECT_DAMAGE.position.copy(contact.point);
 				
-				if ( mask & BcObject.MASK_ENEMY )
+				if ( (mask & BcObject.MASK_ENEMY) != 0 )
 					BcEnemy(contact.object).damage(OBJECT_DAMAGE);
 				else
 					BcPlayer(contact.object).damage(OBJECT_DAMAGE);

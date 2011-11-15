@@ -74,7 +74,7 @@ package bc.core.audio
 			
 			if(loop)
 			{
-				if(channel)
+				if(channel != null)
 				{
 					channel.soundTransform = transform;
 				}
@@ -108,7 +108,7 @@ package bc.core.audio
 				volumeProgress = 1;
 			}
 
-			if(channel)
+			if(channel != null)
 			{
 				transform.volume = vol * musicVolume;
 				channel.soundTransform = transform;
@@ -138,7 +138,7 @@ package bc.core.audio
 		{
 			var vol:Number = volumeBegin + (volumeEnd - volumeBegin)*volumeProgress;
 				
-			if(channel)
+			if(channel != null)
 			{
 				transform.volume = vol * musicVolume;
 				channel.soundTransform = transform;

@@ -26,7 +26,7 @@ package bc.world.particles
 			var node:BcParticle = head;
 			var next:BcParticle;
 			
-			while(node)
+			while(node != null)
 			{
 				next = node.next;
 				
@@ -49,14 +49,14 @@ package bc.world.particles
 			iter = head;
 			prev = null;
 			
-			while(iter)
+			while(iter != null)
 			{
 				if(!iter.update(dt))
 				{
 					temp = iter;
 			
 					iter = iter.next;
-					if(prev) prev.next = iter;
+					if(prev != null) prev.next = iter;
 					else head = iter;
 					
 					--count;
@@ -77,7 +77,7 @@ package bc.world.particles
 			node.next = head;
 			head = node;
 			
-			if(iter && !prev) prev = head;
+			if(iter != null && prev == null) prev = head;
 			
 			++count;	
 		}
@@ -163,7 +163,7 @@ package bc.world.particles
 			var index:uint = layer.getChildIndex(sprite);
 			var sp:Number;
 			
-			if(velocity)
+			if(velocity != null)
 			{
 				d1.x = -velocity.x;
 				d1.y = -velocity.y;

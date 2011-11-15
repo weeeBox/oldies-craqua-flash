@@ -41,7 +41,7 @@ package bc.core.device
 
 		public static function initialize(stage:Stage):void
 		{
-			if(impl || !stage)
+			if(impl != null || stage == null)
 			{
 				throw new Error("BcDevice: initialization error");
 			}
@@ -136,7 +136,7 @@ package bc.core.device
 	
 		public function BcDevice(singleton:BcDeviceSingleton, stage:Stage)
 		{
-			if(singleton)// && cd(DEBUG, stage, ["jeux-gratuits.com"]))
+			if(singleton != null)// && cd(DEBUG, stage, ["jeux-gratuits.com"]))
 			{
 				impl = this;
 				
@@ -254,7 +254,7 @@ package bc.core.device
 		{
 			display.contextMenu.removeEventListener(ContextMenuEvent.MENU_SELECT, onSelectContextMenu);
 			
-			if(value)
+			if(value != null)
 			{
 				display.contextMenu = value;
 			}
@@ -285,7 +285,7 @@ package bc.core.device
 		{
 			const dt:Number = timer.update();
 			
-			if(application && !BcAsset.busy)
+			if(application != null && !BcAsset.busy)
 			{
 				application.update(dt);
 			}
@@ -296,7 +296,7 @@ package bc.core.device
 		
 		private function onSelectContextMenu(event:ContextMenuEvent):void
 		{
-			if(application)
+			if(application != null)
 			{
 				application.contextMenu();
 			}
@@ -305,7 +305,7 @@ package bc.core.device
 		// активация/деактивация окна
 		private function onDeactivate(event:Event):void
 		{
-			if(application)
+			if(application != null)
 			{
 				application.activate(false);
 			}
@@ -313,7 +313,7 @@ package bc.core.device
 		
 		private function onActivate(event:Event):void
 		{
-			if(application)
+			if(application != null)
 			{
 				application.activate(true);
 			}
@@ -331,7 +331,7 @@ package bc.core.device
 			
 			mouseMessage.processEvent(BcMouseMessage.MOUSE_MOVE, event);
 			
-			if(application)
+			if(application != null)
 			{
 				application.mouseMessage(mouseMessage);
 			}
@@ -350,7 +350,7 @@ package bc.core.device
 			
 			mouseMessage.processEvent(BcMouseMessage.MOUSE_DOWN, event);
 				
-			if(application)
+			if(application != null)
 			{
 				application.mouseMessage(mouseMessage);
 			}
@@ -363,7 +363,7 @@ package bc.core.device
 			mousePushed = false;
 			mouseMessage.processEvent(BcMouseMessage.MOUSE_UP, event);
 			
-			if(application)
+			if(application != null)
 			{
 				application.mouseMessage(mouseMessage);
 			}
@@ -389,7 +389,7 @@ package bc.core.device
 			
 			keyboardMessage.processEvent(BcKeyboardMessage.KEY_DOWN, repeated, event);
 		
-			if(application)
+			if(application != null)
 			{
 				application.keyboardMessage(keyboardMessage);
 			}
@@ -404,7 +404,7 @@ package bc.core.device
 			keysState[code] = false;
 			keyboardMessage.processEvent(BcKeyboardMessage.KEY_UP, false, event);
 			
-			if(application)
+			if(application != null)
 			{
 				application.keyboardMessage(keyboardMessage);
 			}

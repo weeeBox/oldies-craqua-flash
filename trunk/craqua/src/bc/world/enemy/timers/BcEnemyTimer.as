@@ -17,7 +17,7 @@ package bc.world.enemy.timers
 		
 		public function BcEnemyTimer(data:BcEnemyTimer = null)
 		{
-			if(data)
+			if(data != null)
 			{
 				pause = data.pause;
 				period = data.period;

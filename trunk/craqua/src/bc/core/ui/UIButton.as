@@ -49,7 +49,7 @@ package bc.core.ui
 			BcSpriteUtil.setupFast(_spriteBack);
 			BcSpriteUtil.setupFast(_spriteBody);
 			
-			if(!style)
+			if(style == null)
 			{
 				style = getDefaultStyle();
 			}
@@ -57,13 +57,13 @@ package bc.core.ui
 			_style = style;
 			
 			image = style.getString("back");
-			if(image)
+			if(image != null)
 			{
 				_spriteBack.addChild(BcBitmapData.create(image));
 			}
 			
 			image = style.getString("body");
-			if(image)
+			if(image != null)
 			{
 				_spriteBody.addChild(BcBitmapData.create(image));
 			}
@@ -82,7 +82,7 @@ package bc.core.ui
 			
 			_shape = new UIRectangleShape(w, h, int(-0.5*w), int(-0.5*h));
 			
-			if(text)
+			if(text != null)
 			{
 				this.text = text;
 			}
@@ -93,11 +93,11 @@ package bc.core.ui
 			
 			var sfx:String;
 			sfx = _style.getString("sfxOver");
-			if(sfx) _sfxOver = BcSound.getData(sfx);
+			if(sfx != null) _sfxOver = BcSound.getData(sfx);
 			sfx = _style.getString("sfxPress");
-			if(sfx) _sfxPress = BcSound.getData(sfx);
+			if(sfx != null) _sfxPress = BcSound.getData(sfx);
 			sfx = _style.getString("sfxClick");
-			if(sfx) _sfxClick = BcSound.getData(sfx);
+			if(sfx != null) _sfxClick = BcSound.getData(sfx);
 		}
 		
 		private function createLabel():void
@@ -115,21 +115,21 @@ package bc.core.ui
 		
 		public function set text(value:String):void
 		{
-			if(!_label) createLabel();
+			if(_label == null) createLabel();
 			_label.text = value;
 			alignLabel();
 		}
 		
 		public function set html(value:String):void
 		{
-			if(!_label) createLabel();
+			if(_label == null) createLabel();
 			_label.html = value;
 			alignLabel();
 		}
 		
 		public function set multiline(value:Boolean):void
 		{
-			if(!_label) createLabel();
+			if(_label == null) createLabel();
 			_label.multiline = value;
 			alignLabel();
 		}

@@ -69,12 +69,12 @@ package bc.core.data
 			var typeInfo:BcDataTypeInfo;
 			var list:XMLList = xml.children();
 			
-			if(xml)
+			if(xml != null)
 			{
 				for each (var node:XML in list)
 				{
 					typeInfo = types[ String( node.name() ) ];
-					if(typeInfo)
+					if(typeInfo != null)
 					{
 						typeInfo.collection[ String( node.@id ) ] = typeInfo.dataCreator.create();
 					}
@@ -95,12 +95,12 @@ package bc.core.data
 			var typeInfo:BcDataTypeInfo;
 			var list:XMLList = xml.children();
 
-			if(xml)
+			if(xml != null)
 			{			
 				for each (var node:XML in list)
 				{
 					typeInfo = types[ String( node.name() ) ];
-					if(typeInfo)
+					if(typeInfo != null)
 					{
 						BcIObjectData( typeInfo.collection[ String( node.@id ) ] ).parse(node);
 					}

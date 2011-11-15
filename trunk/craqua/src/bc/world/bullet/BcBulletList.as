@@ -23,7 +23,7 @@ package bc.world.bullet
 			var node:BcBullet = head;
 			var next:BcBullet;
 			
-			while(node)
+			while(node != null)
 			{
 				next = node.next;
 				
@@ -44,7 +44,7 @@ package bc.world.bullet
 			iter = head;
 			prev = null;
 			
-			while(iter)
+			while(iter != null)
 			{
 				if(iter.dead)
 				{
@@ -65,7 +65,7 @@ package bc.world.bullet
 			bullet.next = head;
 			head = bullet;
 			
-			if(iter && !prev) prev = head;
+			if(iter != null && prev == null) prev = head;
 			
 			++count;	
 		}
@@ -75,7 +75,7 @@ package bc.world.bullet
 			var node:BcBullet = iter;
 			
 			iter = iter.next;
-			if(prev) prev.next = iter;
+			if(prev != null) prev.next = iter;
 			else head = iter;
 			
 			--count;

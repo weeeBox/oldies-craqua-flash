@@ -28,7 +28,7 @@ package bc.world.enemy.path
 		
 		public function setup(data:BcEnemyPathData):void
 		{
-			if(data)
+			if(data != null)
 			{
 				const toRad:Number = Math.PI/180;
 				var baseSpeed:Number = data.baseSpeed.getValue();
@@ -42,7 +42,7 @@ package bc.world.enemy.path
 					//baseVelocity.x = -baseVelocity.x;
 				}
 				
-				if(data.circleSpeed)
+				if(data.circleSpeed != null)
 				{
 					circleSpeed = data.circleSpeed.getValue() * toRad;
 					circleA = data.circleA.getValue();

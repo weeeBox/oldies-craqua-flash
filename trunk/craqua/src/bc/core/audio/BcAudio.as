@@ -10,7 +10,7 @@ package bc.core.audio
 		
 		public static function initialize():void
 		{
-			if(!BcAudioImpl.instance)
+			if(BcAudioImpl.instance == null)
 			{
 				BcAudioImpl.instance = new BcAudioImpl();
 				impl = BcAudioImpl.instance;

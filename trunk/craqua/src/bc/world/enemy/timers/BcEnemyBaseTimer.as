@@ -14,7 +14,7 @@ package bc.world.enemy.timers
 		
 		protected function doActions(array:Vector.<BcIEnemyAction>):void
 		{
-			if(array)
+			if(array != null)
 			{
 				for each( var action:BcIEnemyAction in array)
 				{

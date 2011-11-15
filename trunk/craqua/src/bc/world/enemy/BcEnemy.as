@@ -96,7 +96,7 @@ package bc.world.enemy
 		
 		public function fallBomb(x:Number, y:Number, targetX:Number, targetY:Number, bombNode:XML = null):void
 		{
-			if(bombNode)
+			if(bombNode != null)
 			{
 				var side:int;
 				var x:Number = 0;
@@ -172,7 +172,7 @@ package bc.world.enemy
 			
 			path.setup(pathData);
 			
-			if(data.animationData)
+			if(data.animationData != null)
 			{
 				animation.setData(data.animationData);
 				motionVelocityDirection = animation.getMotion("velocity_direction");
@@ -237,13 +237,13 @@ package bc.world.enemy
 				if(!bomb)
 				{
 					sprite.visible = true;
-					if(data.initActions)
+					if(data.initActions != null)
 					{
 						doActions(data.initActions);
 					}
 				}
 				
-				if(data.launchMarker)
+				if(data.launchMarker != null)
 				{
 					world.particles.launch(data.launchMarker, positionEnd, null, world.mainLayer);
 				}
@@ -268,7 +268,7 @@ package bc.world.enemy
 				if(bombPause <= 0)
 				{
 					sprite.visible = true;
-					if(data.initActions)
+					if(data.initActions != null)
 					{
 						doActions(data.initActions);
 					}
@@ -318,7 +318,7 @@ package bc.world.enemy
 				}
 			}
 			
-			if(data.trailParticle)
+			if(data.trailParticle != null)
 			{
 				trailCounter += velocity.length() * data.trailSpeed * dt;
 				if(trailCounter >= 1)
@@ -331,11 +331,11 @@ package bc.world.enemy
 			move(dt);
 			
 			animation.update(dt);
-			if(motionMoving)
+			if(motionMoving != null)
 			{
 				motionMoving.manual(moving);
 			}
-			if(motionVelocityDirection)
+			if(motionVelocityDirection != null)
 			{
 				rotation = Math.atan2(velocity.y, velocity.x) * 180/Math.PI;
 				
@@ -365,7 +365,7 @@ package bc.world.enemy
 					return;
 				}
 				
-				if(horizontal && path)
+				if(horizontal && path != null)
 				{
 					if((path.flipped && position.x + data.size < -SIDE_WIDTH) ||
 						(!path.flipped && position.x - data.size > world.width + SIDE_WIDTH))
@@ -409,7 +409,7 @@ package bc.world.enemy
 					health = 0;
 				}
 				
-				if(data.hitParticle)
+				if(data.hitParticle != null)
 				{
 					world.particles.launchFan(data.hitParticle, position, 1, 6.28*Math.random(), 0, 
 						world.mainLayer, world.mainLayer.getChildIndex(sprite) + 1);
@@ -425,7 +425,7 @@ package bc.world.enemy
 					}
 				}
 				
-				if(data.hitCaps)
+				if(data.hitCaps != null)
 				{
 					processHitCaps(objectDamage.amount);
 				}
@@ -468,7 +468,7 @@ package bc.world.enemy
 			
 			for each ( hitCap in data.hitCaps )
 			{
-				if(hitCap.actions && lastCap > hitCap.level && nowCap <= hitCap.level)
+				if(hitCap.actions != null && lastCap > hitCap.level && nowCap <= hitCap.level)
 				{
 					doActions(hitCap.actions);
 				}
@@ -477,12 +477,12 @@ package bc.world.enemy
 		
 		private function processDeath():void
 		{
-			if(data.deathActions)
+			if(data.deathActions != null)
 			{
 				doActions(data.deathActions);
 			}
 			
-			if(data.deathSound)
+			if(data.deathSound != null)
 			{
 				data.deathSound.playObject(position.x, position.y);
 			}

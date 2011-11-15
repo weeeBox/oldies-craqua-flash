@@ -95,7 +95,7 @@ package bc.world.player
 			{
 				claws[i] = new BcClawSprite(i >> 1, player);
 				
-				if ( i & 1 )
+				if ( (i & 1) != 0 )
 					sprRightClaws.addChild(claws[i]);
 				else 
 					sprLeftClaws.addChild(claws[i]);

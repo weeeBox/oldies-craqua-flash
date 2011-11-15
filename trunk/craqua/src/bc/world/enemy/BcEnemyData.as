@@ -186,12 +186,12 @@ package bc.world.enemy
 				
 				for each (subNode in node.cap)
 				{
-					if(!hitCaps) hitCaps = new Vector.<BcEnemyHitCap>();
+					if(hitCaps == null) hitCaps = new Vector.<BcEnemyHitCap>();
 					hitCaps.push(new BcEnemyHitCap(subNode));
 				}
 				
 				subNode = node.bonus[0];
-				if(subNode)
+				if(subNode != null)
 				{
 					hitBonus = BcStringUtil.parseUInteger(subNode.@damage);
 					hitBonusActions = createActionArray(subNode);
@@ -231,7 +231,7 @@ package bc.world.enemy
 			}
 			
 			
-			if(xml.boss[0])
+			if(xml.boss[0] != null)
 			{
 				boss = true;
 				bonusProb = 1;
@@ -281,7 +281,7 @@ package bc.world.enemy
 			var timer:BcIEnemyTimer;
 			var clone:BcIEnemyTimer;
 			
-			if(timers)
+			if(timers != null)
 			{
 				for each (timer in timers)
 				{
@@ -297,9 +297,9 @@ package bc.world.enemy
 						clone = new BcEnemyTimeline(BcEnemyTimeline(timer));
 					}
 					
-					if(clone)
+					if(clone != null)
 					{
-						if(!array)
+						if(array == null)
 						{
 							array = new Vector.<BcIEnemyTimer>();
 						}
@@ -373,7 +373,7 @@ package bc.world.enemy
 			
 			for each (node in list)
 			{
-				if(!actions)
+				if(actions == null)
 				{
 					actions = new Vector.<BcIEnemyAction>();
 				}
@@ -407,7 +407,7 @@ package bc.world.enemy
 				type = xml.@type;
 			}
 			
-			if(!type || type=="timer")
+			if(type == null || type=="timer")
 			{
 				timer = new BcEnemyTimer();
 			}

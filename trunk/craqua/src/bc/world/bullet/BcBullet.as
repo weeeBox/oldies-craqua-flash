@@ -80,7 +80,7 @@ package bc.world.bullet
 			{
 				this.data = data;
 				
-				if(data.shape) shape = data.shape.clone();
+				if(data.shape != null) shape = data.shape.clone();
 				else shape = null;
 			}
 			
@@ -137,7 +137,7 @@ package bc.world.bullet
 		{
 			if(!dead)
 			{
-				if(target)
+				if(target != null)
 				{
 					if(target.mask == BcObject.MASK_ENEMY)
 						BcEnemy(target).followBullets--;
@@ -173,7 +173,7 @@ package bc.world.bullet
 			{
 				updateTarget();
 				
-				if(target)
+				if(target != null)
 				{
 					direction.x = target.position.x - position.x;
 					direction.y = target.position.y - position.y;
@@ -199,7 +199,7 @@ package bc.world.bullet
 			position.y += VECTOR.y * dt;
 			
 			
-			if(data.trailParticle)
+			if(data.trailParticle != null)
 			{
 				trailCounter += dt * data.trailSpeed * VECTOR.length();
 				
@@ -211,7 +211,7 @@ package bc.world.bullet
 				}
 			}
 			
-			if(shape) shape.update(position);
+			if(shape != null) shape.update(position);
 			
 			if ( data.lifeTime > 0 && time >= data.lifeTime )
 			{
@@ -238,10 +238,10 @@ package bc.world.bullet
 			
 			if(detonation)
 			{
-				if(data.hitExplosion)
+				if(data.hitExplosion != null)
 					data.hitExplosion.explode(position, mask, mod);
 					
-				if(data.hitParticle)
+				if(data.hitParticle != null)
 					world.particles.launch(data.hitParticle, position, null, sprite.parent);
 					
 				die = true;
@@ -253,7 +253,7 @@ package bc.world.bullet
 				if(timer < 0)
 				{
 					timer = 1;
-					if(data.timerExplosion)
+					if(data.timerExplosion != null)
 					{
 						data.timerExplosion.explode(position, mask, mod);
 					}
@@ -324,7 +324,7 @@ package bc.world.bullet
 			
 			if(mask==BcObject.MASK_ENEMY)
 			{
-				if(shape)
+				if(shape != null)
 					world.grid.testShape(shape, mask, world.arbiter);
 				else
 					world.grid.testPoint(position, mask, world.arbiter);
@@ -355,7 +355,7 @@ package bc.world.bullet
 					OBJECT_DAMAGE.velocity.copy(velocity);
 					OBJECT_DAMAGE.position.copy(position);
 					
-					if ( mask & BcObject.MASK_ENEMY )
+					if ( (mask & BcObject.MASK_ENEMY) != 0 )
 					{
 						BcEnemy(contact.object).damage(OBJECT_DAMAGE);
 					}
@@ -382,7 +382,7 @@ package bc.world.bullet
 			
 			arbiter.object = hero;
 			
-			if(shape) BcCollision.testShapes(hero.shape, shape, arbiter);
+			if(shape != null) BcCollision.testShapes(hero.shape, shape, arbiter);
 			else BcCollision.testPointShape(position, hero.shape, arbiter);
 			
 			for each ( tail in hero.tailShapes )
@@ -392,7 +392,7 @@ package bc.world.bullet
 					
 				++i;
 				
-				if(shape) BcCollision.testShapes(tail, shape, arbiter);
+				if(shape != null) BcCollision.testShapes(tail, shape, arbiter);
 				else BcCollision.testPointShape(position, tail, arbiter);
 			}
 		}
@@ -401,13 +401,13 @@ package bc.world.bullet
 		{
 			if(mask == BcObject.MASK_ENEMY)
 			{
-				if( ( !target || BcEnemy(target).dead ) && world.enemies.count > 0)
+				if( ( target == null || BcEnemy(target).dead ) && world.enemies.count > 0)
 				{
 					var mob:BcEnemy = world.enemies.head;
 					var minMob:BcEnemy;
 					var minFollows:int = int.MAX_VALUE;
 					
-					while(mob)
+					while(mob != null)
 					{
 						if(mob.followBullets == 0)
 						{
@@ -423,7 +423,7 @@ package bc.world.bullet
 						mob = mob.next;
 					}
 					
-					if(!mob && minMob)
+					if(mob == null && minMob != null)
 					{
 						target = minMob;
 						minMob.followBullets++;

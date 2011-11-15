@@ -66,7 +66,7 @@ package bc.core.audio
 		{
 			var transform:SoundTransform = BcAudioImpl.instance.playSound();
 			
-			if(transform)
+			if(transform != null)
 			{
 				transform.volume *= volume;
 				sounds[counter].play(22.7, 0, transform);
@@ -78,7 +78,7 @@ package bc.core.audio
 		{
 			var transform:SoundTransform = BcAudioImpl.instance.playPanoramaSound(x, y);
 			
-			if(transform)
+			if(transform != null)
 			{
 				transform.volume *= volume;
 				sounds[counter].play(22.7, 0, transform);
@@ -90,7 +90,7 @@ package bc.core.audio
 		{
 			if(sounds.length > 1)
 			{
-				if(playback)
+				if(playback != 0)
 				{
 					counter = uint( Math.random() * sounds.length );
 				}

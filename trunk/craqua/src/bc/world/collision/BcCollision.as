@@ -162,7 +162,7 @@ package bc.world.collision
 						break;
 				}
 				
-				if(contact)
+				if(contact != null)
 				{
 					contact.point.x = point.x;
 					contact.point.y = point.y;

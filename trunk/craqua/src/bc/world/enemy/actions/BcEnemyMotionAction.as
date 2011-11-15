@@ -26,12 +26,12 @@ package bc.world.enemy.actions
 		
 		public function action(enemy:BcEnemy):void
 		{
-			if(playMotion)
+			if(playMotion != null)
 			{
 				enemy.animation.playMotion(playMotion);
 			}
 			
-			if(stopMotion)
+			if(stopMotion != null)
 			{
 				enemy.animation.stopMotion(stopMotion);
 			}

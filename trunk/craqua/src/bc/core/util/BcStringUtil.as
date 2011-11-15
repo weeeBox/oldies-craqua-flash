@@ -41,7 +41,7 @@ package bc.core.util
 				}
 			}
 			
-			if(!out)
+			if(out == null)
 			{
 				out = new Vector2();
 			}
@@ -78,7 +78,7 @@ package bc.core.util
 				}
 			}
 			
-			if(!out)
+			if(out == null)
 			{
 				out = new ColorTransform();
 			}
@@ -113,7 +113,7 @@ package bc.core.util
 				}
 			}
 			
-			if(!out)
+			if(out == null)
 			{
 				out = new BcFloatInterval();
 			}

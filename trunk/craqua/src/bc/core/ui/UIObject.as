@@ -47,7 +47,7 @@ package bc.core.ui
 			this.x = x;
 			this.y = y;
 			
-			if(layer)
+			if(layer != null)
 			{
 				layer.addChild(this);
 			}
@@ -57,7 +57,7 @@ package bc.core.ui
 		{
 			var iter:UIObject = _children;
 			
-			while(iter)
+			while(iter != null)
 			{
 				if(iter._active)
 				{
@@ -66,7 +66,7 @@ package bc.core.ui
 				iter = iter._next;
 			}
 			
-			if(_transition)
+			if(_transition != null)
 			{
 				_transitionProgress += UI.deltaTime * _transitionSpeed;
 				if(_transitionProgress >= 1)
@@ -96,7 +96,7 @@ package bc.core.ui
 		{
 			var iter:UIObject = _children;
 			
-			while(iter)
+			while(iter != null)
 			{
 				iter.reset();
 				iter = iter._next;
@@ -108,7 +108,7 @@ package bc.core.ui
 		
 		public function addChild(object:UIObject):void
 		{
-			if(!object._parent)
+			if(object._parent == null)
 			{
 				object._parent = this;
 				object._next = _children;
@@ -131,7 +131,7 @@ package bc.core.ui
 				object._parent = null;
 				
 				iter = _children;
-				while(iter)
+				while(iter != null)
 				{
 					if(iter == object)
 					{
@@ -141,7 +141,7 @@ package bc.core.ui
 					iter = _next;
 				}
 				
-				if(prev)
+				if(prev != null)
 				{
 					prev._next = object._next;
 				}
@@ -180,7 +180,7 @@ package bc.core.ui
 		{
 			var iter:UIObject = _children;
 
-			while(iter)
+			while(iter != null)
 			{
 				if(iter._enabled)
 				{
@@ -189,13 +189,13 @@ package bc.core.ui
 				iter = iter._next;
 			}
 			
-			if(_shape)
+			if(_shape != null)
 			{
 				if(_shape.testMouse(x, y))
 				{
 					if(!_mouseOver)
 					{
-						if(_sfxOver)
+						if(_sfxOver != null)
 						{
 							_sfxOver.play();
 						}
@@ -213,7 +213,7 @@ package bc.core.ui
 		{
 			var iter:UIObject = _children;
 
-			while(iter)
+			while(iter != null)
 			{
 				if(iter._enabled)
 				{
@@ -227,7 +227,7 @@ package bc.core.ui
 				if(!_mousePressed)
 				{
 					_mousePressed = true;
-					if(_sfxPress && !_instantClick)
+					if(_sfxPress != null && !_instantClick)
 					{
 						_sfxPress.play();
 					}
@@ -244,7 +244,7 @@ package bc.core.ui
 		{
 			var iter:UIObject = _children;
 
-			while(iter)
+			while(iter != null)
 			{
 				if(iter._enabled)
 				{
@@ -271,7 +271,7 @@ package bc.core.ui
 				_onMouseClick.onMouseClicked(this);
 			}
 			
-			if(_sfxClick)
+			if(_sfxClick != null)
 			{
 				//_sfxClick.play();
 			}
@@ -279,12 +279,12 @@ package bc.core.ui
 		
 		public function play(transition:UITransition = null, time:Number = 0, transitionCallback:UITransitionCallback = null, transitionFinishCode:int = 0):void
 		{
-			if(_transition)
+			if(_transition != null)
 			{
 				finishTransition();
 			}
 			
-			if(transition)
+			if(transition != null)
 			{
 				_transition = transition;
 				_transitionCallback = transitionCallback;
@@ -319,32 +319,32 @@ package bc.core.ui
 				t = _transition.ease.easing(_transitionProgress);
 			}
 			
-			if(_transition.x)
+			if(_transition.x != null)
 			{
 				_sprite.x = _transition.x[0] + (_transition.x[1] - _transition.x[0])*t;
 			}
 
-			if(_transition.y)
+			if(_transition.y != null)
 			{
 				_sprite.y = _transition.y[0] + (_transition.y[1] - _transition.y[0])*t;
 			}
 			
-			if(_transition.sx)
+			if(_transition.sx != null)
 			{
 				_sprite.scaleX = _transition.sx[0] + (_transition.sx[1] - _transition.sx[0])*t;
 			}
 
-			if(_transition.sy)
+			if(_transition.sy != null)
 			{
 				_sprite.scaleY = _transition.sy[0] + (_transition.sy[1] - _transition.sy[0])*t;
 			}
 			
-			if(_transition.a)
+			if(_transition.a != null)
 			{
 				_sprite.alpha = _transition.a[0] + (_transition.a[1] - _transition.a[0])*t;
 			}
 			
-			else if(_transition.color)
+			else if(_transition.color != null)
 			{
 				_sprite.transform.colorTransform = BcColorTransformUtil.lerpColor(COLOR, _transition.color[0], _transition.color[1], t);
 			}
@@ -352,7 +352,7 @@ package bc.core.ui
 		
 		protected function startTransition():void
 		{
-			if(_transition.flags && _transition.flags[0])
+			if(_transition.flags != null && _transition.flags[0] != 0)
 			{
 				setTransitionFlags(_transition.flags[0]);
 			}
@@ -366,7 +366,7 @@ package bc.core.ui
 			var transitionCallback : UITransitionCallback = _transitionCallback;
 			var transitionFinishCode : int = _transitionFinishCode;
 			
-			if(_transition.flags && _transition.flags[1])
+			if(_transition.flags != null && _transition.flags[1] != 0)
 			{
 				setTransitionFlags(_transition.flags[1]);
 			}
@@ -388,32 +388,32 @@ package bc.core.ui
 		
 		protected function setTransitionFlags(flags:uint):void
 		{
-			if(flags & UITransition.FLAG_ACTIVATE)
+			if((flags & UITransition.FLAG_ACTIVATE) != 0)
 			{
 				_active = true;
 			}
 			
-			if(flags & UITransition.FLAG_DEACTIVATE)
+			if((flags & UITransition.FLAG_DEACTIVATE) != 0)
 			{
 				_active = false;
 			}
 			
-			if(flags & UITransition.FLAG_SHOW)
+			if((flags & UITransition.FLAG_SHOW) != 0)
 			{
 				_sprite.visible = true;
 			}
 			
-			if(flags & UITransition.FLAG_HIDE)
+			if((flags & UITransition.FLAG_HIDE) != 0)
 			{
 				_sprite.visible = false;
 			}
 			
-			if(flags & UITransition.FLAG_RESET)
+			if((flags & UITransition.FLAG_RESET) != 0)
 			{
 				reset();
 			}
 			
-			if(flags & UITransition.FLAG_ENABLE)
+			if((flags & UITransition.FLAG_ENABLE) != 0)
 			{
 				_enabled = true;
 				mouseMove(BcDevice.mouseX, BcDevice.mouseY);
@@ -423,7 +423,7 @@ package bc.core.ui
 				}
 			}
 			
-			if(flags & UITransition.FLAG_DISABLE)
+			if((flags & UITransition.FLAG_DISABLE) != 0)
 			{
 				_enabled = false;
 			}

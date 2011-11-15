@@ -32,7 +32,7 @@ package bc.core.display
 		
 		public function addNode(node:BcModelNode):void
 		{
-			if(!children)
+			if(children == null)
 			{
 				children = new Vector.<BcModelNode>();
 			}

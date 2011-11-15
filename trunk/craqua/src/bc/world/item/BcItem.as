@@ -179,11 +179,11 @@ package bc.world.item
 		
 		public function pick():void
 		{
-			if(data.sfxPick)
+			if(data.sfxPick != null)
 			{
 				data.sfxPick.playObject(position.x, position.y);
 			}
-			if(data.particle)
+			if(data.particle != null)
 			{
 				world.particles.launchCircleArea(data.particle, position, 0, data.particleCount, world.mainLayer);
 			}

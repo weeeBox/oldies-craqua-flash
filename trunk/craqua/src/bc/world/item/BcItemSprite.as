@@ -55,7 +55,7 @@ package bc.world.item
 			visible = true;
 			shadow.join();
 			
-			if(caster)
+			if(caster != null)
 			{
 				layer.addChildAt(this, layer.getChildIndex(caster)+1);
 			}

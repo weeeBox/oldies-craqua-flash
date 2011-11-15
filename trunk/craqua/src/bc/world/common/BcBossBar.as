@@ -87,7 +87,7 @@ package bc.world.common
 		public function update(dt:Number):void
 		{
 			var updateY:Boolean;
-			if(parent)
+			if(parent != null)
 			{
 				if(showed && showProgress < 1)
 				{
@@ -175,7 +175,7 @@ package bc.world.common
 		
 		public function exit():void
 		{
-			if(parent)
+			if(parent != null)
 			{
 				parent.removeChild(this);
 			}

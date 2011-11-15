@@ -102,7 +102,7 @@ package bc.world.player
 			sprite1.rotation = 90*ca;
 			sprite2.rotation = -45*ca;
 			
-			if(weapon)
+			if(weapon != null)
 			{
 				a = Math.sin(opening*Math.PI*0.5);
 				b = 6 * (1 - back);
@@ -150,7 +150,7 @@ package bc.world.player
 			
 			if(back > 0)
 			{
-				if(weapon)
+				if(weapon != null)
 				{
 					if(weapon.sync)
 					{
