@@ -14,14 +14,13 @@ package bc.core.motion
 		{
 			var value:uint = NORMAL;
 			
-			switch(string)
+			if(string == "reverse")
 			{
-				case "reverse":
-					value = REVERSE;
-					break;
-				case "pingpong":
-					value = PINGPONG;
-					break;
+				value = REVERSE;
+			}
+			else if (string == "pingpong")
+			{
+				value = PINGPONG;
 			}
 			
 			return value;

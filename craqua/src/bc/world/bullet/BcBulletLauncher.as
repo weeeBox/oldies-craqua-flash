@@ -38,11 +38,18 @@ package bc.world.bullet
 			
 			if(xml.hasOwnProperty("@direction"))
 			{
-				switch(xml.@direction.toString())
+				var direction : String = xml.@direction.toString();
+				if (direction == "none")
 				{
-					case "none": directionType = DIRECTION_NONE; break;
-					case "aim": directionType = DIRECTION_AIM; break;
-					case "velocity": directionType = DIRECTION_VELOCITY; break;
+					directionType = DIRECTION_NONE;
+				}
+				else if (direction == "aim")
+				{
+					directionType = DIRECTION_AIM;
+				}
+				else if (direction == "velocity")
+				{
+					directionType = DIRECTION_VELOCITY;
 				}
 			}
 		}

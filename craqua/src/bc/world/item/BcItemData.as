@@ -64,24 +64,25 @@ package bc.world.item
 			if(xml.hasOwnProperty("@type"))
 			{
 				typeName = xml.@type.toString();
-				switch(typeName)
+				if (typeName == "money")
 				{
-					case "money":
-						type = MONEY;
-						moneyList.push(this);
-						break;
-					case "gem":
-						type = GEM;
-						gemList.push(this);
-						break;
-					case "heal":
-						type = HEAL;
-						healingItem = this;
-						break;
-					case "bomb":
-						type = BOMB;
-						bombItem = this;
-						break;
+					type = MONEY;
+					moneyList.push(this);
+				}
+				else if (typeName == "gem")
+				{
+					type = GEM;
+					gemList.push(this);
+				}
+				else if (typeName == "heal")
+				{
+					type = HEAL;
+					healingItem = this;
+				}
+				else if (typeName == "bomb")
+				{
+					type = BOMB;
+					bombItem = this;
 				}
 			}
 			

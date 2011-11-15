@@ -29,13 +29,10 @@ package bc.core.audio
 		{
 			if(xml.hasOwnProperty("@playback"))
 			{
-				switch ( xml.@playback.toString() )
+				
+				if ( xml.@playback.toString() == "random")
 				{
-					case "normal":
-						break;
-					case "random":
-						playback = PLAYBACK_RANDOM;
-						break;
+					playback = PLAYBACK_RANDOM;
 				}	
 			}
 			

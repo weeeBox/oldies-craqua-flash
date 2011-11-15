@@ -50,15 +50,17 @@ package bc.core.display
 			{
 				node = new BcModelNode();
 				node.parseInfo(xmlNode);
-				switch(xmlNode.name().toString())
+
+				var xmlNodeName : String = xmlNode.name().toString();
+				if (xmlNodeName == "bitmap")
 				{
-					case "bitmap":
-						node.parseBitmap(xmlNode);
-						break;
-					case "sprite":
-						node.parseSprite(xmlNode);
-						break;
+					node.parseBitmap(xmlNode);	
 				}
+				else if (xmlNode == "sprite")
+				{
+					node.parseSprite(xmlNode);	
+				}
+				
 				node.parseChildren(xmlNode);
 				addNode(node);
 			}
