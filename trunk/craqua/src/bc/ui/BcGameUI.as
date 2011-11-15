@@ -454,80 +454,86 @@ package bc.ui
 		
 		public function onMouseClicked(object:UIObject):void
 		{
-			switch(object)
+			if (object == mainNewGame)
 			{
-				case mainNewGame:
-					continueGame = false;
-					closeMain();
-					break;
-				case mainContinue:
-					continueGame = true;
-					closeMain();
-					break;
-				case mainHelp:
-					showCredits();
-					break;
-				case mainHighScores:
-					showHighscores();
-					break;
-				case loadingSponsor:
-					//navigate("http://www.gimme5games.com/?ref=CRAQUA_SPLASH");
-					break;
-				case loadingPlay:
-					// loadingSponsor.play(transObjectHide, 1);
-					loadingPanel.play(transWindowClose, 0.25, this, TRC_LOADING_HIDED);
-					selectMainButtonsLight();
-					mainPanel.play(transWindowOpen, 1);
-					mainButtons.play(transMainButtonsOpen, 1);
-					if(mainSponsor != null) mainSponsor.play(transMainSponsorOpen, 1);
-					backTitle.play(transTitleShow, 1);
-					backFader.play(transObjectHide, 1);
-					settingsPanel.play(transWindowOpen, 1);
-					BcMusic.getMusic("menu").play(1);
-					
-					break;
-				case pauseResume:
-					resumeGame = true;
-					closePause();
-					break;
-				case pauseEnd:
-					resumeGame = false;
-					closePause();
-					break;
-				case endGame:
-					endClickEnd();
-					break;
-				case endReplay:
-					endClickReplay();
-					break;
-				case endContinue:
-					endClickContinue();
-					break;
-				case endSubmit:
-					endClickSubmit();
-					break;
-					
-				case creditsClose:
-					enableMain();
-					creditsPanel.play(transWindowClose, 1);
-					break;
-					
-				case hsBack:
-					//BcDevice.stage.removeChild(g5Hiscores);
-					endPanel.play(transWindowOpen, 0.5);
-					hsPanel.play(transWindowClose, 0);
-					break;
-				case mainInstruction:
-					clickInstructions();
-					break;
-					
-				case settingsQ:
-				case settingsM:
-				case settingsS:
-					onSettingClick(UICheckBox(object));
-					break;
+				continueGame = false;
+				closeMain();
 			}
-			
+			else if (object == mainContinue)
+			{
+				continueGame = true;
+				closeMain();
+			}
+			else if (object == mainHelp)
+			{
+				showCredits();
+			}
+			else if (object == mainHighScores)
+			{
+				showHighscores();
+			}
+			else if (object == loadingSponsor)
+			{
+				// navigate("http://www.gimme5games.com/?ref=CRAQUA_SPLASH");
+			}
+			else if (object == loadingPlay)
+			{
+				// loadingSponsor.play(transObjectHide, 1);
+				loadingPanel.play(transWindowClose, 0.25, this, TRC_LOADING_HIDED);
+				selectMainButtonsLight();
+				mainPanel.play(transWindowOpen, 1);
+				mainButtons.play(transMainButtonsOpen, 1);
+				if (mainSponsor != null) mainSponsor.play(transMainSponsorOpen, 1);
+				backTitle.play(transTitleShow, 1);
+				backFader.play(transObjectHide, 1);
+				settingsPanel.play(transWindowOpen, 1);
+				BcMusic.getMusic("menu").play(1);
+			}
+			else if (object == pauseResume)
+			{
+				resumeGame = true;
+				closePause();
+			}
+			else if (object == pauseEnd)
+			{
+				resumeGame = false;
+				closePause();
+			}
+			else if (object == endGame)
+			{
+				endClickEnd();
+			}
+			else if (object == endReplay)
+			{
+				endClickReplay();
+			}
+			else if (object == endContinue)
+			{
+				endClickContinue();
+			}
+			else if (object == endSubmit)
+			{
+				endClickSubmit();
+			}
+			else if (object == creditsClose)
+			{
+				enableMain();
+				creditsPanel.play(transWindowClose, 1);
+			}
+			else if (object == hsBack)
+			{
+				// BcDevice.stage.removeChild(g5Hiscores);
+				endPanel.play(transWindowOpen, 0.5);
+				hsPanel.play(transWindowClose, 0);
+			}
+			else if (object == mainInstruction)
+			{
+				clickInstructions();
+			}
+			else if (object == settingsQ || object == settingsM || object == settingsS)
+			{
+				onSettingClick(UICheckBox(object));
+			}
 		}
 		
 		private function loadingHided():void
@@ -588,26 +594,20 @@ package bc.ui
 		
 		private function onSettingClick(check:UICheckBox):void
 		{
-			switch(check)
+			if (check == settingsQ)
 			{
-				case settingsQ:
-				
-					if(settingsQ.checked) BcDevice.quality = 0;
-					else BcDevice.quality = 2;
-
-					break;
-				case settingsM:
-				
-					if(settingsM.checked) BcMusic.setVolume(0);
-					else BcMusic.setVolume(1);
-					
-					break;
-				case settingsS:
-
-					if(settingsS.checked) BcAudio.setSFXVolume(0);
-					else BcAudio.setSFXVolume(1);
-
-					break;
+				if (settingsQ.checked) BcDevice.quality = 0;
+				else BcDevice.quality = 2;
+			}
+			if (check == settingsM)
+			{
+				if (settingsM.checked) BcMusic.setVolume(0);
+				else BcMusic.setVolume(1);
+			}
+			if (check == settingsS)
+			{
+				if (settingsS.checked) BcAudio.setSFXVolume(0);
+				else BcAudio.setSFXVolume(1);
 			}
 		}
 
@@ -1172,34 +1172,5 @@ package bc.ui
 			else
 				descComplete.play(transStatDisable, 3);
 		}
-		
-		private function sponsorLink(object:UIObject):void
-		{
-			
-			var url:String;
-			
-			switch(object)
-			{
-				case mainSponsor:
-					url = "http://www.gimme5games.com/?ref=CRAQUA_TITLE";
-					break;
-				case creditsSponsor:
-					url = "http://www.gimme5games.com/?ref=CRAQUA_CREDITS";
-					break;
-				case gameLink:
-					url = "http://www.gimme5games.com/?ref=CRAQUA_INGAMEHAND";
-					break;
-			}
-			
-			navigate(url);
-		}
-		
-		private function navigate(url:String):void
-		{
-			if(url != null)
-				navigateToURL(new URLRequest(url), "_blank");
-		}
-
-		
 	}
 }

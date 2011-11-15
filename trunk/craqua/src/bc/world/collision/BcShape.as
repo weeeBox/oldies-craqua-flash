@@ -115,24 +115,19 @@ package bc.world.collision
 				if(node.hasOwnProperty("@x")) x = BcStringUtil.parseNumber(node.@x);
 				if(node.hasOwnProperty("@y")) y = BcStringUtil.parseNumber(node.@y);
 				
-				switch(node.@type.toString())
+				var nodeType : String = node.@type.toString();
+				if (nodeType == "aabb")
 				{
-					case "aabb":
-						
-						if(node.hasOwnProperty("@w")) w = BcStringUtil.parseNumber(node.@w);
-						if(node.hasOwnProperty("@h")) h = BcStringUtil.parseNumber(node.@h);
-					
-						shape = new BcAABBShape(x, y, w, h);
-						
-						break;
-						
-					case "circle":
-					
-						if(node.hasOwnProperty("@r")) w = BcStringUtil.parseNumber(node.@r);
-						
-						shape = new BcCircleShape(x, y, w);
-						
-						break;
+					if (node.hasOwnProperty("@w")) w = BcStringUtil.parseNumber(node.@w);
+					if (node.hasOwnProperty("@h")) h = BcStringUtil.parseNumber(node.@h);
+
+					shape = new BcAABBShape(x, y, w, h);
+				}
+				else if (nodeType == "circle")
+				{
+					if (node.hasOwnProperty("@r")) w = BcStringUtil.parseNumber(node.@r);
+
+					shape = new BcCircleShape(x, y, w);
 				}
 			}
 			

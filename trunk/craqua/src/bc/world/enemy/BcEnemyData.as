@@ -119,14 +119,14 @@ package bc.world.enemy
 				if(node.hasOwnProperty("@offset")) movingOffset = BcStringUtil.parseNumber(node.@offset);
 				if(node.hasOwnProperty("@type"))
 				{
-					switch(node.@type.toString())
+					var nodeType : String = node.@type.toString();
+					if (nodeType == "normal") 
 					{
-						case "normal":
-							movingType = 0;
-							break;
-						case "saw":
-							movingType = 1;
-							break;
+						movingType = 0;
+					}
+					else if (nodeType == "saw") 
+					{
+						movingType = 1;
 					}
 				}
 			}
@@ -320,45 +320,41 @@ package bc.world.enemy
 			var action:BcIEnemyAction;
 			var type:String = xml.name().toString();
 			
-			switch(type)
-			{
-				case "bullets":
-					action = new BcEnemyBulletsAction(xml);
-					break;
-				case "motion":
-					action = new BcEnemyMotionAction(xml);
-					break;
-				case "circle_particles":
-					action = new BcEnemyParticlesExp(xml);
-					break;
-				case "position":
-					action = new BcEnemyPositionAction(xml);
-					break;
-				case "path":
-					action = new BcEnemyPathAction(xml);
-					break;
-				case "world":
-					action = new BcEnemyWorldAction(xml);
-					break;
-				case "bitmap":
-					action = new BcEnemyBitmapAction(xml);
-					break;
-				case "sfx":
-					action = new BcEnemySoundAction(xml);
-					break;
-				case "explosion":
-					action = new BcEnemyExplosionAction(xml);
-					break;
-				case "timer":
-					action = new BcEnemyTimerAction(xml);
-					break;
-				case "bonus":
-					action = new BcEnemyBonusAction(xml);
-					break;
-				case "create":
-					action = new BcEnemyCreateAction(xml);
-					break;
-					
+			if (type == "bullets") {
+				action = new BcEnemyBulletsAction(xml);
+			}
+			else if (type == "motion") {
+				action = new BcEnemyMotionAction(xml);
+			}
+			else if (type == "circle_particles") {
+				action = new BcEnemyParticlesExp(xml);
+			}
+			else if (type == "position") {
+				action = new BcEnemyPositionAction(xml);
+			}
+			else if (type == "path") {
+				action = new BcEnemyPathAction(xml);
+			}
+			else if (type == "world") {
+				action = new BcEnemyWorldAction(xml);
+			}
+			else if (type == "bitmap") {
+				action = new BcEnemyBitmapAction(xml);
+			}
+			else if (type == "sfx") {
+				action = new BcEnemySoundAction(xml);
+			}
+			else if (type == "explosion") {
+				action = new BcEnemyExplosionAction(xml);
+			}
+			else if (type == "timer") {
+				action = new BcEnemyTimerAction(xml);
+			}
+			else if (type == "bonus") {
+				action = new BcEnemyBonusAction(xml);
+			}
+			else if (type == "create") {
+				action = new BcEnemyCreateAction(xml);
 			}
 			
 			return action;
@@ -388,11 +384,6 @@ package bc.world.enemy
 		{
 			var trigger:BcIEnemyTrigger;
 			var type:String = xml.@type;
-			
-			switch(type)
-			{
-
-			}
 			
 			return trigger;
 		}
