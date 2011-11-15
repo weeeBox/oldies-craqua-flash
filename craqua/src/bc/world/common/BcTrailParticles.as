@@ -33,13 +33,13 @@ package bc.world.common
 		
 		public function update(dt:Number, velocity:Vector2):void
 		{
-			if(particle && casterDisplayObject && speed > 0)
+			if(particle != null && casterDisplayObject != null && speed > 0)
 			{
 				if(!velocityEffect)
 				{
 					counter += dt * speed;
 				}
-				else if(velocity)
+				else if(velocity != null)
 				{
 					counter += dt * speed * velocity.length();
 				}

@@ -30,7 +30,7 @@ package bc.world.enemy.actions
 			var bm:DisplayObject = enemy.sprite.lookup[node];
 			if(bm is Bitmap)
 			{
-				if(bitmapData)
+				if(bitmapData != null)
 				{
 					bitmapData.setupBitmap(Bitmap(bm));
 				}

@@ -26,7 +26,7 @@ package bc.core.motion
 			this.duration = duration;
 			this.keys = keys;
 			
-			if(keys && duration==0)
+			if(keys != null && duration==0)
 			{
 				duration = calcDuration();
 			}			

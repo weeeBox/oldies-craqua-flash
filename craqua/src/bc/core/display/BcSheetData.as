@@ -52,7 +52,7 @@ package bc.core.display
 				if(node.hasOwnProperty("@time"))
 				{
 					bitmapProperties = new BcBitmapData();
-					if(propertiesNode)
+					if(propertiesNode != null)
 					{
 						bitmapProperties.parse(propertiesNode);
 					}

@@ -64,7 +64,7 @@ package bc.core.motion
 			
 			if( t < timeBegin )
 			{
-				if(flags & BcMotionKeyFlag.CLOSED_BEGIN)
+				if((flags & BcMotionKeyFlag.CLOSED_BEGIN) != 0)
 				{
 					progress = 0;
 				}
@@ -75,7 +75,7 @@ package bc.core.motion
 			}
 			else if( t > timeEnd )
 			{
-				if(flags & BcMotionKeyFlag.CLOSED_END)
+				if((flags & BcMotionKeyFlag.CLOSED_END) != 0)
 				{
 					progress = 1;
 				}
@@ -87,12 +87,12 @@ package bc.core.motion
 			
 			if(updating)
 			{
-				if(node && target is BcModel)
+				if(node != null && target is BcModel)
 				{
 					target = BcModel(displayObject).lookup[node];
 				}
 				
-				if(target)
+				if(target != null)
 				{
 					tween.apply(ease.easing(progress), target, weight);
 				}

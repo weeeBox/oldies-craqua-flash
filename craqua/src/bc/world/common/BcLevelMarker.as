@@ -52,7 +52,7 @@ package bc.world.common
 		
 		public function update(dt:Number):void
 		{
-			if(parent)
+			if(parent != null)
 			{
 				tweenProgress+=dt;
 				

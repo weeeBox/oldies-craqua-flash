@@ -36,7 +36,7 @@ package bc.core.audio
 		{
 			var xml:XML = BcAsset.getXML(xmlName);
 			
-			if(xml)
+			if(xml != null)
 			{
 				if(xml.hasOwnProperty("@fading")) fading = - BcStringUtil.parseNumber(xml.@fading);
 				if(xml.hasOwnProperty("@panorama")) panorama = 1 / BcStringUtil.parseNumber(xml.@panorama);

@@ -13,12 +13,12 @@ package bc.core.motion
 		
 		public function BcAnimation(target:DisplayObject = null, data:BcAnimationData = null)
 		{
-			if(target)
+			if(target != null)
 			{
 				setTarget(target);
 			}
 			
-			if(data)
+			if(data != null)
 			{
 				setData(data);
 			}
@@ -38,7 +38,7 @@ package bc.core.motion
 			this.data = data;
 			motions.length = 0;
 			
-			if(data)
+			if(data != null)
 			{	
 				for each (var motionData:BcMotionData in data.motions)
 				{
@@ -51,7 +51,7 @@ package bc.core.motion
 		{
 			var motionData:BcMotionData = data.lookup[id];
 			
-			if(motionData)
+			if(motionData != null)
 			{
 				for each (var motion:BcMotion in motions)
 				{
@@ -67,7 +67,7 @@ package bc.core.motion
 		{
 			var motionData:BcMotionData = data.lookup[id];
 			
-			if(motionData)
+			if(motionData != null)
 			{
 				for each (var motion:BcMotion in motions)
 				{
@@ -84,7 +84,7 @@ package bc.core.motion
 			var motionData:BcMotionData = data.lookup[id];
 			var found:BcMotion;
 			
-			if(motionData)
+			if(motionData != null)
 			{
 				for each (var motion:BcMotion in motions)
 				{

@@ -70,7 +70,7 @@ package bc.world.core
 		
 		public function BcWorld()
 		{
-			if(!BcGameGlobal.world)
+			if(BcGameGlobal.world == null)
 			{
 				BcGameGlobal.world = this;
 				BcAudio.centreListener( width, height );

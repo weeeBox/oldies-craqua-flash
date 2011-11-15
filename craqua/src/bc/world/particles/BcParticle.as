@@ -57,20 +57,20 @@ package bc.world.particles
 			{
 				this.data = data;
 				
-				if(data.bitmap)
+				if(data.bitmap != null)
 				{
 					data.bitmap.setupBitmap(bitmap);
 				}
 			}
 			
-			if(data.animation)
+			if(data.animation != null)
 			{
 				frame = 0;
 				frameTime = data.animation.timeline[0];
 				data.animation.frames[0].setupBitmap(bitmap);
 			}
 			
-			if(data.lifeTime.isZero() && data.animation)
+			if(data.lifeTime.isZero() && data.animation != null)
 			{
 				speed = 1 / data.animation.totalTime;
 			}
@@ -88,7 +88,7 @@ package bc.world.particles
 			angle = data.angle.getValue();
 			rotation = data.rotation.getValue();
 			
-			if(direction)
+			if(direction != null)
 			{
 				vel = data.velocity.getValue();
 				vx = direction.x * vel;
@@ -131,7 +131,7 @@ package bc.world.particles
 			 
 			t += dt * speed;
 			
-			if(data.animation)
+			if(data.animation != null)
 			{
 				frameTime-=dt;
 				if(frameTime <= 0)

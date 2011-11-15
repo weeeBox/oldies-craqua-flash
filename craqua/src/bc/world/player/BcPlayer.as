@@ -287,7 +287,7 @@ package bc.world.player
 			
 			for each (weapon in levelInfo.weapons)
 			{
-				if(!weapon)
+				if(weapon == null)
 				{
 					break;
 				}
@@ -332,10 +332,10 @@ package bc.world.player
 							
 							if(weapon.sync)
 							{
-								if(weapon.bullet)
+								if(weapon.bullet != null)
 								{
 									launchedBullet = world.bullets.launch(weapon.bullet, launchPosition, launchDirection, MASK_ENEMY, levelInfo.modDamage);
-									if(launchDoImpulse && launchedBullet)
+									if(launchDoImpulse && launchedBullet != null)
 									{
 										launchedBullet.impulse.x += launchImpulse.x;
 										launchedBullet.impulse.y += launchImpulse.y;
@@ -348,7 +348,7 @@ package bc.world.player
 							}
 							else
 							{
-								if(weapon.query)
+								if(weapon.query != 0)
 								{
 									launchPosition.x = position.x - claw.position.x;
 									launchDirection.x = -launchDirection.x;
@@ -356,10 +356,10 @@ package bc.world.player
 								}
 							}
 	
-							if(weapon.bullet)
+							if(weapon.bullet != null)
 							{
 								launchedBullet = world.bullets.launch(weapon.bullet, launchPosition, launchDirection, MASK_ENEMY, levelInfo.modDamage);
-								if(launchDoImpulse && launchedBullet)
+								if(launchDoImpulse && launchedBullet != null)
 								{
 									launchedBullet.impulse.x += launchImpulse.x;
 									launchedBullet.impulse.y += launchImpulse.y;
@@ -370,7 +370,7 @@ package bc.world.player
 							angle += angleDelta;
 						}
 
-						if(weapon.sfx)
+						if(weapon.sfx != null)
 							weapon.sfx.playObject(position.x, position.y);
 
 						weapon.burst -= 1;
@@ -416,13 +416,13 @@ package bc.world.player
 					launchDirection.x = Math.cos(bomb.angle);
 					launchDirection.y = Math.sin(bomb.angle);
 						
-					if(bomb.bullet)
+					if(bomb.bullet != null)
 						world.bullets.launch(bomb.bullet, position, launchDirection, MASK_ENEMY, levelInfo.modDamage);
 		
-					if(bomb.explosion)
+					if(bomb.explosion != null)
 						bomb.explosion.explode(position, MASK_ENEMY, levelInfo.modDamage);
 					
-					if(bomb.sfx)
+					if(bomb.sfx != null)
 						bomb.sfx.playObject(launchPosition.x, launchPosition.y);
 				}
 		

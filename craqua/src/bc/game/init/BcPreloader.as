@@ -18,7 +18,7 @@ package bc.game.init
 			
 			BcDevice.initialize(stage);
 			
-			if(BcDevice.impl)
+			if(BcDevice.impl != null)
 			{
 				new BcPreloaderAsset(this);
 			}

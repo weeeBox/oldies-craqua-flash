@@ -32,7 +32,7 @@ package bc.core.device
 
 		public function nextEntryPoint(entryPointClassName:String):void
         {
-        	if(parent)
+        	if(parent != null)
 			{
 				parent.removeChild(this);
 			}

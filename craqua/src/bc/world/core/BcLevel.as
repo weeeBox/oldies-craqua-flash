@@ -55,7 +55,7 @@ package bc.world.core
 		{
 			enemies.length = 0;
 			boss = null;
-			if(marker.parent)
+			if(marker.parent != null)
 				marker.parent.removeChild(marker);
 			bar.exit();
 			
@@ -105,7 +105,7 @@ package bc.world.core
 	    		}
 	    		else if(world.enemies.count==0)
 	    		{
-	    			if(boss)
+	    			if(boss != null)
 	    			{
 	    				nextBoss = true;
 	    			}
@@ -192,7 +192,7 @@ package bc.world.core
 	    			}
 	    			else if(waveIndex + 1 < waves.length)
 	    			{
-	    				if(boss)
+	    				if(boss != null)
 	    				{
 	    					world.endBoss();
 	    				}
@@ -293,7 +293,7 @@ package bc.world.core
 				marker.launch(BcStrings.GAME_STAGE_N + (waveIndex+1).toString());
 			}
 			
-			if(waveXML)
+			if(waveXML != null)
 			{
 				night = BcStringUtil.parseBoolean(waveXML.@night);
 				if(starting)
@@ -308,7 +308,7 @@ package bc.world.core
 				if(waveXML.hasOwnProperty("@boss"))
 				{
 					enemyData = BcEnemyData.getData(waveXML.@boss);
-					if(enemyData)
+					if(enemyData != null)
 					{
 						boss = new BcEnemy();
 						boss.setup(enemyData, normalEnemyPath)
@@ -347,7 +347,7 @@ package bc.world.core
 						if(enemiesNode.hasOwnProperty("@id"))
 						{
 							enemyData = BcEnemyData.getData(enemiesNode.@id);
-							if(enemyData)
+							if(enemyData != null)
 							{
 								if(enemiesNode.hasOwnProperty("@path"))
 								{
@@ -374,7 +374,7 @@ package bc.world.core
 								}
 														
 								nodeX = enemiesNode.x[0];
-								if(nodeX)
+								if(nodeX != null)
 								{
 									beginX = 0;
 									if(nodeX.hasOwnProperty("@begin")) beginX = BcStringUtil.parseNumber(nodeX.@begin);								

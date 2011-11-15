@@ -47,7 +47,7 @@ package bc.core.ui
 			BcSpriteUtil.setupFast(_spriteBack);
 			BcSpriteUtil.setupFast(_spriteBody);
 			
-			if(!style)
+			if(style == null)
 			{
 				style = getDefaultStyle();
 			}
@@ -55,21 +55,21 @@ package bc.core.ui
 			_style = style;
 			
 			image = style.getString("back1");
-			if(image)
+			if(image != null)
 			{
 				_bmBack1 = BcBitmapData.create(image);
 				_spriteBack.addChild(_bmBack1);
 			}
 			
 			image = style.getString("back2");
-			if(image)
+			if(image != null)
 			{
 				_bmBack2 = BcBitmapData.create(image);
 				_spriteBack.addChild(_bmBack2);
 			}
 			
 			image = style.getString("body1");
-			if(image)
+			if(image != null)
 			{
 				_bmBody1 = BcBitmapData.create(image);
 				_spriteBody.addChild(_bmBody1);
@@ -78,7 +78,7 @@ package bc.core.ui
 			}
 			
 			image = style.getString("body2");
-			if(image)
+			if(image != null)
 			{
 				_bmBody2 = BcBitmapData.create(image);
 				_spriteBody.addChild(_bmBody2);
@@ -101,16 +101,16 @@ package bc.core.ui
 			
 			var sfx:String;
 			sfx = _style.getString("sfxOver");
-			if(sfx) _sfxOver = BcSound.getData(sfx);
+			if(sfx != null) _sfxOver = BcSound.getData(sfx);
 			sfx = _style.getString("sfxPress");
-			if(sfx) _sfxPress = BcSound.getData(sfx);
+			if(sfx != null) _sfxPress = BcSound.getData(sfx);
 			sfx = _style.getString("sfxClick");
-			if(sfx) _sfxClick = BcSound.getData(sfx);
+			if(sfx != null) _sfxClick = BcSound.getData(sfx);
 		}
 		
 		public function set text(value:String):void
 		{
-			if(!_label)
+			if(_label == null)
 			{
 				_label = new UILabel(this, 0, 0, value, _style);
 			}

@@ -37,7 +37,7 @@ package bc.core.motion.tweens
 
 		public function apply(progress:Number, displayObject:DisplayObject = null, weight:Number = 1):void
 		{
-			if(displayObject)
+			if(displayObject != null)
 			{
 				const valueX:Number = start.x + change.x * progress;
 				const valueY:Number = start.y + change.y * progress;

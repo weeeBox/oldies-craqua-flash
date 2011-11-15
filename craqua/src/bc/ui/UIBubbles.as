@@ -39,14 +39,14 @@ package bc.ui
 			iter = bubbles;
 			prev = null;
 			
-			while(iter)
+			while(iter != null)
 			{
 				if(!iter.update(dt))
 				{
 					temp = iter;
 			
 					iter = iter.next;
-					if(prev) prev.next = iter;
+					if(prev != null) prev.next = iter;
 					else bubbles = iter;
 					
 					temp.next = pool;

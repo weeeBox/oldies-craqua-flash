@@ -36,7 +36,7 @@ package bc.world.enemy.actions
 		public function action(enemy:BcEnemy):void
 		{
 			var world:BcWorld = enemy.world;
-			if(particle)
+			if(particle != null)
 			{
 				world.particles.launchCircleArea(particle, enemy.position, radius, count, world.mainLayer);
 			}

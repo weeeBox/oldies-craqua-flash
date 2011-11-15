@@ -22,7 +22,7 @@ package bc.core.ui
 			
 			super(layer, x, y);
 			
-			if(!style)
+			if(style == null)
 			{
 				style = getDefaultStyle();
 			}
@@ -38,13 +38,13 @@ package bc.core.ui
 			
 			_sprite.addChild(_textField);
 			
-			if(text)
+			if(text != null)
 			{
 				_textField.text = text;
 			}
 			
 			strokeBlur = style.getNumber("strokeBlur");
-			if(strokeBlur && strokeBlur > 0)
+			if(strokeBlur > 0)
 			{
 				_stroke = new DropShadowFilter(0, 0, style.getUint("strokeColor"), style.getNumber("strokeAlpha"), strokeBlur, strokeBlur, style.getNumber("strokeStrength"), 2);
 				_textField.filters = [_stroke];
@@ -54,7 +54,7 @@ package bc.core.ui
 		
 		public function set html(value:String):void
 		{
-			if(value)
+			if(value != null)
 			{
 				_textField.htmlText = value;
 			}
@@ -71,7 +71,7 @@ package bc.core.ui
 		
 		public function set text(value:String):void
 		{
-			if(value)
+			if(value != null)
 			{
 				_textField.text = value;
 			}

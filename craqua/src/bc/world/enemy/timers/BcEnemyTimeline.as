@@ -19,7 +19,7 @@ package bc.world.enemy.timers
 		
 		public function BcEnemyTimeline(data:BcEnemyTimeline = null)
 		{
-			if(data)
+			if(data != null)
 			{
 				source = data;
 				index = 0;

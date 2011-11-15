@@ -96,7 +96,7 @@ package bc.core.device
 		
 		public function BcAsset(singleton:BcAssetSingleton)
 		{
-			if(singleton)
+			if(singleton != null)
 			{
 				loaders = new Vector.<BcResLoader>();
 			}

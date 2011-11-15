@@ -30,7 +30,7 @@ package bc.world.item
 			var node:BcItem = head;
 			var next:BcItem;
 			
-			while(node)
+			while(node != null)
 			{
 				next = node.next;
 				
@@ -53,7 +53,7 @@ package bc.world.item
 			iter = head;
 			prev = null;
 			
-			while(iter)
+			while(iter != null)
 			{
 				if(iter.dead)
 				{
@@ -74,7 +74,7 @@ package bc.world.item
 			node.next = head;
 			head = node;
 			
-			if(iter && !prev) prev = head;
+			if(iter != null && prev == null) prev = head;
 			
 			++count;	
 		}
@@ -84,7 +84,7 @@ package bc.world.item
 			var node:BcItem = iter;
 			
 			iter = iter.next;
-			if(prev) prev.next = iter;
+			if(prev != null) prev.next = iter;
 			else head = iter;
 			
 			--count;

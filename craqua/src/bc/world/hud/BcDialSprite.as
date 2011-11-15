@@ -87,7 +87,7 @@ package bc.world.hud
 					if(dig.alpha < 0.5)
 						dig.alpha = 0.5;
 					
-					if(dig.shadow) dig.shadow.alpha = dig.alpha;
+					if(dig.shadow != null) dig.shadow.alpha = dig.alpha;
 				}
 				else if( !dig.isNull && dig.alpha < 1)
 				{
@@ -95,10 +95,10 @@ package bc.world.hud
 					if(dig.alpha > 1)
 						dig.alpha = 1;
 					
-					if(dig.shadow) dig.shadow.alpha = dig.alpha;
+					if(dig.shadow != null) dig.shadow.alpha = dig.alpha;
 				}
 				
-				if(dig.shadow)
+				if(dig.shadow != null)
 				{
 					dig.shadow.update(ox + x + dig.x, oy + y + dig.y, 32);
 				}

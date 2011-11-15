@@ -65,7 +65,7 @@ package bc.world.common
 				checkBounds();
 				world.grid.replace(this);
 				
-				if(objectSprite)
+				if(objectSprite != null)
 				{
 					objectSprite.x = position.x;
 					objectSprite.y = position.y;

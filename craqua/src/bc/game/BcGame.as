@@ -25,7 +25,7 @@ package bc.game
 		
 		public function BcGame()
 		{
-			if(!BcGameGlobal.game)
+			if(BcGameGlobal.game == null)
 			{
 				initializeLocalStore();
 				
@@ -131,7 +131,7 @@ package bc.game
 		{
 			so = SharedObject.getLocal("bc20");
 			
-			if(so)
+			if(so != null)
 			{
 				BcGameGlobal.localStore = so.data;
 				if(so.data.name == null)

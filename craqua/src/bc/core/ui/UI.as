@@ -23,7 +23,7 @@ package bc.core.ui
 			
 			_deltaTime = dt;
 			
-			while(iter)
+			while(iter != null)
 			{
 				iter.update();
 				iter = iter.next;
@@ -34,7 +34,7 @@ package bc.core.ui
 		{
 			var iter:UILayer = _layers;
 			
-			while(iter)
+			while(iter != null)
 			{
 				iter.keyboardMessage(message);
 				iter = UILayer(iter.next);
@@ -45,7 +45,7 @@ package bc.core.ui
 		{
 			var iter:UILayer = _layers;
 			
-			while(iter)
+			while(iter != null)
 			{
 				iter.mouseMessage(message);
 				iter = UILayer(iter.next);
@@ -54,7 +54,7 @@ package bc.core.ui
 	
 		public static function addLayer(layer:UILayer):void
 		{
-			if(!layer.sprite.parent)
+			if(layer.sprite.parent == null)
 			{
 				BcDevice.display.addChild(layer.sprite);
 				layer.setNext(_layers);

@@ -68,13 +68,13 @@ package bc.core.display
 				bitmapData = BcAsset.getImage(xml.@id);
 			}
 			
-			if(scale)
+			if(scale != null)
 			{
 				sx = scale.x;
 				sy = scale.y;
 			}
 			
-			if(pivot)
+			if(pivot != null)
 			{
 				x = -sx * pivot.x;
 				y = -sy * pivot.y;

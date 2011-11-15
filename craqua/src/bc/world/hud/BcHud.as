@@ -108,7 +108,7 @@ package bc.world.hud
 				updateTween(dt);
 			}
 			
-			if(envParticleData)
+			if(envParticleData != null)
 			{
 				envParticles += dt * 10;
 				if(envParticles >= 1)

@@ -25,12 +25,12 @@ package bc.core.motion
 		
 		public function BcMotion(target:DisplayObject = null, data:BcMotionData = null)
 		{
-			if(target)
+			if(target != null)
 			{
 				setTarget(target);
 			}
 			
-			if(data)
+			if(data != null)
 			{
 				setData(data);
 			}
@@ -44,7 +44,7 @@ package bc.core.motion
 		public function setData(data:BcMotionData):void
 		{
 			this.data = data;
-			if(data && data.autoplay)
+			if(data != null && data.autoplay)
 			{
 				play();
 			}
@@ -52,7 +52,7 @@ package bc.core.motion
 		
 		public function play():void
 		{
-			if(data)
+			if(data != null)
 			{
 				playback = data.playback;
 				repeats = data.count;
@@ -82,7 +82,7 @@ package bc.core.motion
 
 		public function update(dt:Number):void
 		{
-			if(playing && data)
+			if(playing && data != null)
 			{
 				if(forward)
 				{
@@ -130,7 +130,7 @@ package bc.core.motion
 		
 		public function manual(time:Number):void
 		{
-			if(data)
+			if(data != null)
 			{
 				data.animate(time, target);
 			}

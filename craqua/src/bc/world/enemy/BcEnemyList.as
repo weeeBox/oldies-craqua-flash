@@ -23,7 +23,7 @@ package bc.world.enemy
 			var node:BcEnemy = head;
 			var next:BcEnemy;
 			
-			while(node)
+			while(node != null)
 			{
 				next = node.next;
 				
@@ -42,7 +42,7 @@ package bc.world.enemy
 			iter = head;
 			prev = null;
 			
-			while(iter)
+			while(iter != null)
 			{
 				if(iter.dead)
 				{
@@ -63,7 +63,7 @@ package bc.world.enemy
 			monster.next = head;
 			head = monster;
 			
-			if(iter && !prev) prev = head;
+			if(iter != null && prev == null) prev = head;
 			
 			++count;	
 		}
@@ -75,7 +75,7 @@ package bc.world.enemy
 			iter = iter.next;
 			node.next = null;
 			
-			if(prev) prev.next = iter;
+			if(prev != null) prev.next = iter;
 			else head = iter;
 			
 			--count;

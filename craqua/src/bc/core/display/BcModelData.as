@@ -43,14 +43,14 @@ package bc.core.display
 			
 			node.index = index;
 			node.parent = parentIndex;
-			if(node.id)
+			if(node.id != null)
 			{
 				lookup[node.id] = node.index;
 			}
 			
 			++index;
 			
-			if(node.children)
+			if(node.children != null)
 			{
 				for each (iter in node.children)
 				{

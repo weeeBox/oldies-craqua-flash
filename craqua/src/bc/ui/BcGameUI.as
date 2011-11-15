@@ -87,7 +87,7 @@ package bc.ui
 
 		public function BcGameUI()
 		{
-			if(instance) throw new Error();
+			if(instance != null) throw new Error();
 			
 			instance = this;
 			
@@ -479,7 +479,7 @@ package bc.ui
 					selectMainButtonsLight();
 					mainPanel.play(transWindowOpen, 1);
 					mainButtons.play(transMainButtonsOpen, 1);
-					if(mainSponsor) mainSponsor.play(transMainSponsorOpen, 1);
+					if(mainSponsor != null) mainSponsor.play(transMainSponsorOpen, 1);
 					backTitle.play(transTitleShow, 1);
 					backFader.play(transObjectHide, 1);
 					settingsPanel.play(transWindowOpen, 1);
@@ -616,7 +616,7 @@ package bc.ui
 			selectMainButtonsLight();
 			mainPanel.play(transWindowOpen, 1);
 			mainButtons.play(transMainButtonsOpen, 1);
-			if(mainSponsor) mainSponsor.play(transMainSponsorOpen, 1);
+			if(mainSponsor != null) mainSponsor.play(transMainSponsorOpen, 1);
 			backTitle.play(transTitleShow, 1);
 			backPanel.play(transBackOpen, 1);
 			if(openSettings) settingsPanel.play(transWindowOpen, 1);
@@ -627,7 +627,7 @@ package bc.ui
 		{
 			mainPanel.play(transWindowClose, 1);
 			mainButtons.play(transMainButtonsClose, 1);
-			if(mainSponsor) mainSponsor.play(transMainSponsorClose, 1);
+			if(mainSponsor != null) mainSponsor.play(transMainSponsorClose, 1);
 			backTitle.play(transTitleHide, 1);
 			backPanel.play(transBackClose, 1, this, TRC_GO_GAME);
 			settingsPanel.play(transWindowClose, 1);
@@ -1196,7 +1196,7 @@ package bc.ui
 		
 		private function navigate(url:String):void
 		{
-			if(url)
+			if(url != null)
 				navigateToURL(new URLRequest(url), "_blank");
 		}
 
