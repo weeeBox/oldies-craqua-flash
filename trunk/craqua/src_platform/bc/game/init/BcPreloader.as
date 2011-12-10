@@ -1,5 +1,6 @@
 package bc.game.init 
 {
+	import bc.core.resources.loaders.BcFlashResLoaderFactory;
 	import bc.core.device.BcAssetCallback;
 	import bc.core.device.BcDevice;
 	import bc.core.device.BcEntryPoint;
@@ -16,9 +17,11 @@ package bc.game.init
 		{
 			super();
 			
+			new BcFlashResLoaderFactory();
+			
 			BcDevice.initialize(stage);
 			
-			if(BcDevice.impl)
+			if(BcDevice.impl != null)
 			{
 				new BcPreloaderAsset(this);
 			}

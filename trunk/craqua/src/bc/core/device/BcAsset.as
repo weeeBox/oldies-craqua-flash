@@ -68,8 +68,7 @@ package bc.core.device
 		}
 		
 		internal static function initialize():void
-		{
-			new BcResLoaderFactory();
+		{			
 			instance = new BcAsset(new BcAssetSingleton());
 		}
 		
