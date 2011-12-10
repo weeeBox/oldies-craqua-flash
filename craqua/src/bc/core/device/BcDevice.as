@@ -107,7 +107,7 @@ package bc.core.device
 			impl.fullscreen = value;
 		}
 		
-//		TODO: preprocessor
+//#if PLATFORM_FLASH
 //		public static function get contextMenu():ContextMenu
 //		{
 //			return impl.display.contextMenu;
@@ -117,6 +117,7 @@ package bc.core.device
 //		{
 //			impl.contextMenu = value;
 //		}
+//#endif
 		
 		// device
 		private var timer:BcTimer = new BcTimer();
@@ -133,8 +134,9 @@ package bc.core.device
 		
 		private var application:BcIApplication;
 		
-//		TODO: preprocessor
+//#if PLATFORM_FLASH
 //		private var defaultContextMenu:ContextMenu;
+//#endif
 	
 		public function BcDevice(singleton:BcDeviceSingleton, stage:Stage)
 		{
@@ -143,8 +145,9 @@ package bc.core.device
 				impl = this;
 				
 				this.stage = stage;
-//				TODO: preprocessor
+//#if PLATFORM_FLASH
 //				createDefaultContextMenu();
+//#endif
 				initialize();
 				
 				BcAsset.initialize();
@@ -154,7 +157,7 @@ package bc.core.device
 			}
 		}
 		
-//		TODO: preprocessor
+//#if PLATFORM_FLASH
 //		private function createDefaultContextMenu():void
 //		{
 //			var cm:ContextMenu = new ContextMenu();
@@ -175,6 +178,7 @@ package bc.core.device
 //			 
 //			defaultContextMenu = cm;
 //		}
+//#endif
 		
 		private function initialize():void
 		{
@@ -255,7 +259,7 @@ package bc.core.device
 				stage.displayState = StageDisplayState.NORMAL;
 		}
 				
-//		TODO: preprocessor
+//#if PLATFORM_FLASH
 //		private function set contextMenu(value:ContextMenu):void
 //		{
 //			display.contextMenu.removeEventListener(ContextMenuEvent.MENU_SELECT, onSelectContextMenu);
@@ -271,6 +275,7 @@ package bc.core.device
 //			
 //			display.contextMenu.addEventListener(ContextMenuEvent.MENU_SELECT, onSelectContextMenu);
 //		}
+//#endif
 	
 		public static function get mouseX():Number {return impl.mouseX;}
 		public static function get mouseY():Number {return impl.mouseY;}
@@ -300,7 +305,7 @@ package bc.core.device
 			UI.update(dt);
 		}
 		
-//		TODO: preprocessor
+//#if PLATFORM_FLASH
 //		private function onSelectContextMenu(event:ContextMenuEvent):void
 //		{
 //			if(application != null)
@@ -308,6 +313,7 @@ package bc.core.device
 //				application.contextMenu();
 //			}
 //		}
+//#endif
 		
 		// активация/деактивация окна
 		private function onDeactivate(event:Event):void
