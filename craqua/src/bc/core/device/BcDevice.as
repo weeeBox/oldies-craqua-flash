@@ -107,15 +107,16 @@ package bc.core.device
 			impl.fullscreen = value;
 		}
 		
-		public static function get contextMenu():ContextMenu
-		{
-			return impl.display.contextMenu;
-		}
-		
-		public static function set contextMenu(value:ContextMenu):void
-		{
-			impl.contextMenu = value;
-		}
+//		TODO: preprocessor
+//		public static function get contextMenu():ContextMenu
+//		{
+//			return impl.display.contextMenu;
+//		}
+//		
+//		public static function set contextMenu(value:ContextMenu):void
+//		{
+//			impl.contextMenu = value;
+//		}
 		
 		// device
 		private var timer:BcTimer = new BcTimer();
@@ -132,7 +133,8 @@ package bc.core.device
 		
 		private var application:BcIApplication;
 		
-		private var defaultContextMenu:ContextMenu;
+//		TODO: preprocessor
+//		private var defaultContextMenu:ContextMenu;
 	
 		public function BcDevice(singleton:BcDeviceSingleton, stage:Stage)
 		{
@@ -141,7 +143,8 @@ package bc.core.device
 				impl = this;
 				
 				this.stage = stage;
-				createDefaultContextMenu();
+//				TODO: preprocessor
+//				createDefaultContextMenu();
 				initialize();
 				
 				BcAsset.initialize();
@@ -151,26 +154,27 @@ package bc.core.device
 			}
 		}
 		
-		private function createDefaultContextMenu():void
-		{
-			var cm:ContextMenu = new ContextMenu();
-			var bii:ContextMenuBuiltInItems = cm.builtInItems;
-			var items:Array = new Array();
-			
-			bii.loop = false;
-			bii.forwardAndBack = false;
-			bii.play = false;
-			bii.print = false;
-			bii.rewind = false;
-			bii.save = false;
-			bii.zoom = false;
-			var cmi:ContextMenuItem;
-			cmi = new ContextMenuItem("eliasku (c) 2009", true, true, true);
-			items.push(cmi);
-			cm.customItems = items;
-			 
-			defaultContextMenu = cm;
-		}
+//		TODO: preprocessor
+//		private function createDefaultContextMenu():void
+//		{
+//			var cm:ContextMenu = new ContextMenu();
+//			var bii:ContextMenuBuiltInItems = cm.builtInItems;
+//			var items:Array = new Array();
+//			
+//			bii.loop = false;
+//			bii.forwardAndBack = false;
+//			bii.play = false;
+//			bii.print = false;
+//			bii.rewind = false;
+//			bii.save = false;
+//			bii.zoom = false;
+//			var cmi:ContextMenuItem;
+//			cmi = new ContextMenuItem("eliasku (c) 2009", true, true, true);
+//			items.push(cmi);
+//			cm.customItems = items;
+//			 
+//			defaultContextMenu = cm;
+//		}
 		
 		private function initialize():void
 		{
@@ -203,8 +207,9 @@ package bc.core.device
 			display.scrollRect = displaySize;
 			display.opaqueBackground = BcDevice.BACKGROUND_COLOR;
 				
-			display.contextMenu = defaultContextMenu;
-			display.contextMenu.addEventListener(ContextMenuEvent.MENU_SELECT, onSelectContextMenu);
+//			TODO: preprocessor
+//			display.contextMenu = defaultContextMenu;
+//			display.contextMenu.addEventListener(ContextMenuEvent.MENU_SELECT, onSelectContextMenu);
 			
 			stage.addChildAt(display, 0);
 		}
@@ -250,21 +255,22 @@ package bc.core.device
 				stage.displayState = StageDisplayState.NORMAL;
 		}
 				
-		private function set contextMenu(value:ContextMenu):void
-		{
-			display.contextMenu.removeEventListener(ContextMenuEvent.MENU_SELECT, onSelectContextMenu);
-			
-			if(value != null)
-			{
-				display.contextMenu = value;
-			}
-			else
-			{
-				display.contextMenu = defaultContextMenu;
-			}
-			
-			display.contextMenu.addEventListener(ContextMenuEvent.MENU_SELECT, onSelectContextMenu);
-		}
+//		TODO: preprocessor
+//		private function set contextMenu(value:ContextMenu):void
+//		{
+//			display.contextMenu.removeEventListener(ContextMenuEvent.MENU_SELECT, onSelectContextMenu);
+//			
+//			if(value != null)
+//			{
+//				display.contextMenu = value;
+//			}
+//			else
+//			{
+//				display.contextMenu = defaultContextMenu;
+//			}
+//			
+//			display.contextMenu.addEventListener(ContextMenuEvent.MENU_SELECT, onSelectContextMenu);
+//		}
 	
 		public static function get mouseX():Number {return impl.mouseX;}
 		public static function get mouseY():Number {return impl.mouseY;}
@@ -294,13 +300,14 @@ package bc.core.device
 			UI.update(dt);
 		}
 		
-		private function onSelectContextMenu(event:ContextMenuEvent):void
-		{
-			if(application != null)
-			{
-				application.contextMenu();
-			}
-		}
+//		TODO: preprocessor
+//		private function onSelectContextMenu(event:ContextMenuEvent):void
+//		{
+//			if(application != null)
+//			{
+//				application.contextMenu();
+//			}
+//		}
 		
 		// активация/деактивация окна
 		private function onDeactivate(event:Event):void
