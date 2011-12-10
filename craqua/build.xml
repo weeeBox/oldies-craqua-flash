@@ -5,7 +5,10 @@
 	<property name="playerVersion" value="10.1" />
 	<property name="project.name" value="${ant.project.name}" />
 
+	<!-- Source set -->
 	<property name="dir.src" value="src" />
+	<property name="dir.src.platform" value="src_platform" />
+	
 	<property name="dir.build" value="out" />
 
 	<property name="project.main.class" value="bc/game/init/BitCaptains" />
@@ -25,10 +28,11 @@
 		<mkdir dir="${dir.build}" />
 
 
-		<mxmlc file="${dir.src}/${project.main.class}.as" output="${dir.build}/${project.name}.swf" fork="false" static-link-runtime-shared-libraries="true" actionscript-file-encoding="UTF-8">
+		<mxmlc file="${dir.src.platform}/${project.main.class}.as" output="${dir.build}/${project.name}.swf" fork="false" static-link-runtime-shared-libraries="true" actionscript-file-encoding="UTF-8">
 			<!--<classpath refid="flexLibs" />-->
 			<!-- As3 source path -->
 			<source-path path-element="${dir.src}" />
+			<source-path path-element="${dir.src.platform}" />
 
 			<!-- System libraries -->
 			<library-path dir="${FLEX_HOME}/frameworks" append="true">
@@ -61,7 +65,7 @@
 		
 		<fdt.launch.application 
 			debug="true" 
-			mainclass="${dir.src}/${project.main.class}.as" 
+			mainclass="${dir.src.platform}/${project.main.class}.as" 
 			startswf="false" 
 			target="${dir.build}/${project.name}.swf" 
 			projectname="${project.name}" 
